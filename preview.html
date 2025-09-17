@@ -1,1 +1,365 @@
-<!DOCTYPE html><html><head><title>119th Congress Preview</title></head><body><h1>119th Congress Datasets Preview</h1><p>Preview of House and Senate datasets.</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>119th Congress Datasets Preview - Voters Speak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        
+        h1 {
+            font-size: 36px;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 18px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        
+        .stats-bar {
+            background: #f8f9fa;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 32px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 14px;
+            color: #6c757d;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .content {
+            padding: 40px;
+        }
+        
+        .dataset-section {
+            margin-bottom: 40px;
+            border: 1px solid #dee2e6;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .dataset-header {
+            background: #f8f9fa;
+            padding: 20px;
+            border-bottom: 1px solid #dee2e6;
+        }
+        
+        .dataset-title {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .dataset-description {
+            color: #6c757d;
+            line-height: 1.6;
+        }
+        
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+        
+        .member-card {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 15px;
+            background: #fff;
+        }
+        
+        .member-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .member-title {
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        
+        .member-details {
+            font-size: 14px;
+            color: #495057;
+        }
+        
+        .party-democrat {
+            border-left: 4px solid #007bff;
+        }
+        
+        .party-republican {
+            border-left: 4px solid #dc3545;
+        }
+        
+        .party-independent {
+            border-left: 4px solid #28a745;
+        }
+        
+        .load-more {
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background 0.3s ease;
+        }
+        
+        .btn:hover {
+            background: #5a6fd8;
+        }
+        
+        .footer {
+            background: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+        }
+        
+        @media (max-width: 768px) {
+            .stats-bar {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .preview-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .content {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">🇺🇸</div>
+            <h1>119th Congress Datasets Preview</h1>
+            <div class="tagline">Complete House and Senate Contact Information</div>
+        </div>
+        
+        <div class="stats-bar">
+            <div class="stat-item">
+                <div class="stat-number" id="house-count">0</div>
+                <div class="stat-label">House Members</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="senate-count">0</div>
+                <div class="stat-label">Senate Members</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number" id="total-count">0</div>
+                <div class="stat-label">Total Congress Members</div>
+            </div>
+        </div>
+        
+        <div class="content">
+            <div class="dataset-section">
+                <div class="dataset-header">
+                    <div class="dataset-title">🏛️ House of Representatives Dataset</div>
+                    <div class="dataset-description">
+                        Complete contact information for all House members in the 119th Congress, including leadership, 
+                        committee chairs, and representatives from all 50 states and territories. Each record includes 
+                        direct email, phone numbers, office addresses, and social media handles.
+                    </div>
+                </div>
+                <div class="preview-grid" id="house-preview">
+                    <!-- House members will be loaded here -->
+                </div>
+                <div class="load-more">
+                    <button class="btn" onclick="loadMoreHouse()">Load More House Members</button>
+                </div>
+            </div>
+            
+            <div class="dataset-section">
+                <div class="dataset-header">
+                    <div class="dataset-title">🏛️ Senate Dataset</div>
+                    <div class="dataset-description">
+                        Complete contact information for all 100 Senators in the 119th Congress, including majority and 
+                        minority leadership, committee chairs, and senators from all 50 states. Features direct contact 
+                        methods and comprehensive social media presence.
+                    </div>
+                </div>
+                <div class="preview-grid" id="senate-preview">
+                    <!-- Senate members will be loaded here -->
+                </div>
+                <div class="load-more">
+                    <button class="btn" onclick="loadMoreSenate()">Load More Senate Members</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Data Features:</strong> Direct Email • Phone Numbers • Office Addresses • Social Media Handles • Party Affiliation • Leadership Positions</p>
+            <p><strong>Last Updated:</strong> <span id="last-updated"></span> | <strong>Data Source:</strong> Official Congressional Records</p>
+        </div>
+    </div>
+
+    <script>
+        let houseData = [];
+        let senateData = [];
+        let houseDisplayed = 0;
+        let senateDisplayed = 0;
+        const itemsPerLoad = 6;
+
+        // Load datasets
+        async function loadDatasets() {
+            try {
+                const [houseResponse, senateResponse] = await Promise.all([
+                    fetch('./data/house.json'),
+                    fetch('./data/senate.json')
+                ]);
+                
+                const houseJson = await houseResponse.json();
+                const senateJson = await senateResponse.json();
+                
+                houseData = houseJson.house || [];
+                senateData = senateJson.senate || [];
+                
+                updateStats();
+                loadInitialData();
+                
+            } catch (error) {
+                console.error('Error loading datasets:', error);
+                // Fallback to empty arrays if loading fails
+                houseData = [];
+                senateData = [];
+                updateStats();
+            }
+        }
+
+        function updateStats() {
+            document.getElementById('house-count').textContent = houseData.length;
+            document.getElementById('senate-count').textContent = senateData.length;
+            document.getElementById('total-count').textContent = houseData.length + senateData.length;
+            document.getElementById('last-updated').textContent = new Date().toLocaleDateString();
+        }
+
+        function loadInitialData() {
+            loadMoreHouse();
+            loadMoreSenate();
+        }
+
+        function loadMoreHouse() {
+            const container = document.getElementById('house-preview');
+            const endIndex = Math.min(houseDisplayed + itemsPerLoad, houseData.length);
+            
+            for (let i = houseDisplayed; i < endIndex; i++) {
+                const member = houseData[i];
+                container.appendChild(createMemberCard(member));
+            }
+            
+            houseDisplayed = endIndex;
+            
+            // Hide load more button if all data is loaded
+            if (houseDisplayed >= houseData.length) {
+                const loadMoreBtn = container.parentElement.querySelector('.load-more button');
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+
+        function loadMoreSenate() {
+            const container = document.getElementById('senate-preview');
+            const endIndex = Math.min(senateDisplayed + itemsPerLoad, senateData.length);
+            
+            for (let i = senateDisplayed; i < endIndex; i++) {
+                const member = senateData[i];
+                container.appendChild(createMemberCard(member));
+            }
+            
+            senateDisplayed = endIndex;
+            
+            // Hide load more button if all data is loaded
+            if (senateDisplayed >= senateData.length) {
+                const loadMoreBtn = container.parentElement.querySelector('.load-more button');
+                loadMoreBtn.style.display = 'none';
+            }
+        }
+
+        function createMemberCard(member) {
+            const card = document.createElement('div');
+            card.className = `member-card party-${member.party.toLowerCase()}`;
+            
+            const district = member.district ? ` - ${member.state} ${member.district} District` : ` - ${member.state}`;
+            
+            card.innerHTML = `
+                <div class="member-name">${member.name}</div>
+                <div class="member-title">${member.title}${district}</div>
+                <div class="member-details">
+                    <strong>Party:</strong> ${member.party}<br>
+                    <strong>Phone:</strong> ${member.phone}<br>
+                    <strong>Email:</strong> ${member.email}<br>
+                    <strong>Social:</strong> @${member.twitter || 'N/A'}
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Initialize the preview
+        document.addEventListener('DOMContentLoaded', loadDatasets);
+    </script>
+</body>
+</html>

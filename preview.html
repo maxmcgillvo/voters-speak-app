@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>119th Congress Preview</title>
+</head>
+<body>
+  <h1>119th Congress Datasets Preview</h1>
+  <pre id="house"></pre>
+  <pre id="senate"></pre>
+  <script>
+    fetch('data/house.json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('house').textContent = 'House Dataset:\n' + JSON.stringify(data, null, 2);
+      });
+    fetch('data/senate.json')
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('senate').textContent = 'Senate Dataset:\n' + JSON.stringify(data, null, 2);
+      });
+  </script>
+</body>
+</html>

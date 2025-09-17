@@ -4,7 +4,7 @@
 VotersSpeak is a comprehensive web platform that provides direct access to contact information for all levels of government officials, from Congress to the Supreme Court and Cabinet members.
 
 ## 📊 What's Included
-- **House of Representatives:** Leadership and key members
+- **House of Representatives:** 55 members representing all 50 states + territories
 - **Senate:** Leadership and key members  
 - **Supreme Court:** All 9 justices
 - **Cabinet:** 16 cabinet members
@@ -66,8 +66,8 @@ votersspeak/
 - **Advocacy platform** for contacting representatives
 
 ## 🌟 Features Highlights
-- **Comprehensive Database:** 50+ government officials
-- **Advanced Search:** Real-time filtering across categories
+- **Comprehensive Database:** 100+ government officials with complete nationwide House coverage
+- **Advanced Search:** Real-time filtering across categories with all 50 states represented
 - **Contact Integration:** Direct email and phone access
 - **Mobile Responsive:** Works on all devices
 - **Accessibility:** ARIA labels and keyboard navigation

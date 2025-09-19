@@ -554,11 +554,11 @@
 
         <div class="stats-bar">
             <div class="stat-item">
-                <div class="stat-number" id="total-contacts">1,000+</div>
+                <div class="stat-number" id="total-contacts">68</div>
                 <div class="stat-label">Total Contacts</div>
             </div>
             <div class="stat-item">
-                <div class="stat-number">535</div>
+                <div class="stat-number" id="congress-count">29</div>
                 <div class="stat-label">Congress Members</div>
             </div>
             <div class="stat-item">
@@ -575,12 +575,26 @@
         </div>
 
         <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showTab('house')">House (435)</button>
-            <button class="nav-tab" onclick="showTab('senate')">Senate (100)</button>
+            <button class="nav-tab active" onclick="showTab('house')">House (14)</button>
+            <button class="nav-tab" onclick="showTab('senate')">Senate (15)</button>
             <button class="nav-tab" onclick="showTab('executive')">Executive</button>
             <button class="nav-tab" onclick="showTab('cabinet')">Cabinet</button>
             <button class="nav-tab" onclick="showTab('supreme-court')">Supreme Court</button>
             <button class="nav-tab" onclick="showTab('agencies')">Agencies</button>
+        </div>
+
+        <!-- Dataset Status Disclaimer -->
+        <div style="background: #fff3cd; border: 1px solid #ffeaa7; border-radius: 8px; padding: 15px; margin: 20px 40px; color: #856404;">
+            <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                <span style="font-size: 20px; margin-right: 8px;">⚠️</span>
+                <strong>Dataset Status Notice</strong>
+            </div>
+            <p style="margin: 0; line-height: 1.5;">
+                This is a demonstration version with expanded representative data. The dataset now includes:
+                <strong>14 House members, 15 Senate members</strong> representing diverse states and political parties out of the full 535 Congress members. 
+                Cabinet (15), Supreme Court (9), and Agency (10) data is complete. 
+                <em>This platform demonstrates the framework for comprehensive government contact information.</em>
+            </p>
         </div>
 
         <div id="house" class="tab-content active">
@@ -855,6 +869,66 @@
                     instagram: "repmattgaetz",
                     youtube: "RepMattGaetz"
                 },
+                {
+                    name: "Nancy Pelosi",
+                    title: "Representative",
+                    state: "California",
+                    district: "11th",
+                    party: "Democrat",
+                    email: "pelosi@mail.house.gov",
+                    phone: "(202) 225-4965",
+                    office: "1236 Longworth HOB, Washington, DC 20515",
+                    website: "https://pelosi.house.gov",
+                    twitter: "SpeakerPelosi",
+                    facebook: "NancyPelosi",
+                    instagram: "speakerpelosi",
+                    youtube: "SpeakerPelosi2022"
+                },
+                {
+                    name: "Kevin McCarthy",
+                    title: "Representative",
+                    state: "California",
+                    district: "20th",
+                    party: "Republican",
+                    email: "mccarthy@mail.house.gov",
+                    phone: "(202) 225-2915",
+                    office: "2468 Rayburn HOB, Washington, DC 20515",
+                    website: "https://mccarthy.house.gov",
+                    twitter: "GOPLeader",
+                    facebook: "CongressmanKevinMcCarthy",
+                    instagram: "gopleader",
+                    youtube: "CongressmanKevinMcCarthy"
+                },
+                {
+                    name: "Rashida Tlaib",
+                    title: "Representative",
+                    state: "Michigan",
+                    district: "12th",
+                    party: "Democrat",
+                    email: "tlaib@mail.house.gov",
+                    phone: "(202) 225-5126",
+                    office: "1628 Longworth HOB, Washington, DC 20515",
+                    website: "https://tlaib.house.gov",
+                    twitter: "RashidaTlaib",
+                    facebook: "RepRashida",
+                    instagram: "rashidatlaib",
+                    youtube: "RepRashida"
+                },
+                {
+                    name: "Dan Crenshaw",
+                    title: "Representative",
+                    state: "Texas",
+                    district: "2nd",
+                    party: "Republican",
+                    email: "crenshaw@mail.house.gov",
+                    phone: "(202) 225-6565",
+                    office: "413 Cannon HOB, Washington, DC 20515",
+                    website: "https://crenshaw.house.gov",
+                    twitter: "DanCrenshawTX",
+                    facebook: "RepDanCrenshaw",
+                    instagram: "repdancrenshaw",
+                    youtube: "RepDanCrenshaw"
+                },
                 // Additional House members would be added here...
             ],
             senate: [
@@ -1000,6 +1074,66 @@
                     facebook: "SenatorMarcoRubio",
                     instagram: "senrubiopress",
                     youtube: "SenatorMarcoRubio"
+                },
+                {
+                    name: "Joe Manchin",
+                    title: "Senator",
+                    state: "West Virginia",
+                    party: "Democrat",
+                    email: "senator@manchin.senate.gov",
+                    phone: "(202) 224-3954",
+                    office: "306 Hart Senate Office Building, Washington, DC 20510",
+                    website: "https://www.manchin.senate.gov",
+                    twitter: "Sen_JoeManchin",
+                    facebook: "JoeManchinWV"
+                },
+                {
+                    name: "Susan Collins",
+                    title: "Senator",
+                    state: "Maine",
+                    party: "Republican",
+                    email: "senator@collins.senate.gov",
+                    phone: "(202) 224-2523",
+                    office: "413 Dirksen Senate Office Building, Washington, DC 20510",
+                    website: "https://www.collins.senate.gov",
+                    twitter: "SenatorCollins",
+                    facebook: "SenatorSusanCollins"
+                },
+                {
+                    name: "Kyrsten Sinema",
+                    title: "Senator",
+                    state: "Arizona",
+                    party: "Independent",
+                    email: "senator@sinema.senate.gov",
+                    phone: "(202) 224-4521",
+                    office: "317 Hart Senate Office Building, Washington, DC 20510",
+                    website: "https://www.sinema.senate.gov",
+                    twitter: "SenatorSinema",
+                    facebook: "SenatorSinema"
+                },
+                {
+                    name: "Josh Hawley",
+                    title: "Senator",
+                    state: "Missouri",
+                    party: "Republican",
+                    email: "senator@hawley.senate.gov",
+                    phone: "(202) 224-6154",
+                    office: "212 Russell Senate Office Building, Washington, DC 20510",
+                    website: "https://www.hawley.senate.gov",
+                    twitter: "HawleyMO",
+                    facebook: "SenatorHawley"
+                },
+                {
+                    name: "Amy Klobuchar",
+                    title: "Senator",
+                    state: "Minnesota",
+                    party: "Democrat",
+                    email: "senator@klobuchar.senate.gov",
+                    phone: "(202) 224-3244",
+                    office: "425 Dirksen Senate Office Building, Washington, DC 20510",
+                    website: "https://www.klobuchar.senate.gov",
+                    twitter: "SenAmyKlobuchar",
+                    facebook: "AmyKlobucharMN"
                 },
                 // Additional Senate members would be added here...
             ],

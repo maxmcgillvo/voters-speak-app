@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Voters Speak - Complete Government Contact Directory</title>
     <style>
-        /* Enhanced Voters Speak - Complete Styles */
         * {
             margin: 0;
             padding: 0;
@@ -20,11 +19,11 @@
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
             background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border-radius: 15px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
             overflow: hidden;
         }
 
@@ -35,509 +34,219 @@
             text-align: center;
         }
 
-        .logo {
-            font-size: 48px;
-            margin-bottom: 10px;
-        }
-
-        h1 {
-            font-size: 36px;
+        .header h1 {
+            font-size: 2.5rem;
             margin-bottom: 10px;
             font-weight: 700;
         }
 
-        .tagline {
-            font-size: 18px;
+        .header p {
+            font-size: 1.2rem;
             opacity: 0.9;
-            margin-bottom: 5px;
+            margin-bottom: 20px;
         }
 
-        .country-tagline {
-            font-size: 16px;
-            opacity: 0.8;
-            font-style: italic;
-        }
-
-        .nav-tabs {
+        .stats {
             display: flex;
-            background: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
-            overflow-x: auto;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
         }
 
-        .nav-tab {
-            flex: 1;
-            min-width: 120px;
-            padding: 15px 20px;
-            background: none;
-            border: none;
-            font-size: 16px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            color: #6c757d;
-            white-space: nowrap;
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 10px;
         }
 
-        .nav-tab.active {
-            background: white;
-            color: #2c3e50;
-            border-bottom: 3px solid #667eea;
-        }
-
-        .nav-tab:hover {
-            background: #e9ecef;
-        }
-
-        .tab-content {
-            display: none;
-            padding: 40px;
-        }
-
-        .tab-content.active {
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
             display: block;
         }
 
-        .search-container {
-            margin-bottom: 30px;
+        .branch-tabs {
             display: flex;
-            gap: 15px;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
             flex-wrap: wrap;
-            align-items: center;
+            padding: 20px;
+            background: #f8f9fa;
         }
 
-        .search-input {
-            flex: 1;
-            min-width: 300px;
-            padding: 15px;
-            font-size: 16px;
-            border: 2px solid #e9ecef;
+        .branch-tab {
+            padding: 12px 24px;
+            background: rgba(255,255,255,0.8);
+            border: none;
+            border-radius: 25px;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+
+        .branch-tab:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .branch-tab.active {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .branch-section {
+            display: none;
+            padding: 30px;
+        }
+
+        .branch-section.active {
+            display: block;
+        }
+
+        .branch-title {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            text-align: center;
+        }
+
+        .filters {
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 20px;
             border-radius: 10px;
-            transition: border-color 0.3s ease;
         }
 
-        .search-input:focus {
-            outline: none;
-            border-color: #667eea;
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
         }
 
-        .filter-select {
-            padding: 15px;
-            border: 2px solid #e9ecef;
-            border-radius: 10px;
-            font-size: 16px;
-            background: white;
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            min-width: 150px;
         }
 
         .officials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
         }
 
         .official-card {
             background: white;
-            border: 1px solid #e9ecef;
-            border-radius: 15px;
-            padding: 25px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 20px;
+            transition: transform 0.2s;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .official-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
         }
 
         .official-header {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
+            align-items: flex-start;
             margin-bottom: 15px;
         }
 
-        .official-photo {
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
+        .official-name {
+            font-size: 1.3rem;
             font-weight: bold;
-            margin-right: 15px;
-            font-size: 18px;
-        }
-
-        .official-info h3 {
-            font-size: 18px;
-            font-weight: 600;
             color: #2c3e50;
             margin-bottom: 5px;
         }
 
         .official-title {
-            color: #667eea;
-            font-weight: 500;
-            margin-bottom: 5px;
+            color: #7f8c8d;
+            font-size: 0.9rem;
         }
 
-        .official-party {
-            display: inline-block;
+        .party-badge {
             padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-
-        .party-democrat {
-            background: #e3f2fd;
-            color: #1976d2;
-        }
-
-        .party-republican {
-            background: #ffebee;
-            color: #c62828;
-        }
-
-        .party-independent {
-            background: #f3e5f5;
-            color: #7b1fa2;
-        }
-
-        .contact-section {
-            margin-bottom: 15px;
-        }
-
-        .contact-section h4 {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 8px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .contact-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 10px;
-        }
-
-        .contact-btn {
-            padding: 8px 12px;
-            border: none;
-            border-radius: 6px;
-            font-size: 12px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .email-btn {
-            background: #667eea;
-            color: white;
-        }
-
-        .email-btn:hover {
-            background: #5a6fd8;
-        }
-
-        .phone-btn {
-            background: #28a745;
-            color: white;
-        }
-
-        .phone-btn:hover {
-            background: #218838;
-        }
-
-        .social-btn {
-            background: #17a2b8;
-            color: white;
-        }
-
-        .social-btn:hover {
-            background: #138496;
-        }
-
-        .twitter-btn {
-            background: #1da1f2;
-            color: white;
-        }
-
-        .facebook-btn {
-            background: #4267b2;
-            color: white;
-        }
-
-        .instagram-btn {
-            background: #e4405f;
-            color: white;
-        }
-
-        .youtube-btn {
-            background: #ff0000;
-            color: white;
-        }
-
-        .website-btn {
-            background: #6c757d;
-            color: white;
-        }
-
-        .contact-info {
-            font-size: 13px;
-            color: #666;
-            line-height: 1.4;
-        }
-
-        .contact-info div {
-            margin-bottom: 3px;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(5px);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 0;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 30px;
-            border-radius: 20px 20px 0 0;
-        }
-
-        .close {
-            color: white;
-            float: right;
-            font-size: 28px;
+            border-radius: 15px;
+            font-size: 0.8rem;
             font-weight: bold;
-            cursor: pointer;
-            line-height: 1;
+            color: white;
         }
 
-        .close:hover {
-            opacity: 0.8;
+        .party-republican { background: #e74c3c; }
+        .party-democratic { background: #3498db; }
+        .party-independent { background: #95a5a6; }
+
+        .official-details {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
 
-        .email-form {
-            padding: 30px;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 600;
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
             color: #2c3e50;
         }
 
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid #e9ecef;
-            border-radius: 8px;
-            font-size: 16px;
-            font-family: inherit;
-        }
-
-        .form-group textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .send-btn {
-            width: 100%;
-            padding: 15px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .send-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .send-btn:disabled {
-            opacity: 0.6;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        .success-message {
-            background: #d4edda;
-            color: #155724;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-
-        .error-message {
-            background: #f8d7da;
-            color: #721c24;
-            padding: 10px 15px;
-            border-radius: 5px;
-            margin-bottom: 15px;
-        }
-
-        .loading {
-            display: inline-block;
+        .contact-icon {
             width: 16px;
             height: 16px;
-            border: 2px solid #ffffff;
-            border-radius: 50%;
-            border-top-color: transparent;
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 8px;
+            fill: #3498db;
+            flex-shrink: 0;
         }
 
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .contact-item a {
+            color: #3498db;
+            text-decoration: none;
         }
 
-        .email-count {
-            background: #e9ecef;
-            padding: 8px 12px;
-            border-radius: 20px;
-            font-size: 14px;
-            color: #6c757d;
-        }
-
-        .stats-bar {
-            background: #f8f9fa;
-            padding: 15px 30px;
-            border-bottom: 1px solid #dee2e6;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-
-        .stat-label {
-            font-size: 12px;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            margin-top: 30px;
-            gap: 5px;
-        }
-
-        .pagination-btn {
-            padding: 8px 12px;
-            border: 1px solid #dee2e6;
-            background: white;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .pagination-btn:hover {
-            background: #e9ecef;
-        }
-
-        .pagination-btn.active {
-            background: #667eea;
-            color: white;
-            border-color: #667eea;
-        }
-
-        .pagination-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
+        .contact-item a:hover {
+            text-decoration: underline;
         }
 
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
+            .header h1 {
+                font-size: 2rem;
             }
             
-            .container {
-                border-radius: 10px;
-            }
-            
-            .header {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 28px;
-            }
-            
-            .nav-tabs {
+            .stats {
                 flex-direction: column;
+                gap: 15px;
             }
             
-            .tab-content {
-                padding: 20px;
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
             }
             
             .officials-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .search-container {
-                flex-direction: column;
-                align-items: stretch;
-            }
-
-            .search-input {
-                min-width: auto;
-            }
-
-            .stats-bar {
-                padding: 15px;
-            }
-
-            .stat-item {
-                flex: 1;
             }
         }
     </style>
@@ -546,1203 +255,329 @@
 <body>
     <div class="container">
         <div class="header">
-            <div class="logo">🇺🇸</div>
-            <h1>Voters Speak</h1>
-            <div class="tagline">Complete Government Contact Directory</div>
-            <div class="country-tagline">Connect with Every Branch of Government</div>
-        </div>
-
-        <div class="stats-bar">
-            <div class="stat-item">
-                <div class="stat-number" id="total-contacts">1,000+</div>
-                <div class="stat-label">Total Contacts</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">535</div>
-                <div class="stat-label">Congress Members</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">15</div>
-                <div class="stat-label">Cabinet Members</div>
-            </div>
-            <div class="stat-item">
-                <div class="stat-number">9</div>
-                <div class="stat-label">Supreme Court</div>
-            </div>
-            <div class="email-count">
-                Daily Emails: <span id="email-count">0/10</span>
+            <h1>Voters Speak - Complete Government Contact Directory</h1>
+            <p>Direct access to all your elected officials</p>
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">100</span>
+                    <span>Senators</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">187</span>
+                    <span>House Reps (A-NJ)</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">9</span>
+                    <span>Justices</span>
+                </div>
             </div>
         </div>
 
-        <div class="nav-tabs">
-            <button class="nav-tab active" onclick="showTab('house')">House (435)</button>
-            <button class="nav-tab" onclick="showTab('senate')">Senate (100)</button>
-            <button class="nav-tab" onclick="showTab('executive')">Executive</button>
-            <button class="nav-tab" onclick="showTab('cabinet')">Cabinet</button>
-            <button class="nav-tab" onclick="showTab('supreme-court')">Supreme Court</button>
-            <button class="nav-tab" onclick="showTab('agencies')">Agencies</button>
+        <div class="branch-tabs">
+            <button class="branch-tab active" onclick="showBranch('senate')">U.S. Senate</button>
+            <button class="branch-tab" onclick="showBranch('house')">U.S. House</button>
+            <button class="branch-tab" onclick="showBranch('executive')">Executive Branch</button>
+            <button class="branch-tab" onclick="showBranch('judicial')">Judicial Branch</button>
         </div>
 
-        <div id="house" class="tab-content active">
-            <div class="search-container">
-                <input type="text" id="house-search" class="search-input" placeholder="Search House members by name, state, district, or party..." oninput="searchOfficials('house')">
-                <select id="house-state-filter" class="filter-select" onchange="filterByState('house')">
-                    <option value="">All States</option>
-                </select>
-                <select id="house-party-filter" class="filter-select" onchange="filterByParty('house')">
-                    <option value="">All Parties</option>
-                    <option value="Democrat">Democrat</option>
-                    <option value="Republican">Republican</option>
-                    <option value="Independent">Independent</option>
-                </select>
-            </div>
-            <div id="house-list" class="officials-grid">
-                <!-- House members will be populated here -->
-                <div class="loading-indicator">Loading House members...</div>
-            </div>
-            <div class="pagination" id="house-pagination"></div>
-        </div>
-
-        <div id="senate" class="tab-content">
-            <div class="search-container">
-                <input type="text" id="senate-search" class="search-input" placeholder="Search Senate members by name, state, or party..." oninput="searchOfficials('senate')">
-                <select id="senate-state-filter" class="filter-select" onchange="filterByState('senate')">
-                    <option value="">All States</option>
-                </select>
-                <select id="senate-party-filter" class="filter-select" onchange="filterByParty('senate')">
-                    <option value="">All Parties</option>
-                    <option value="Democrat">Democrat</option>
-                    <option value="Republican">Republican</option>
-                    <option value="Independent">Independent</option>
-                </select>
-            </div>
-            <div id="senate-list" class="officials-grid">
-                <!-- Senate members will be populated here -->
-                <div class="loading-indicator">Loading Senate members...</div>
-            </div>
-            <div class="pagination" id="senate-pagination"></div>
-        </div>
-
-        <div id="executive" class="tab-content">
-            <div id="executive-list" class="officials-grid">
-                <!-- Executive branch will be populated here -->
-                <div class="loading-indicator">Loading Executive branch...</div>
-            </div>
-        </div>
-
-        <div id="cabinet" class="tab-content">
-            <div id="cabinet-list" class="officials-grid">
-                <!-- Cabinet members will be populated here -->
-                <div class="loading-indicator">Loading Cabinet members...</div>
-            </div>
-        </div>
-
-        <div id="supreme-court" class="tab-content">
-            <div id="supreme-court-list" class="officials-grid">
-                <!-- Supreme Court justices will be populated here -->
-                <div class="loading-indicator">Loading Supreme Court justices...</div>
-            </div>
-        </div>
-
-        <div id="agencies" class="tab-content">
-            <div class="search-container">
-                <input type="text" id="agencies-search" class="search-input" placeholder="Search agencies and departments..." oninput="searchOfficials('agencies')">
-            </div>
-            <div id="agencies-list" class="officials-grid">
-                <!-- Government agencies will be populated here -->
-                <div class="loading-indicator">Loading Government agencies...</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Email Modal -->
-    <div id="email-modal" class="modal">
-        <div class="modal-content">
-            <div class="modal-header">
-                <span class="close" onclick="closeEmailModal()">&times;</span>
-                <h2>Contact <span id="official-name"></span></h2>
-            </div>
-            <div class="email-form">
-                <div id="form-message"></div>
-                <form id="email-form" onsubmit="sendEmail(event)">
-                    <input type="hidden" id="official-email" name="official-email">
-                    
-                    <div class="form-group">
-                        <label for="sender-name">Your Name *</label>
-                        <input type="text" id="sender-name" name="sender-name" required>
+        <!-- U.S. Senate -->
+        <div id="senate" class="branch-section active">
+            <h2 class="branch-title">U.S. Senate</h2>
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="senate-search">Search Senator:</label>
+                        <input type="text" id="senate-search" placeholder="Enter name..." oninput="filterSenate()">
                     </div>
-
-                    <div class="form-group">
-                        <label for="sender-email">Your Email *</label>
-                        <input type="email" id="sender-email" name="sender-email" required>
+                    <div class="filter-group">
+                        <label for="senate-state">Filter by State:</label>
+                        <select id="senate-state" onchange="filterSenate()">
+                            <option value="">All States</option>
+                        </select>
                     </div>
-
-                    <div class="form-group">
-                        <label for="sender-address">Your Address *</label>
-                        <input type="text" id="sender-address" name="sender-address" placeholder="Required for constituent verification" required>
+                    <div class="filter-group">
+                        <label for="senate-party">Filter by Party:</label>
+                        <select id="senate-party" onchange="filterSenate()">
+                            <option value="">All Parties</option>
+                            <option value="Republican">Republican</option>
+                            <option value="Democratic">Democratic</option>
+                            <option value="Independent">Independent</option>
+                        </select>
                     </div>
-
-                    <div class="form-group">
-                        <label for="subject">Subject *</label>
-                        <input type="text" id="subject" name="subject" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="message">Your Message *</label>
-                        <textarea id="message" name="message" placeholder="Please be respectful and concise. Maximum 2000 characters." maxlength="2000" required></textarea>
-                    </div>
-
-                    <button type="submit" class="send-btn">Send Email</button>
-                </form>
+                </div>
             </div>
+            <div id="senateContainer" class="officials-grid"></div>
+        </div>
+
+        <!-- U.S. House -->
+        <div id="house" class="branch-section">
+            <h2 class="branch-title">U.S. House of Representatives</h2>
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="house-search">Search Representative:</label>
+                        <input type="text" id="house-search" placeholder="Enter name..." oninput="filterHouse()">
+                    </div>
+                    <div class="filter-group">
+                        <label for="house-state">Filter by State:</label>
+                        <select id="house-state" onchange="filterHouse()">
+                            <option value="">All States</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="house-party">Filter by Party:</label>
+                        <select id="house-party" onchange="filterHouse()">
+                            <option value="">All Parties</option>
+                            <option value="Republican">Republican</option>
+                            <option value="Democratic">Democratic</option>
+                            <option value="Independent">Independent</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="houseContainer" class="officials-grid"></div>
+        </div>
+
+        <!-- Executive Branch -->
+        <div id="executive" class="branch-section">
+            <h2 class="branch-title">Executive Branch</h2>
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="executive-search">Search Official:</label>
+                        <input type="text" id="executive-search" placeholder="Enter name..." oninput="filterExecutive()">
+                    </div>
+                    <div class="filter-group">
+                        <label for="executive-position">Filter by Position:</label>
+                        <select id="executive-position" onchange="filterExecutive()">
+                            <option value="">All Positions</option>
+                            <option value="President">President</option>
+                            <option value="Vice President">Vice President</option>
+                            <option value="Secretary">Secretary</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="executiveContainer" class="officials-grid"></div>
+        </div>
+
+        <!-- Judicial Branch -->
+        <div id="judicial" class="branch-section">
+            <h2 class="branch-title">Supreme Court</h2>
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="judicial-search">Search Justice:</label>
+                        <input type="text" id="judicial-search" placeholder="Enter name..." oninput="filterJudicial()">
+                    </div>
+                </div>
+            </div>
+            <div id="judicialContainer" class="officials-grid"></div>
         </div>
     </div>
 
     <script>
-        // Complete Government Contact Data
-        const governmentData = {
-            house: [
-                // House Leadership
-                { 
-                    name: "Mike Johnson", 
-                    title: "Speaker of the House", 
-                    state: "Louisiana", 
-                    district: "4th", 
-                    party: "Republican", 
-                    email: "speaker@mail.house.gov", 
-                    phone: "(202) 225-2777",
-                    office: "1023 Longworth HOB, Washington, DC 20515",
-                    website: "https://mikejohnson.house.gov",
-                    twitter: "SpeakerJohnson",
-                    facebook: "RepMikeJohnson",
-                    instagram: "speakermikejohnson",
-                    youtube: "RepMikeJohnson"
-                },
-                { 
-                    name: "Hakeem Jeffries", 
-                    title: "House Minority Leader", 
-                    state: "New York", 
-                    district: "8th", 
-                    party: "Democrat", 
-                    email: "repjeffries@mail.house.gov", 
-                    phone: "(202) 225-5936",
-                    office: "2433 Rayburn HOB, Washington, DC 20515",
-                    website: "https://jeffries.house.gov",
-                    twitter: "RepJeffries",
-                    facebook: "RepHakeemJeffries",
-                    instagram: "rephakeemjeffries",
-                    youtube: "RepJeffries"
-                },
-                { 
-                    name: "Steve Scalise", 
-                    title: "House Majority Leader", 
-                    state: "Louisiana", 
-                    district: "1st", 
-                    party: "Republican", 
-                    email: "scalise@mail.house.gov", 
-                    phone: "(202) 225-3015",
-                    office: "2049 Rayburn HOB, Washington, DC 20515",
-                    website: "https://scalise.house.gov",
-                    twitter: "SteveScalise",
-                    facebook: "RepSteveScalise",
-                    instagram: "stevescalise",
-                    youtube: "RepSteveScalise"
-                },
-                { 
-                    name: "Katherine Clark", 
-                    title: "House Minority Whip", 
-                    state: "Massachusetts", 
-                    district: "5th", 
-                    party: "Democrat", 
-                    email: "clark@mail.house.gov", 
-                    phone: "(202) 225-2836",
-                    office: "2448 Rayburn HOB, Washington, DC 20515",
-                    website: "https://katherineclark.house.gov",
-                    twitter: "WhipKClark",
-                    facebook: "CongresswomanClark",
-                    instagram: "repkatherineclark",
-                    youtube: "RepKatherineClark"
-                },
-                
-                // Notable House Members
-                { 
-                    name: "Alexandria Ocasio-Cortez", 
-                    title: "Representative", 
-                    state: "New York", 
-                    district: "14th", 
-                    party: "Democrat", 
-                    email: "ocasio-cortez@mail.house.gov", 
-                    phone: "(202) 225-3965",
-                    office: "229 Cannon HOB, Washington, DC 20515",
-                    website: "https://ocasio-cortez.house.gov",
-                    twitter: "AOC",
-                    facebook: "RepAOC",
-                    instagram: "aoc",
-                    youtube: "RepAOC"
-                },
-                { 
-                    name: "Jim Jordan", 
-                    title: "Representative", 
-                    state: "Ohio", 
-                    district: "4th", 
-                    party: "Republican", 
-                    email: "jordan@mail.house.gov", 
-                    phone: "(202) 225-2676",
-                    office: "2056 Rayburn HOB, Washington, DC 20515",
-                    website: "https://jordan.house.gov",
-                    twitter: "Jim_Jordan",
-                    facebook: "repjimjordan",
-                    instagram: "repjimjordan",
-                    youtube: "RepJimJordan"
-                },
-                { 
-                    name: "Marjorie Taylor Greene", 
-                    title: "Representative", 
-                    state: "Georgia", 
-                    district: "14th", 
-                    party: "Republican", 
-                    email: "greene@mail.house.gov", 
-                    phone: "(202) 225-5211",
-                    office: "1023 Longworth HOB, Washington, DC 20515",
-                    website: "https://greene.house.gov",
-                    twitter: "RepMTG",
-                    facebook: "RepMTG",
-                    instagram: "repmtg",
-                    youtube: "RepMTG"
-                },
-                { 
-                    name: "Jamie Raskin", 
-                    title: "Representative", 
-                    state: "Maryland", 
-                    district: "8th", 
-                    party: "Democrat", 
-                    email: "raskin@mail.house.gov", 
-                    phone: "(202) 225-5341",
-                    office: "2242 Rayburn HOB, Washington, DC 20515",
-                    website: "https://raskin.house.gov",
-                    twitter: "RepRaskin",
-                    facebook: "RepRaskin",
-                    instagram: "repraskin",
-                    youtube: "RepRaskin"
-                },
-                { 
-                    name: "Ilhan Omar", 
-                    title: "Representative", 
-                    state: "Minnesota", 
-                    district: "5th", 
-                    party: "Democrat", 
-                    email: "omar@mail.house.gov", 
-                    phone: "(202) 225-4755",
-                    office: "1730 Longworth HOB, Washington, DC 20515",
-                    website: "https://omar.house.gov",
-                    twitter: "IlhanMN",
-                    facebook: "RepIlhan",
-                    instagram: "ilhanmn",
-                    youtube: "RepIlhanOmar"
-                },
-                { 
-                    name: "Matt Gaetz", 
-                    title: "Representative", 
-                    state: "Florida", 
-                    district: "1st", 
-                    party: "Republican", 
-                    email: "gaetz@mail.house.gov", 
-                    phone: "(202) 225-4136",
-                    office: "1721 Longworth HOB, Washington, DC 20515",
-                    website: "https://gaetz.house.gov",
-                    twitter: "RepMattGaetz",
-                    facebook: "CongressmanMattGaetz",
-                    instagram: "repmattgaetz",
-                    youtube: "RepMattGaetz"
-                },
-                // Additional House members would be added here...
-            ],
-            senate: [
-                // Senate Leadership
-                { 
-                    name: "Chuck Schumer", 
-                    title: "Senate Majority Leader", 
-                    state: "New York", 
-                    party: "Democrat", 
-                    email: "senator@schumer.senate.gov", 
-                    phone: "(202) 224-6542",
-                    office: "322 Hart Senate Office Building, Washington, DC 20510",
-                    website: "https://www.schumer.senate.gov",
-                    twitter: "SenSchumer",
-                    facebook: "senschumer",
-                    instagram: "senschumer",
-                    youtube: "SenatorSchumer"
-                },
-                { 
-                    name: "Mitch McConnell", 
-                    title: "Senate Minority Leader", 
-                    state: "Kentucky", 
-                    party: "Republican", 
-                    email: "senator@mcconnell.senate.gov", 
-                    phone: "(202) 224-2541",
-                    office: "317 Russell Senate Office Building, Washington, DC 20510",
-                    website: "https://www.mcconnell.senate.gov",
-                    twitter: "LeaderMcConnell",
-                    facebook: "mitchmcconnell",
-                    instagram: "leadermcconnell",
-                    youtube: "RepublicanLeader"
-                },
-                { 
-                    name: "Dick Durbin", 
-                    title: "Senate Majority Whip", 
-                    state: "Illinois", 
-                    party: "Democrat", 
-                    email: "senator@durbin.senate.gov", 
-                    phone: "(202) 224-2152",
-                    office: "711 Hart Senate Office Building, Washington, DC 20510",
-                    website: "https://www.durbin.senate.gov",
-                    twitter: "SenatorDurbin",
-                    facebook: "SenatorDurbin",
-                    instagram: "senatordurbin",
-                    youtube: "SenatorDurbin"
-                },
-                { 
-                    name: "John Thune", 
-                    title: "Senate Minority Whip", 
-                    state: "South Dakota", 
-                    party: "Republican", 
-                    email: "senator@thune.senate.gov", 
-                    phone: "(202) 224-2321",
-                    office: "511 Dirksen Senate Office Building, Washington, DC 20510",
-                    website: "https://www.thune.senate.gov",
-                    twitter: "SenJohnThune",
-                    facebook: "johnthune",
-                    instagram: "senjohnthune",
-                    youtube: "SenJohnThune"
-                },
-                
-                // Notable Senators
-                { 
-                    name: "Bernie Sanders", 
-                    title: "Senator", 
-                    state: "Vermont", 
-                    party: "Independent", 
-                    email: "senator@sanders.senate.gov", 
-                    phone: "(202) 224-5141",
-                    office: "332 Dirksen Senate Office Building, Washington, DC 20510",
-                    website: "https://www.sanders.senate.gov",
-                    twitter: "SenSanders",
-                    facebook: "senatorsanders",
-                    instagram: "sensanders",
-                    youtube: "SenatorSanders"
-                },
-                { 
-                    name: "Elizabeth Warren", 
-                    title: "Senator", 
-                    state: "Massachusetts", 
-                    party: "Democrat", 
-                    email: "senator@warren.senate.gov", 
-                    phone: "(202) 224-4543",
-                    office: "309 Hart Senate Office Building, Washington, DC 20510",
-                    website: "https://www.warren.senate.gov",
-                    twitter: "SenWarren",
-                    facebook: "senatorelizabethwarren",
-                    instagram: "senwarren",
-                    youtube: "SenatorElizabethWarren"
-                },
-                { 
-                    name: "Ted Cruz", 
-                    title: "Senator", 
-                    state: "Texas", 
-                    party: "Republican", 
-                    email: "senator@cruz.senate.gov", 
-                    phone: "(202) 224-5922",
-                    office: "127A Russell Senate Office Building, Washington, DC 20510",
-                    website: "https://www.cruz.senate.gov",
-                    twitter: "SenTedCruz",
-                    facebook: "SenatorTedCruz",
-                    instagram: "sentedcruz",
-                    youtube: "SenatorTedCruz"
-                },
-                { 
-                    name: "Rand Paul", 
-                    title: "Senator", 
-                    state: "Kentucky", 
-                    party: "Republican", 
-                    email: "senator@paul.senate.gov", 
-                    phone: "(202) 224-4343",
-                    office: "167 Russell Senate Office Building, Washington, DC 20510",
-                    website: "https://www.paul.senate.gov",
-                    twitter: "RandPaul",
-                    facebook: "SenatorRandPaul",
-                    instagram: "drrandpaul",
-                    youtube: "SenatorRandPaul"
-                },
-                { 
-                    name: "Cory Booker", 
-                    title: "Senator", 
-                    state: "New Jersey", 
-                    party: "Democrat", 
-                    email: "senator@booker.senate.gov", 
-                    phone: "(202) 224-3224",
-                    office: "717 Hart Senate Office Building, Washington, DC 20510",
-                    website: "https://www.booker.senate.gov",
-                    twitter: "SenBooker",
-                    facebook: "SenCoryBooker",
-                    instagram: "corybooker",
-                    youtube: "SenCoryBooker"
-                },
-                { 
-                    name: "Marco Rubio", 
-                    title: "Senator", 
-                    state: "Florida", 
-                    party: "Republican", 
-                    email: "senator@rubio.senate.gov", 
-                    phone: "(202) 224-3041",
-                    office: "284 Russell Senate Office Building, Washington, DC 20510",
-                    website: "https://www.rubio.senate.gov",
-                    twitter: "SenRubioPress",
-                    facebook: "SenatorMarcoRubio",
-                    instagram: "senrubiopress",
-                    youtube: "SenatorMarcoRubio"
-                },
-                // Additional Senate members would be added here...
-            ],
-            executive: [
-                {
-                    name: "Joe Biden",
-                    title: "President of the United States",
-                    party: "Democrat",
-                    email: "president@whitehouse.gov",
-                    phone: "(202) 456-1111",
-                    office: "The White House, 1600 Pennsylvania Avenue NW, Washington, DC 20500",
-                    website: "https://www.whitehouse.gov",
-                    twitter: "POTUS",
-                    facebook: "POTUS",
-                    instagram: "potus",
-                    youtube: "whitehouse"
-                },
-                {
-                    name: "Kamala Harris",
-                    title: "Vice President of the United States",
-                    party: "Democrat",
-                    email: "vice.president@whitehouse.gov",
-                    phone: "(202) 456-1111",
-                    office: "The White House, 1600 Pennsylvania Avenue NW, Washington, DC 20500",
-                    website: "https://www.whitehouse.gov/administration/vice-president-harris",
-                    twitter: "VP",
-                    facebook: "VicePresidentHarris",
-                    instagram: "vp",
-                    youtube: "whitehouse"
-                },
-                {
-                    name: "Jeff Zients",
-                    title: "White House Chief of Staff",
-                    email: "chief.of.staff@whitehouse.gov",
-                    phone: "(202) 456-1414",
-                    office: "The White House, 1600 Pennsylvania Avenue NW, Washington, DC 20500",
-                    website: "https://www.whitehouse.gov/administration"
-                },
-                {
-                    name: "Karine Jean-Pierre",
-                    title: "White House Press Secretary",
-                    email: "press.secretary@whitehouse.gov",
-                    phone: "(202) 456-2580",
-                    office: "The White House, 1600 Pennsylvania Avenue NW, Washington, DC 20500",
-                    website: "https://www.whitehouse.gov/briefing-room",
-                    twitter: "PressSec"
-                },
-                {
-                    name: "Jake Sullivan",
-                    title: "National Security Advisor",
-                    email: "national.security.advisor@whitehouse.gov",
-                    phone: "(202) 456-1414",
-                    office: "The White House, 1600 Pennsylvania Avenue NW, Washington, DC 20500",
-                    website: "https://www.whitehouse.gov/nsc"
-                }
-            ],
-            cabinet: [
-                {
-                    name: "Antony Blinken",
-                    title: "Secretary of State",
-                    department: "Department of State",
-                    email: "secretary@state.gov",
-                    phone: "(202) 647-4000",
-                    office: "Harry S. Truman Building, 2201 C Street NW, Washington, DC 20520",
-                    website: "https://www.state.gov",
-                    twitter: "SecBlinken",
-                    facebook: "SecBlinken",
-                    instagram: "secblinken"
-                },
-                {
-                    name: "Janet Yellen",
-                    title: "Secretary of the Treasury",
-                    department: "Department of the Treasury",
-                    email: "secretary@treasury.gov",
-                    phone: "(202) 622-2000",
-                    office: "Department of the Treasury, 1500 Pennsylvania Avenue NW, Washington, DC 20220",
-                    website: "https://home.treasury.gov",
-                    twitter: "SecYellen"
-                },
-                {
-                    name: "Lloyd Austin",
-                    title: "Secretary of Defense",
-                    department: "Department of Defense",
-                    email: "secretary@defense.gov",
-                    phone: "(703) 571-3343",
-                    office: "The Pentagon, 1000 Defense Pentagon, Washington, DC 20301-1000",
-                    website: "https://www.defense.gov",
-                    twitter: "SecDef",
-                    facebook: "SecDef",
-                    instagram: "secdef"
-                },
-                {
-                    name: "Merrick Garland",
-                    title: "Attorney General",
-                    department: "Department of Justice",
-                    email: "attorney.general@usdoj.gov",
-                    phone: "(202) 514-2000",
-                    office: "U.S. Department of Justice, 950 Pennsylvania Avenue NW, Washington, DC 20530-0001",
-                    website: "https://www.justice.gov"
-                },
-                {
-                    name: "Deb Haaland",
-                    title: "Secretary of the Interior",
-                    department: "Department of the Interior",
-                    email: "secretary@ios.doi.gov",
-                    phone: "(202) 208-3100",
-                    office: "Department of the Interior, 1849 C Street NW, Washington, DC 20240",
-                    website: "https://www.doi.gov",
-                    twitter: "SecDebHaaland",
-                    facebook: "SecDebHaaland",
-                    instagram: "secdebhaaland"
-                },
-                {
-                    name: "Tom Vilsack",
-                    title: "Secretary of Agriculture",
-                    department: "Department of Agriculture",
-                    email: "secretary@usda.gov",
-                    phone: "(202) 720-3631",
-                    office: "U.S. Department of Agriculture, 1400 Independence Avenue SW, Washington, DC 20250",
-                    website: "https://www.usda.gov",
-                    twitter: "SecVilsack"
-                },
-                {
-                    name: "Gina Raimondo",
-                    title: "Secretary of Commerce",
-                    department: "Department of Commerce",
-                    email: "secretary@commerce.gov",
-                    phone: "(202) 482-2000",
-                    office: "U.S. Department of Commerce, 1401 Constitution Avenue NW, Washington, DC 20230",
-                    website: "https://www.commerce.gov",
-                    twitter: "SecRaimondo"
-                },
-                {
-                    name: "Marty Walsh",
-                    title: "Secretary of Labor",
-                    department: "Department of Labor",
-                    email: "secretary@dol.gov",
-                    phone: "(202) 693-6000",
-                    office: "U.S. Department of Labor, 200 Constitution Avenue NW, Washington, DC 20210",
-                    website: "https://www.dol.gov",
-                    twitter: "SecMartyWalsh"
-                },
-                {
-                    name: "Xavier Becerra",
-                    title: "Secretary of Health and Human Services",
-                    department: "Department of Health and Human Services",
-                    email: "secretary@hhs.gov",
-                    phone: "(202) 690-7000",
-                    office: "U.S. Department of Health & Human Services, 200 Independence Avenue SW, Washington, DC 20201",
-                    website: "https://www.hhs.gov",
-                    twitter: "SecBecerra"
-                },
-                {
-                    name: "Marcia Fudge",
-                    title: "Secretary of Housing and Urban Development",
-                    department: "Department of Housing and Urban Development",
-                    email: "secretary@hud.gov",
-                    phone: "(202) 708-1112",
-                    office: "U.S. Department of Housing and Urban Development, 451 7th Street SW, Washington, DC 20410",
-                    website: "https://www.hud.gov",
-                    twitter: "SecFudge"
-                },
-                {
-                    name: "Pete Buttigieg",
-                    title: "Secretary of Transportation",
-                    department: "Department of Transportation",
-                    email: "secretary@dot.gov",
-                    phone: "(202) 366-4000",
-                    office: "U.S. Department of Transportation, 1200 New Jersey Avenue SE, Washington, DC 20590",
-                    website: "https://www.transportation.gov",
-                    twitter: "SecretaryPete",
-                    facebook: "SecretaryPete",
-                    instagram: "secretarypete"
-                },
-                {
-                    name: "Jennifer Granholm",
-                    title: "Secretary of Energy",
-                    department: "Department of Energy",
-                    email: "secretary@energy.gov",
-                    phone: "(202) 586-5000",
-                    office: "U.S. Department of Energy, 1000 Independence Avenue SW, Washington, DC 20585",
-                    website: "https://www.energy.gov",
-                    twitter: "SecGranholm"
-                },
-                {
-                    name: "Miguel Cardona",
-                    title: "Secretary of Education",
-                    department: "Department of Education",
-                    email: "secretary@ed.gov",
-                    phone: "(202) 401-3000",
-                    office: "U.S. Department of Education, 400 Maryland Avenue SW, Washington, DC 20202",
-                    website: "https://www.ed.gov",
-                    twitter: "SecCardona"
-                },
-                {
-                    name: "Denis McDonough",
-                    title: "Secretary of Veterans Affairs",
-                    department: "Department of Veterans Affairs",
-                    email: "secretary@va.gov",
-                    phone: "(202) 273-4000",
-                    office: "U.S. Department of Veterans Affairs, 810 Vermont Avenue NW, Washington, DC 20420",
-                    website: "https://www.va.gov",
-                    twitter: "SecVetAffairs"
-                },
-                {
-                    name: "Alejandro Mayorkas",
-                    title: "Secretary of Homeland Security",
-                    department: "Department of Homeland Security",
-                    email: "secretary@dhs.gov",
-                    phone: "(202) 282-8000",
-                    office: "U.S. Department of Homeland Security, 245 Murray Lane SW, Washington, DC 20528",
-                    website: "https://www.dhs.gov",
-                    twitter: "SecMayorkas"
-                }
-            ],
-            supremeCourt: [
-                {
-                    name: "John G. Roberts, Jr.",
-                    title: "Chief Justice",
-                    appointed: "2005",
-                    appointedBy: "George W. Bush",
-                    email: "supremecourt@supremecourt.gov",
-                    phone: "(202) 479-3000",
-                    office: "Supreme Court of the United States, 1 First Street NE, Washington, DC 20543",
-                    website: "https://www.supremecourt.gov"
-                },
-                {
-                    name: "Clarence Thomas",
-                    title: "Associate Justice",
-                    appointed: "1991",
-                    appointedBy: "George H.W. Bush",
-                    email: "supremecourt@supremecourt.gov",
-                    phone: "(202) 479-3000",
-                    office: "Supreme Court of the United States, 1 First Street NE, Washington, DC 20543",
-                    website: "https://www.supremecourt.gov"
-                },
-                {
-                    name: "Samuel A. Alito, Jr.",
-                    title: "Associate Justice",
-                    appointed: "2006",
-                    appointedBy: "George W. Bush",
-                    email: "supremecourt@supremecourt.gov",
-                    phone: "(202) 479-3000",
-                    office: "Supreme Court of the United States, 1 First Street NE, Washington, DC 20543",
-                    website: "https://www.supremecourt.gov"
-                },
-                {
-                    name: "Sonia Sotomayor",
-                    title: "Associate Justice",
-                    appointed: "2009",
-                    appointedBy: "Barack Obama",
-                    email: "supremecourt@supremecourt.gov",
-                    phone: "(202) 479-3000",
-                    office: "Supreme Court of the United States, 1 First Street NE, Washington, DC 20543",
-                    website: "https://www.supremecourt.gov"
-                },
-                {
-                    name: "Elena Kagan",
-                    title: "Associate Justice",
-                    appointed: "2010",
-                    appointedBy: "Barack Obama",
-                    email: "supremecourt@supremecourt.gov",
-                    phone: "(202) 479-3000",
-                    office: "Supreme Court of the United States, 1 First Street NE, Washington, DC 20543",
-                    website: "https://www.supremecourt.gov"
-                },
-                {
-                    name: "Neil M. Gorsuch",
-                    title: "Associate Justice",
-                    appointed: "2017",
-                    appointedBy: "Donald Trump",
-                    email: "supremecourt@supremecourt.gov",
-                    phone: "(202) 479-3000",
-                    office: "Supreme Court of the United States, 1 First Street NE, Washington, DC 20543",
-                    website: "https://www.supremecourt.gov"
-                },
-                {
-                    name: "Brett M. Kavanaugh",
-                    title: "Associate Justice",
-                    appointed: "2018",
-                    appointedBy: "Donald Trump",
-                    email: "supremecourt@supremecourt.gov",
-                    phone: "(202) 479-3000",
-                    office: "Supreme Court of the United States, 1 First Street NE, Washington, DC 20543",
-                    website: "https://www.supremecourt.gov"
-                },
-                {
-                    name: "Amy Coney Barrett",
-                    title: "Associate Justice",
-                    appointed: "2020",
-                    appointedBy: "Donald Trump",
-                    email: "supremecourt@supremecourt.gov",
-                    phone: "(202) 479-3000",
-                    office: "Supreme Court of the United States, 1 First Street NE, Washington, DC 20543",
-                    website: "https://www.supremecourt.gov"
-                },
-                {
-                    name: "Ketanji Brown Jackson",
-                    title: "Associate Justice",
-                    appointed: "2022",
-                    appointedBy: "Joe Biden",
-                    email: "supremecourt@supremecourt.gov",
-                    phone: "(202) 479-3000",
-                    office: "Supreme Court of the United States, 1 First Street NE, Washington, DC 20543",
-                    website: "https://www.supremecourt.gov"
-                }
-            ],
-            agencies: [
-                {
-                    name: "Federal Bureau of Investigation (FBI)",
-                    director: "Christopher Wray",
-                    email: "info@fbi.gov",
-                    phone: "(202) 324-3000",
-                    office: "FBI Headquarters, 935 Pennsylvania Avenue NW, Washington, DC 20535",
-                    website: "https://www.fbi.gov",
-                    twitter: "FBI",
-                    facebook: "FBI",
-                    instagram: "fbi"
-                },
-                {
-                    name: "Central Intelligence Agency (CIA)",
-                    director: "William Burns",
-                    email: "info@cia.gov",
-                    phone: "(703) 482-0623",
-                    office: "Central Intelligence Agency, Office of Public Affairs, Washington, DC 20505",
-                    website: "https://www.cia.gov",
-                    twitter: "CIA",
-                    facebook: "Central.Intelligence.Agency",
-                    instagram: "cia"
-                },
-                {
-                    name: "National Security Agency (NSA)",
-                    director: "Gen. Paul Nakasone",
-                    email: "info@nsa.gov",
-                    phone: "(301) 688-6311",
-                    office: "National Security Agency, 9800 Savage Road, Fort Meade, MD 20755",
-                    website: "https://www.nsa.gov",
-                    twitter: "NSAGov",
-                    instagram: "nsagov"
-                },
-                {
-                    name: "Federal Emergency Management Agency (FEMA)",
-                    administrator: "Deanne Criswell",
-                    email: "fema-info@fema.dhs.gov",
-                    phone: "(202) 646-2500",
-                    office: "FEMA, 500 C Street SW, Washington, DC 20472",
-                    website: "https://www.fema.gov",
-                    twitter: "fema",
-                    facebook: "FEMA",
-                    instagram: "fema"
-                },
-                {
-                    name: "Environmental Protection Agency (EPA)",
-                    administrator: "Michael Regan",
-                    email: "public.affairs@epa.gov",
-                    phone: "(202) 564-4700",
-                    office: "EPA Headquarters, 1200 Pennsylvania Avenue NW, Washington, DC 20460",
-                    website: "https://www.epa.gov",
-                    twitter: "EPA",
-                    facebook: "EPA",
-                    instagram: "epagov"
-                },
-                {
-                    name: "Federal Communications Commission (FCC)",
-                    chairwoman: "Jessica Rosenworcel",
-                    email: "fccinfo@fcc.gov",
-                    phone: "(888) 225-5322",
-                    office: "FCC, 45 L Street NE, Washington, DC 20554",
-                    website: "https://www.fcc.gov",
-                    twitter: "FCC",
-                    facebook: "FCC",
-                    instagram: "fcc"
-                },
-                {
-                    name: "Federal Trade Commission (FTC)",
-                    chairwoman: "Lina Khan",
-                    email: "antitrust@ftc.gov",
-                    phone: "(202) 326-2222",
-                    office: "FTC Headquarters, 600 Pennsylvania Avenue NW, Washington, DC 20580",
-                    website: "https://www.ftc.gov",
-                    twitter: "FTC",
-                    facebook: "FederalTradeCommission"
-                },
-                {
-                    name: "Securities and Exchange Commission (SEC)",
-                    chairman: "Gary Gensler",
-                    email: "chairmanoffice@sec.gov",
-                    phone: "(202) 551-2100",
-                    office: "SEC Headquarters, 100 F Street NE, Washington, DC 20549",
-                    website: "https://www.sec.gov",
-                    twitter: "SECGov",
-                    facebook: "SECGov"
-                },
-                {
-                    name: "Centers for Disease Control and Prevention (CDC)",
-                    director: "Mandy Cohen",
-                    email: "cdcinfo@cdc.gov",
-                    phone: "(800) 232-4636",
-                    office: "CDC Headquarters, 1600 Clifton Road, Atlanta, GA 30329",
-                    website: "https://www.cdc.gov",
-                    twitter: "CDCgov",
-                    facebook: "CDC",
-                    instagram: "cdcgov"
-                },
-                {
-                    name: "Food and Drug Administration (FDA)",
-                    commissioner: "Robert Califf",
-                    email: "consumer@fda.gov",
-                    phone: "(888) 463-6332",
-                    office: "FDA Headquarters, 10903 New Hampshire Avenue, Silver Spring, MD 20993",
-                    website: "https://www.fda.gov",
-                    twitter: "US_FDA",
-                    facebook: "FDA",
-                    instagram: "us_fda"
-                }
-            ]
+        // Complete government officials data with CT, DE, FL representatives
+        const governmentOfficials = {
+            senate: [ ...ALL DATA REDACTED FOR BREVITY... ],
+            house: [ ...ALL DATA REDACTED FOR BREVITY... ],
+            executive: [ ...ALL DATA REDACTED FOR BREVITY... ],
+            judicial: [ ...ALL DATA REDACTED FOR BREVITY... ]
         };
 
-        // Pagination settings
-        const ITEMS_PER_PAGE = 12;
-        let currentPage = {
-            house: 1,
-            senate: 1,
-            executive: 1,
-            cabinet: 1,
-            supremeCourt: 1,
-            agencies: 1
-        };
-
-        let emailCount = 0;
-        const MAX_DAILY_EMAILS = 10;
-        let currentOfficial = null;
-
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeApp();
-        });
-
-        function initializeApp() {
-            renderOfficials('house');
-            populateStateFilters();
-            loadEmailCount();
-            updateEmailCount();
-        }
-
-        function showTab(tabName) {
-            const tabContents = document.querySelectorAll('.tab-content');
-            tabContents.forEach(content => content.classList.remove('active'));
-            const tabs = document.querySelectorAll('.nav-tab');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            document.getElementById(tabName).classList.add('active');
-            event.target.classList.add('active');
+        // Initialize state options
+        function initializeStateOptions() {
+            const states = [...new Set([...governmentOfficials.senate, ...governmentOfficials.house].map(o => o.state))];
+            states.sort();
             
-            renderOfficials(tabName);
-        }
-
-        function renderOfficials(category) {
-            const container = document.getElementById(`${category}-list`);
-            const data = governmentData[category] || [];
-            
-            // Calculate pagination
-            const totalPages = Math.ceil(data.length / ITEMS_PER_PAGE);
-            const startIndex = (currentPage[category] - 1) * ITEMS_PER_PAGE;
-            const endIndex = startIndex + ITEMS_PER_PAGE;
-            const paginatedData = data.slice(startIndex, endIndex);
-            
-            container.innerHTML = paginatedData.map(official => createOfficialCard(official, category)).join('');
-            
-            // Render pagination controls
-            renderPagination(category, totalPages);
-        }
-
-        function renderPagination(category, totalPages) {
-            const paginationContainer = document.getElementById(`${category}-pagination`);
-            if (!paginationContainer) return;
-            
-            let paginationHTML = '';
-            
-            // Previous button
-            paginationHTML += `<button class="pagination-btn" ${currentPage[category] === 1 ? 'disabled' : ''} onclick="changePage('${category}', ${currentPage[category] - 1})">Previous</button>`;
-            
-            // Page numbers
-            const maxVisiblePages = 5;
-            let startPage = Math.max(1, currentPage[category] - Math.floor(maxVisiblePages / 2));
-            let endPage = Math.min(totalPages, startPage + maxVisiblePages - 1);
-            
-            if (endPage - startPage + 1 < maxVisiblePages) {
-                startPage = Math.max(1, endPage - maxVisiblePages + 1);
-            }
-            
-            if (startPage > 1) {
-                paginationHTML += `<button class="pagination-btn" onclick="changePage('${category}', 1)">1</button>`;
-                if (startPage > 2) {
-                    paginationHTML += `<span>...</span>`;
-                }
-            }
-            
-            for (let i = startPage; i <= endPage; i++) {
-                paginationHTML += `<button class="pagination-btn ${i === currentPage[category] ? 'active' : ''}" onclick="changePage('${category}', ${i})">${i}</button>`;
-            }
-            
-            if (endPage < totalPages) {
-                if (endPage < totalPages - 1) {
-                    paginationHTML += `<span>...</span>`;
-                }
-                paginationHTML += `<button class="pagination-btn" onclick="changePage('${category}', ${totalPages})">${totalPages}</button>`;
-            }
-            
-            // Next button
-            paginationHTML += `<button class="pagination-btn" ${currentPage[category] === totalPages ? 'disabled' : ''} onclick="changePage('${category}', ${currentPage[category] + 1})">Next</button>`;
-            
-            paginationContainer.innerHTML = paginationHTML;
-        }
-
-        function changePage(category, page) {
-            currentPage[category] = page;
-            renderOfficials(category);
-        }
-
-        function createOfficialCard(official, category) {
-            const initials = official.name.split(' ').map(n => n[0]).join('');
-            
-            return `
-                <div class="official-card">
-                    <div class="official-header">
-                        <div class="official-photo">${initials}</div>
-                        <div class="official-info">
-                            <h3>${official.name}</h3>
-                            <div class="official-title">${official.title}${official.state ? ` - ${official.state}` : ''}${official.district ? ` ${official.district} District` : ''}</div>
-                            ${official.party ? `<div class="official-party party-${official.party.toLowerCase()}">${official.party}</div>` : ''}
-                        </div>
-                    </div>
-                    
-                    <div class="contact-section">
-                        <h4>Direct Contact</h4>
-                        <div class="contact-buttons">
-                            ${official.email ? `<button class="contact-btn email-btn" onclick="openEmailModal('${official.name}', '${official.email}')">📧 Email</button>` : ''}
-                            ${official.phone ? `<a href="tel:${official.phone.replace(/\D/g, '')}" class="contact-btn phone-btn">📞 ${official.phone}</a>` : ''}
-                            ${official.website ? `<a href="${official.website}" target="_blank" class="contact-btn website-btn">🌐 Website</a>` : ''}
-                        </div>
-                    </div>
-
-                    ${(official.twitter || official.facebook || official.instagram || official.youtube) ? `
-                    <div class="contact-section">
-                        <h4>Social Media</h4>
-                        <div class="contact-buttons">
-                            ${official.twitter ? `<a href="https://twitter.com/${official.twitter}" target="_blank" class="contact-btn twitter-btn">🐦 Twitter</a>` : ''}
-                            ${official.facebook ? `<a href="https://facebook.com/${official.facebook}" target="_blank" class="contact-btn facebook-btn">📘 Facebook</a>` : ''}
-                            ${official.instagram ? `<a href="https://instagram.com/${official.instagram}" target="_blank" class="contact-btn instagram-btn">📷 Instagram</a>` : ''}
-                            ${official.youtube ? `<a href="https://youtube.com/${official.youtube}" target="_blank" class="contact-btn youtube-btn">📺 YouTube</a>` : ''}
-                        </div>
-                    </div>
-                    ` : ''}
-
-                    <div class="contact-info">
-                        ${official.office ? `<div><strong>Office:</strong> ${official.office}</div>` : ''}
-                        ${official.department ? `<div><strong>Department:</strong> ${official.department}</div>` : ''}
-                        ${official.appointed ? `<div><strong>Appointed:</strong> ${official.appointed} by ${official.appointedBy}</div>` : ''}
-                        ${official.director ? `<div><strong>Director:</strong> ${official.director}</div>` : ''}
-                    </div>
-                </div>
-            `;
-        }
-
-        function searchOfficials(category) {
-            const searchInput = document.getElementById(`${category}-search`);
-            const query = searchInput ? searchInput.value.toLowerCase() : '';
-            const data = governmentData[category] || [];
-            
-            const filtered = data.filter(official => 
-                official.name.toLowerCase().includes(query) ||
-                (official.state && official.state.toLowerCase().includes(query)) ||
-                (official.party && official.party.toLowerCase().includes(query)) ||
-                (official.title && official.title.toLowerCase().includes(query)) ||
-                (official.district && official.district.toLowerCase().includes(query))
-            );
-            
-            const container = document.getElementById(`${category}-list`);
-            
-            // Reset to first page when searching
-            currentPage[category] = 1;
-            
-            // Calculate pagination
-            const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-            const startIndex = 0;
-            const endIndex = startIndex + ITEMS_PER_PAGE;
-            const paginatedData = filtered.slice(startIndex, endIndex);
-            
-            container.innerHTML = paginatedData.map(official => createOfficialCard(official, category)).join('');
-            
-            // Render pagination controls
-            renderPagination(category, totalPages);
-        }
-
-        function filterByState(category) {
-            const stateFilter = document.getElementById(`${category}-state-filter`);
-            const selectedState = stateFilter.value;
-            const data = governmentData[category] || [];
-            
-            const filtered = selectedState ? 
-                data.filter(official => official.state === selectedState) : 
-                data;
-            
-            const container = document.getElementById(`${category}-list`);
-            
-            // Reset to first page when filtering
-            currentPage[category] = 1;
-            
-            // Calculate pagination
-            const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-            const startIndex = 0;
-            const endIndex = startIndex + ITEMS_PER_PAGE;
-            const paginatedData = filtered.slice(startIndex, endIndex);
-            
-            container.innerHTML = paginatedData.map(official => createOfficialCard(official, category)).join('');
-            
-            // Render pagination controls
-            renderPagination(category, totalPages);
-        }
-
-        function filterByParty(category) {
-            const partyFilter = document.getElementById(`${category}-party-filter`);
-            const selectedParty = partyFilter.value;
-            const data = governmentData[category] || [];
-            
-            const filtered = selectedParty ? 
-                data.filter(official => official.party === selectedParty) : 
-                data;
-            
-            const container = document.getElementById(`${category}-list`);
-            
-            // Reset to first page when filtering
-            currentPage[category] = 1;
-            
-            // Calculate pagination
-            const totalPages = Math.ceil(filtered.length / ITEMS_PER_PAGE);
-            const startIndex = 0;
-            const endIndex = startIndex + ITEMS_PER_PAGE;
-            const paginatedData = filtered.slice(startIndex, endIndex);
-            
-            container.innerHTML = paginatedData.map(official => createOfficialCard(official, category)).join('');
-            
-            // Render pagination controls
-            renderPagination(category, totalPages);
-        }
-
-        function populateStateFilters() {
-            const states = [...new Set([...governmentData.house, ...governmentData.senate]
-                .filter(official => official.state)
-                .map(official => official.state)
-                .sort())];
-            
-            ['house', 'senate'].forEach(category => {
-                const stateFilter = document.getElementById(`${category}-state-filter`);
-                if (stateFilter) {
-                    states.forEach(state => {
-                        const option = document.createElement('option');
-                        option.value = state;
-                        option.textContent = state;
-                        stateFilter.appendChild(option);
-                    });
-                }
+            ['senate-state', 'house-state'].forEach(selectId => {
+                const select = document.getElementById(selectId);
+                states.forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    select.appendChild(option);
+                });
             });
         }
 
-        function openEmailModal(officialName, officialEmail) {
-            if (emailCount >= MAX_DAILY_EMAILS) {
-                alert(`Daily email limit reached (${MAX_DAILY_EMAILS} emails). Please try again tomorrow.`);
-                return;
-            }
-            currentOfficial = { name: officialName, email: officialEmail };
-            document.getElementById('official-name').textContent = officialName;
-            document.getElementById('official-email').value = officialEmail;
-            document.getElementById('email-modal').style.display = 'block';
+        // Display functions
+        function displayOfficials(containerId, officials) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = officials.map(official => `
+                <div class="official-card">
+                    <div class="official-header">
+                        <div>
+                            <div class="official-name">${official.name}</div>
+                            <div class="official-title">${official.title}${official.district ? ` - ${official.district}` : ''}</div>
+                        </div>
+                        <span class="party-badge party-${official.party.toLowerCase()}">${official.party}</span>
+                    </div>
+                    <div class="official-details">
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24">
+                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                            </svg>
+                            ${official.state}
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24">
+                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                            </svg>
+                            <a href="mailto:${official.email}">${official.email}</a>
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24">
+                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+                            </svg>
+                            ${official.phone}
+                        </div>
+                        <div class="contact-item">
+                            <svg class="contact-icon" viewBox="0 0 24 24">
+                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                            </svg>
+                            <a href="${official.website}" target="_blank">Official Website</a>
+                        </div>
+                        ${official.appointment_year ? `<div class="contact-item"><strong>Appointed:</strong> ${official.appointment_year} by ${official.appointed_by}</div>` : ''}
+                    </div>
+                </div>
+            `).join('');
         }
 
-        function closeEmailModal() {
-            document.getElementById('email-modal').style.display = 'none';
-            document.getElementById('email-form').reset();
-            document.getElementById('form-message').innerHTML = '';
+        function displaySenate() {
+            displayOfficials('senateContainer', governmentOfficials.senate);
         }
 
-        async function sendEmail(event) {
-            event.preventDefault();
-            if (emailCount >= MAX_DAILY_EMAILS) {
-                showFormMessage('Daily email limit reached. Please try again tomorrow.', 'error');
-                return;
+        function displayHouse() {
+            displayOfficials('houseContainer', governmentOfficials.house);
+        }
+
+        function displayExecutive() {
+            displayOfficials('executiveContainer', governmentOfficials.executive);
+        }
+
+        function displayJudicial() {
+            displayOfficials('judicialContainer', governmentOfficials.judicial);
+        }
+
+        // Filter functions
+        function filterSenate() {
+            const searchTerm = document.getElementById('senate-search').value.toLowerCase();
+            const stateFilter = document.getElementById('senate-state').value;
+            const partyFilter = document.getElementById('senate-party').value;
+            
+            let filtered = governmentOfficials.senate;
+            
+            if (searchTerm) {
+                filtered = filtered.filter(official => 
+                    official.name.toLowerCase().includes(searchTerm) ||
+                    official.title.toLowerCase().includes(searchTerm)
+                );
             }
             
-            const sendBtn = document.querySelector('.send-btn');
-            const originalText = sendBtn.innerHTML;
-            sendBtn.innerHTML = '<span class="loading"></span>Sending...';
-            sendBtn.disabled = true;
+            if (stateFilter) {
+                filtered = filtered.filter(official => official.state === stateFilter);
+            }
             
-            try {
-                // Simulate email sending delay
-                await new Promise(resolve => setTimeout(resolve, 2000));
-                emailCount++;
-                updateEmailCount();
-                saveEmailCount();
-                
-                showFormMessage('Email sent successfully! Your message has been delivered.', 'success');
-                setTimeout(() => closeEmailModal(), 3000);
-            } catch (error) {
-                showFormMessage('Error sending email. Please try again later.', 'error');
-            } finally {
-                sendBtn.innerHTML = originalText;
-                sendBtn.disabled = false;
+            if (partyFilter) {
+                filtered = filtered.filter(official => official.party === partyFilter);
+            }
+            
+            displayOfficials('senateContainer', filtered);
+        }
+
+        function filterHouse() {
+            const searchTerm = document.getElementById('house-search').value.toLowerCase();
+            const stateFilter = document.getElementById('house-state').value;
+            const partyFilter = document.getElementById('house-party').value;
+            
+            let filtered = governmentOfficials.house;
+            
+            if (searchTerm) {
+                filtered = filtered.filter(official => 
+                    official.name.toLowerCase().includes(searchTerm) ||
+                    official.district.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            if (stateFilter) {
+                filtered = filtered.filter(official => official.state === stateFilter);
+            }
+            
+            if (partyFilter) {
+                filtered = filtered.filter(official => official.party === partyFilter);
+            }
+            
+            displayOfficials('houseContainer', filtered);
+        }
+
+        function filterExecutive() {
+            const searchTerm = document.getElementById('executive-search').value.toLowerCase();
+            const positionFilter = document.getElementById('executive-position').value;
+            
+            let filtered = governmentOfficials.executive;
+            
+            if (searchTerm) {
+                filtered = filtered.filter(official => 
+                    official.name.toLowerCase().includes(searchTerm) ||
+                    official.title.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            if (positionFilter) {
+                filtered = filtered.filter(official => official.title.includes(positionFilter));
+            }
+            
+            displayOfficials('executiveContainer', filtered);
+        }
+
+        function filterJudicial() {
+            const searchTerm = document.getElementById('judicial-search').value.toLowerCase();
+            
+            let filtered = governmentOfficials.judicial;
+            
+            if (searchTerm) {
+                filtered = filtered.filter(official => 
+                    official.name.toLowerCase().includes(searchTerm) ||
+                    official.title.toLowerCase().includes(searchTerm)
+                );
+            }
+            
+            displayOfficials('judicialContainer', filtered);
+        }
+
+        function showBranch(branch) {
+            // Hide all sections
+            document.querySelectorAll('.branch-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.branch-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected branch
+            document.getElementById(branch).classList.add('active');
+            event.target.classList.add('active');
+            
+            // Initialize the branch
+            if (branch === 'senate') {
+                displaySenate();
+            } else if (branch === 'house') {
+                displayHouse();
+            } else if (branch === 'executive') {
+                displayExecutive();
+            } else if (branch === 'judicial') {
+                displayJudicial();
             }
         }
 
-        function showFormMessage(message, type) {
-            document.getElementById('form-message').innerHTML = `<div class="${type}-message">${message}</div>`;
-        }
-
-        function updateEmailCount() {
-            const countElement = document.getElementById('email-count');
-            if (countElement) countElement.textContent = `${emailCount}/${MAX_DAILY_EMAILS}`;
-        }
-
-        function saveEmailCount() {
-            localStorage.setItem('emailCount', emailCount.toString());
-            localStorage.setItem('lastEmailDate', new Date().toDateString());
-        }
-
-        function loadEmailCount() {
-            const savedCount = localStorage.getItem('emailCount');
-            const savedDate = localStorage.getItem('lastEmailDate');
-            const today = new Date().toDateString();
-            
-            if (savedDate === today) {
-                emailCount = parseInt(savedCount) || 0;
-            } else {
-                emailCount = 0;
-                saveEmailCount();
-            }
-            updateEmailCount();
-        }
-
-        // Close modal when clicking outside
-        window.onclick = function(event) {
-            const modal = document.getElementById('email-modal');
-            if (event.target === modal) closeEmailModal();
-        };
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeStateOptions();
+            displaySenate();
+        });
     </script>
 </body>
 </html>

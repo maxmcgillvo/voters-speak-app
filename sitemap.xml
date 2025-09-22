@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://[your-username].github.io/[your-repo-name]/index.html</loc>
+    <loc>https://voters-speak-app.github.io/index.html</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://[your-username].github.io/[your-repo-name]/app_download_features.html</loc>
+    <loc>https://voters-speak-app.github.io/app_download_features.html</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://[your-username].github.io/[your-repo-name]/comprehensive_test_suite.html</loc>
+    <loc>https://voters-speak-app.github.io/comprehensive_test_suite.html</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://[your-username].github.io/[your-repo-name]/user_feedback_system.html</loc>
+    <loc>https://voters-speak-app.github.io/user_feedback_system.html</loc>
     <lastmod>2025-09-22</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>

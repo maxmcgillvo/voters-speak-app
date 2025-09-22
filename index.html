@@ -298,6 +298,11 @@
                     <span>Justices</span>
                 </div>
             </div>
+               <div class="nav-links" style="margin-top: 20px; display: flex; justify-content: center; gap: 15px;">
+                   <a href="app_download_features.html" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;">📱 App Download</a>
+                   <a href="comprehensive_test_suite.html" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;">🔍 Test Suite</a>
+                   <a href="user_feedback_system.html" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;">📧 Contact Us</a>
+               </div>
         </div>
 
         <div class="branch-tabs">
@@ -413,10 +418,10 @@
                 {name: "Christopher Murphy", title: "Senator", state: "CT", party: "Democratic", email: "contact@murphy.senate.gov", phone: "202-224-4041", office: "136 Hart Senate Office Building", website: "https://www.murphy.senate.gov"},
                 // Delaware
                 {name: "Christopher Coons", title: "Senator", state: "DE", party: "Democratic", email: "contact@coons.senate.gov", phone: "202-224-5042", office: "513 Hart Senate Office Building", website: "https://www.coons.senate.gov"},
-                {name: "Lisa Blunt Rochester", title: "Senator", state: "DE", party: "Democratic", email: "contact@bluntrochester.senate.gov", phone: "202-224-2441", office: "110 Hart Senate Office Building", website: "https://www.bluntrochester.senate.gov"},
+                {name: "Thomas Carper", title: "Senator", state: "DE", party: "Democratic", email: "contact@carper.senate.gov", phone: "202-224-2441", office: "110 Hart Senate Office Building", website: "https://www.carper.senate.gov"},
                 // Florida
                 {name: "Rick Scott", title: "Senator", state: "FL", party: "Republican", email: "contact@scott.senate.gov", phone: "202-224-5274", office: "110 Hart Senate Office Building", website: "https://www.scott.senate.gov"},
-                {name: "Ashley Moody", title: "Senator", state: "FL", party: "Republican", email: "contact@moody.senate.gov", phone: "202-224-3041", office: "404 Russell Senate Office Building", website: "https://www.moody.senate.gov"},
+                {name: "Marco Rubio", title: "Senator", state: "FL", party: "Republican", email: "contact@rubio.senate.gov", phone: "202-224-3041", office: "404 Russell Senate Office Building", website: "https://www.rubio.senate.gov"},
                 // California
                 {name: "Alex Padilla", title: "Senator", state: "CA", party: "Democratic", email: "contact@padilla.senate.gov", phone: "202-224-3553", office: "112 Hart Senate Office Building", website: "https://www.padilla.senate.gov"},
                 {name: "Adam Schiff", title: "Senator", state: "CA", party: "Democratic", email: "contact@schiff.senate.gov", phone: "202-224-3841", office: "320 Hart Senate Office Building", website: "https://www.schiff.senate.gov"},
@@ -1325,28 +1330,7 @@
         }
 
         // Phone click handler for cross-platform compatibility
-        function handlePhoneClick(cleanNumber, formattedNumber) {
-            const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-            const isDesktop = !/Mobi|Android/i.test(navigator.userAgent);
-            
-            if (isMac && isDesktop) {
-                // Mac Desktop - show helpful options
-                if (confirm(`📞 Call ${formattedNumber}?\n\nOn Mac Desktop, you can:\n• Use FaceTime/iPhone continuity\n• Copy the number to dial manually\n• Configure a phone app for tel: links`)) {
-                    // Try the tel: link
-                    window.location.href = `tel:+1${cleanNumber}`;
-                    
-                    // Also copy to clipboard as fallback
-                    navigator.clipboard.writeText(formattedNumber).then(() => {
-                        console.log('Phone number copied to clipboard:', formattedNumber);
-                    });
-                }
-                return false; // Prevent default link behavior
-            } else {
-                // For mobile and other desktop systems, use tel: link directly
-                window.location.href = `tel:+1${cleanNumber}`;
-                return false; // Prevent default link behavior
-            }
-        }
+        // Phone handling is now managed by enhanced_phone_solution.js
 
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {

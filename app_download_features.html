@@ -242,6 +242,11 @@
         <div class="app-header">
             <h1 style="text-align: center;">Voters Speak</h1>
             <p style="text-align: center;">Contact your Elected Officials</p>
+            <div class="nav-links" style="margin-top: 20px; display: flex; justify-content: center; gap: 15px;">
+                <a href="index.html" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;">🏛️ Directory</a>
+                <a href="comprehensive_test_suite.html" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;">🔍 Test Suite</a>
+                <a href="user_feedback_system.html" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;">📧 Contact Us</a>
+            </div>
         </div>
         
         <div class="app-content">
@@ -362,14 +367,6 @@
     <script>
         // Progressive Web App (PWA) Installation
         function installPWA() {
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('sw.js').then(function(registration) {
-                    console.log('ServiceWorker registration successful');
-                }).catch(function(err) {
-                    console.log('ServiceWorker registration failed: ', err);
-                });
-            }
-            
             // Trigger PWA installation prompt
             if ('BeforeInstallPromptEvent' in window) {
                 window.addEventListener('beforeinstallprompt', function(e) {

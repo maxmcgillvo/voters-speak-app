@@ -4,10 +4,9 @@
   # Directory to publish (relative to root of your repo)
   publish = "."
   
-  # Default build command
-  command = "npm run build"
+  # No build command needed for static site
 
-# Redirects and headers
+# Redirects for SPA and PWA support
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -28,3 +27,15 @@
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000"
+
+# Special handling for service worker
+[[headers]]
+  for = "/service-worker.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+# Handle 404 errors
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 404

@@ -2,13 +2,15 @@
 
 const CACHE_NAME = 'voters-speak-v1';
 const urlsToCache = [
-  './',
-  './index.html',
-  './app_download_features.html',
-  './comprehensive_test_suite.html',
-  './user_feedback_system.html',
-  './enhanced_phone_solution.js',
-  './manifest.json'
+  '/',
+  '/index.html',
+  '/app_download_features.html',
+  '/comprehensive_test_suite.html',
+  '/user_feedback_system.html',
+  '/enhanced_phone_solution.js',
+  '/manifest.json',
+  '/assets/icons/government-192.png',
+  '/assets/icons/government-512.png'
 ];
 
 // Install event - cache assets

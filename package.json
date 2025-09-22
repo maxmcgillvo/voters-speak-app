@@ -1,12 +1,10 @@
 {
   "name": "voters-speak-government-directory",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "Complete government contact directory with 549 verified officials",
   "main": "index.html",
   "scripts": {
-    "start": "python3 -m http.server 3000",
-    "build": "echo 'Static site - no build needed'",
-    "test": "echo 'Testing...' && python3 -m http.server 3000 & sleep 2 && curl -I http://localhost:3000"
+    "start": "python3 -m http.server 3000"
   },
   "keywords": [
     "government",
@@ -21,10 +19,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/[username]/voters-speak-app.git"
+    "url": "https://github.com/maxmcgillvo/voters-speak-app.git"
   },
-  "homepage": "https://voters-speak-app.netlify.app",
-  "bugs": {
-    "url": "https://github.com/[username]/voters-speak-app/issues"
-  }
+  "homepage": "https://voters-speak-app.netlify.app"
 }

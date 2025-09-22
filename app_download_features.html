@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <title>📱 Government Directory - App Download Center</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .app-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .app-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .app-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .app-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .app-content {
+            padding: 40px;
+        }
+        
+        .download-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .app-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .app-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .app-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #3498db;
+        }
+        
+        .app-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .app-desc {
+            color: #6c757d;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .download-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .download-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .download-button.ios {
+            background: linear-gradient(135deg, #007aff 0%, #0051d5 100%);
+        }
+        
+        .download-button.android {
+            background: linear-gradient(135deg, #3ddc84 0%, #00c851 100%);
+        }
+        
+        .download-button.pwa {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            color: #6c757d;
+        }
+        
+        .feature-list li:before {
+            content: "✅ ";
+            color: #28a745;
+        }
+        
+        .platform-info {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .platform-info h3 {
+            color: #0c5460;
+            margin-bottom: 10px;
+        }
+        
+        .quick-install {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .install-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        .install-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .app-preview {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .app-screenshot {
+            width: 100%;
+            max-width: 400px;
+            height: 200px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 10px;
+            margin: 20px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #6c757d;
+            font-size: 1.2rem;
+        }
+        
+        .compatibility-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #856404;
+        }
+        
+        .compatibility-note h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        @media (max-width: 768px) {
+            .app-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .app-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <div class="app-header">
+            <h1 style="text-align: center;">Voters Speak</h1>
+            <p style="text-align: center;">Contact your Elected Officials</p>
+        </div>
+        
+        <div class="app-content">
+            <!-- Quick Install Section -->
+            <div class="quick-install">
+                <h2>⚡ Quick Install</h2>
+                <p>Install the Government Directory as a web app on your device</p>
+                <button class="install-button" onclick="installPWA()">
+                    📲 Install Government Directory
+                </button>
+                <p style="font-size: 0.9rem; margin-top: 10px;">
+                    Works on iPhone, iPad, Android, and desktop
+                </p>
+            </div>
+            
+            <!-- App Download Options -->
+            <div class="download-section">
+                <h2 class="section-title">📱 Download Options</h2>
+                
+                <div class="app-grid">
+                    <!-- iOS App -->
+                    <div class="app-card">
+                        <div class="app-icon">🍎</div>
+                        <div class="app-title">iOS App</div>
+                        <div class="app-desc">
+                            Native iOS app with FaceTime integration and optimized calling
+                        </div>
+                        <ul class="feature-list">
+                            <li>Native iOS experience</li>
+                            <li>FaceTime integration</li>
+                            <li>Contact app sync</li>
+                            <li>Optimized for iPhone/iPad</li>
+                        </ul>
+                        <a href="#" class="download-button ios" onclick="downloadiOS()">
+                            📥 Download for iOS
+                        </a>
+                    </div>
+                    
+                    <!-- Android App -->
+                    <div class="app-card">
+                        <div class="app-icon">🤖</div>
+                        <div class="app-title">Android App</div>
+                        <div class="app-desc">
+                            Native Android app with Chrome integration and optimized calling
+                        </div>
+                        <ul class="feature-list">
+                            <li>Native Android experience</li>
+                            <li>Chrome integration</li>
+                            <li>Multiple dialer support</li>
+                            <li>Optimized for Android phones/tablets</li>
+                        </ul>
+                        <a href="#" class="download-button android" onclick="downloadAndroid()">
+                            📥 Download for Android
+                        </a>
+                    </div>
+                    
+                    <!-- PWA (Progressive Web App) -->
+                    <div class="app-card">
+                        <div class="app-icon">🌐</div>
+                        <div class="app-title">Progressive Web App</div>
+                        <div class="app-desc">
+                            Web app that works like a native app on any device
+                        </div>
+                        <ul class="feature-list">
+                            <li>Works on any device</li>
+                            <li>No download required</li>
+                            <li>Offline functionality</li>
+                            <li>App-like experience</li>
+                        </ul>
+                        <a href="#" class="download-button pwa" onclick="installPWA()">
+                            📲 Install Web App
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Platform-Specific Instructions -->
+            <div class="platform-info">
+                <h3>📋 Platform-Specific Instructions</h3>
+                <p><strong>iPhone/iPad:</strong> Tap "Share" button → "Add to Home Screen"</p>
+                <p><strong>Android:</strong> Tap menu → "Add to Home Screen" or "Install App"</p>
+                <p><strong>Desktop:</strong> Install as PWA for app-like experience</p>
+            </div>
+            
+            <!-- App Preview -->
+            <div class="app-preview">
+                <h3>📱 App Preview</h3>
+                <div class="app-screenshot">
+                    📱 Government Directory App Interface
+                </div>
+                <p>Features include:</p>
+                <ul class="feature-list">
+                    <li>Complete government official directory</li>
+                    <li>Clickable phone numbers</li>
+                    <li>Search and filter functionality</li>
+                    <li>Offline access to contact information</li>
+                    <li>Cross-platform calling integration</li>
+                </ul>
+            </div>
+            
+            <!-- Compatibility Note -->
+            <div class="compatibility-note">
+                <h4>💡 Compatibility Note</h4>
+                <p>The web app works on all modern browsers and devices. Native apps provide enhanced platform-specific features like FaceTime integration (iOS) and Chrome integration (Android).</p>
+            </div>
+            
+            <!-- Direct Link to Web Version -->
+            <div class="platform-info">
+                <h3>🔗 Prefer Web Version?</h3>
+                <p>You can continue using the web version without installing anything:</p>
+                <a href="index.html" class="download-button" style="background: #6c757d;">
+                    🌐 Continue to Web Version
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Progressive Web App (PWA) Installation
+        function installPWA() {
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('sw.js').then(function(registration) {
+                    console.log('ServiceWorker registration successful');
+                }).catch(function(err) {
+                    console.log('ServiceWorker registration failed: ', err);
+                });
+            }
+            
+            // Trigger PWA installation prompt
+            if ('BeforeInstallPromptEvent' in window) {
+                window.addEventListener('beforeinstallprompt', function(e) {
+                    e.prompt();
+                });
+            } else {
+                // Fallback for browsers that don't support PWA installation
+                alert('📱 To install this app:\n\n' +
+                    '• iPhone/iPad: Tap Share → "Add to Home Screen"\n' +
+                    '• Android: Tap Menu → "Add to Home Screen"\n' +
+                    '• Desktop: Look for "Install" in browser menu');
+            }
+        }
+        
+        // iOS App Download (would link to App Store)
+        function downloadiOS() {
+            alert('📱 iOS App Coming Soon!\n\n' +
+                'The iOS app will be available on the App Store soon.\n\n' +
+                'For now, you can install the web app by:\n' +
+                '1. Opening the site in Safari\n' +
+                '2. Tapping the Share button\n' +
+                '3. Selecting "Add to Home Screen"');
+        }
+        
+        // Android App Download (would link to Play Store)
+        function downloadAndroid() {
+            alert('🤖 Android App Coming Soon!\n\n' +
+                'The Android app will be available on Google Play soon.\n\n' +
+                'For now, you can install the web app by:\n' +
+                '1. Opening the site in Chrome\n' +
+                '2. Tapping the menu (3 dots)\n' +
+                '3. Selecting "Add to Home Screen"');
+        }
+        
+        // Auto-detect platform and show relevant options
+        window.onload = function() {
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            const isAndroid = /Android/.test(navigator.userAgent);
+            const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent);
+            
+            if (isIOS) {
+                console.log("iOS device detected - showing iOS app options");
+            } else if (isAndroid) {
+                console.log("Android device detected - showing Android app options");
+            } else if (isMobile) {
+                console.log("Mobile device detected - showing PWA options");
+            } else {
+                console.log("Desktop device detected - showing PWA options");
+            }
+        };
+    </script>
+<script>
+        // Register Service Worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

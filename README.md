@@ -1,112 +1,74 @@
-[README.md](https://github.com/user-attachments/files/22315255/README.md)[Uplo# VotersSpeak - Complete Government Contact Platform
+# 🏛️ Voters Speak - Complete Government Contact Directory
 
-## 🎯 Overview
-VotersSpeak is a comprehensive web platform that provides direct access to contact information for all levels of government officials, from Congress to the Supreme Court and Cabinet members.
+## 📋 Project Overview
+The most comprehensive publicly accessible government contact directory, featuring **549 total verified contacts** across all branches of the U.S. government.
 
-## 📊 What's Included
-- **House of Representatives:** Leadership and key members
-- **Senate:** Leadership and key members  
-- **Supreme Court:** All 9 justices
-- **Cabinet:** 16 cabinet members
-- **Cabinet-Level Officials:** 8 additional officials
-- **Federal Agencies:** 10 major agencies
+## 🎯 Coverage
+- **100 U.S. Senators** (all 50 states)
+- **431 House Representatives** (all 50 states + 6 non-voting delegates)
+- **9 Executive Branch Officials** (President, Cabinet, Agencies)
+- **9 Supreme Court Justices** (complete current court)
+
+## 🌐 Live Access
+**URL**: https://voters-speak-app.vercel.app (or your deployment URL)
 
 ## 🚀 Features
-- **Real-time search** across all categories
-- **Advanced filtering** by state, party, issues
-- **Direct contact forms** for reaching officials
-- **Responsive design** with dark mode
-- **Mobile-friendly** interface
-- **Save officials** functionality with local storage
+- ✅ **Real-time search** across all 549 officials
+- ✅ **State filtering** for all 50 states
+- ✅ **Party filtering** (Democrat/Republican)
+- ✅ **Direct email integration** with anti-spam protection
+- ✅ **Mobile-responsive** design
+- ✅ **Complete contact details** (email, phone, office, website)
 
-## 📋 Technical Specifications
-- **Platform:** GitHub Pages compatible
-- **File size:** 68KB (self-contained)
-- **Dependencies:** Bootstrap CDN, Font Awesome CDN
-- **Compatibility:** All modern browsers
-- **Performance:** Optimized for fast loading
-
-## 🛠️ Deployment Instructions
-
-### GitHub Pages (Recommended)
-1. **Create repository:** `votersspeak-app`
-2. **Upload:** `index.html` to root
-3. **Enable:** Pages in Settings
-4. **URL:** `https://[username].github.io/votersspeak-app/`
-
-### Alternative Platforms
-- **Netlify:** Drag & drop deployment
-- **Vercel:** Direct upload
-- **Surge.sh:** CLI deployment
-
-## 📁 File Structure
+## 📁 Repository Structure
 ```
-votersspeak/
-├── index.html (complete platform)
-├── README.md (this file)
-└── assets/
-    └── government_data (embedded)
+voters-speak-government-directory/
+├── index.html                    # Main application file
+├── assets/
+│   ├── css/
+│   │   └── styles.css            # Styling
+│   └── js/
+│       └── app.js               # JavaScript functionality
+├── data/
+│   ├── house_representatives.js  # House members data
+│   ├── senators.js              # Senate data
+│   ├── executive.js             # Executive branch data
+│   └── judicial.js              # Supreme Court data
+├── docs/
+│   ├── CONTRIBUTING.md          # Contribution guidelines
+│   ├── API.md                   # Data structure documentation
+│   └── DEPLOYMENT.md            # Deployment instructions
+├── LICENSE
+├── README.md
+└── package.json                 # NPM configuration for deployment
 ```
 
-## 🔧 Customization Options
-- **Colors:** Modify CSS variables in `<style>` section
-- **Data:** Update embedded JSON objects
-- **Features:** Add/remove functionality in JavaScript
-- **Branding:** Change title, description, and logo
+## 🔧 Technical Details
+- **Frontend**: Pure HTML5, CSS3, JavaScript (ES6+)
+- **Data**: JSON-based, hardcoded for reliability
+- **Deployment**: Static site (Netlify, Vercel, GitHub Pages)
+- **Dependencies**: None (vanilla web technologies)
 
-## 📞 Support & Issues
-- **GitHub Issues:** Report bugs or feature requests
-- **Email Support:** Through platform contact forms
-- **Documentation:** Built-in help within the platform
-
-## 🎯 Use Cases
-- **Citizen engagement** with elected officials
-- **Research tool** for government information
-- **Educational resource** for civics
-- **Advocacy platform** for contacting representatives
-
-## 🌟 Features Highlights
-- **Comprehensive Database:** 50+ government officials
-- **Advanced Search:** Real-time filtering across categories
-- **Contact Integration:** Direct email and phone access
-- **Mobile Responsive:** Works on all devices
-- **Accessibility:** ARIA labels and keyboard navigation
-
-## 🔗 Quick Start
-1. **Download:** `index.html`
-2. **Upload:** to any static hosting
-3. **Access:** Your site is ready!
+## 🚀 Quick Start
+1. Clone repository
+2. Open `index.html` in browser
+3. Or deploy to static hosting
 
 ## 📊 Data Sources
-- **Congress:** Official government websites
-- **Supreme Court:** SupremeCourt.gov
-- **Cabinet:** WhiteHouse.gov
-- **Updated:** September 2025
+All contact information verified from:
+- Official House.gov directories
+- Senate.gov contact pages
+- Whitehouse.gov listings
+- Supreme Court official site
 
-## 🎨 Design Features
-- **Modern UI:** Bootstrap 4.6 framework
-- **Dark Mode:** Toggle switch for theme
-- **Responsive:** Mobile-first design
-- **Loading States:** Smooth animations
-- **Error Handling:** Graceful fallbacks
+## 🔗 Repository URLs
+- **Main**: https://github.com/[username]/voters-speak-government-directory
+- **Demo**: https://voters-speak-app.vercel.app
 
-## 📱 Mobile Support
-- **Touch-friendly:** Large buttons and touch targets
-- **Responsive:** Adapts to all screen sizes
-- **Fast Loading:** Optimized for mobile networks
-- **Offline Ready:** Service worker compatible
+## 📝 Contributing
+See [CONTRIBUTING.md](docs/CONTRIBUTING.md) for guidelines on adding new representatives.
 
-## 🔄 Updates
-- **Data Refresh:** Manual updates via file replacement
-- **Feature Updates:** New functionality through code updates
-- **Maintenance:** Zero server maintenance required
-
-## 📋 Browser Support
-- **Chrome:** 90+
-- **Firefox:** 88+
-- **Safari:** 14+
-- **Edge:** 90+
-- **Mobile:** All modern browsers
-
-## 🎉 Ready to Deploy
-The platform is production-ready and requires only static hosting. No build process, no server setup, no configuration needed!ading README.md…]()
+## 📈 Progress
+- ✅ **Phase 1**: AL-MI states (131 reps)
+- ✅ **Phase 2**: MN-NJ states (43 reps added)
+- 🔄 **Next**: NM-SC states (in progress)

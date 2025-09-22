@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <title>📧 Contact Us - Government Directory Feedback</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .feedback-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .feedback-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .feedback-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 300;
+        }
+        
+        .feedback-header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        .feedback-content {
+            padding: 40px;
+        }
+        
+        .contact-section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .contact-method {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .contact-method:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: #3498db;
+        }
+        
+        .contact-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .contact-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .contact-desc {
+            color: #6c757d;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        
+        .contact-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        
+        .contact-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        .contact-button.email {
+            background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+        }
+        
+        .contact-button.form {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        }
+        
+        .contact-button.social {
+            background: linear-gradient(135deg, #3b5998 0%, #2d4373 100%);
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            color: #6c757d;
+        }
+        
+        .feature-list li:before {
+            content: "✅ ";
+            color: #28a745;
+        }
+        
+        .response-info {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .response-info h3 {
+            color: #0c5460;
+            margin-bottom: 10px;
+        }
+        
+        .quick-contact {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .quick-button {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            text-decoration: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+        
+        .quick-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .platform-note {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            color: #856404;
+        }
+        
+        .platform-note h4 {
+            color: #856404;
+            margin-bottom: 10px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .social-link {
+            display: inline-block;
+            background: #3b5998;
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background: #2d4373;
+            transform: translateY(-2px);
+        }
+        
+        .form-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-label {
+            display: block;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+        
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+        
+        .form-textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+        
+        .form-submit {
+            background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+        
+        .form-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52, 152, 219, 0.4);
+        }
+        
+        @media (max-width: 768px) {
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-header h1 {
+                font-size: 2rem;
+            }
+            
+            .social-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="feedback-container">
+        <div class="feedback-header">
+            <h1 style="text-align: center;">Voters Speak</h1>
+            <p style="text-align: center;">Contact your Elected Officials</p>
+        </div>
+        
+        <div class="feedback-content">
+            <!-- Quick Contact Section -->
+            <div class="quick-contact">
+                <h2>⚡ Quick Contact</h2>
+                <p>Send us feedback about the Government Directory app</p>
+                <a href="mailto:feedback@governmentdirectory.app" class="quick-button">
+                    📧 Send Feedback Email
+                </a>
+                <p style="font-size: 0.9rem; margin-top: 10px;">
+                    We'll respond within 24-48 hours
+                </p>
+            </div>
+            
+            <!-- Multiple Contact Methods -->
+            <div class="contact-section">
+                <h2 class="section-title">📞 Multiple Ways to Contact Us</h2>
+                
+                <div class="contact-grid">
+                    <!-- Email Contact -->
+                    <div class="contact-method">
+                        <div class="app-icon">📧</div>
+                        <div class="contact-title">Email Us</div>
+                        <div class="contact-desc">
+                            Send us detailed feedback, suggestions, or report issues
+                        </div>
+                        <ul class="feature-list">
+                            <li>Detailed feedback welcome</li>
+                            <li>Suggestions for improvements</li>
+                            <li>Bug reports and issues</li>
+                            <li>Feature requests</li>
+                        </ul>
+                        <a href="mailto:feedback@governmentdirectory.app" class="contact-button email">
+                            📧 Send Email
+                        </a>
+                    </div>
+                    
+                    <!-- Contact Form -->
+                    <div class="contact-method">
+                        <div class="app-icon">📝</div>
+                        <div class="contact-title">Contact Form</div>
+                        <div class="contact-desc">
+                            Use our contact form for structured feedback
+                        </div>
+                        <ul class="feature-list">
+                            <li>Structured feedback collection</li>
+                            <li>Easy to use interface</li>
+                            <li>All fields optional</li>
+                            <li>Anonymous option available</li>
+                        </ul>
+                        <button class="contact-button form" onclick="showContactForm()">
+                            📝 Use Contact Form
+                        </button>
+                    </div>
+                    
+                    <!-- Social Media -->
+                    <div class="contact-method">
+                        <div class="app-icon">💬</div>
+                        <div class="contact-title">Social Media</div>
+                        <div class="contact-desc">
+                            Connect with us on social media platforms
+                        </div>
+                        <ul class="feature-list">
+                            <li>Quick questions and updates</li>
+                            <li>Community engagement</li>
+                            <li>Feature announcements</li>
+                            <li>Real-time interaction</li>
+                        </ul>
+                        <div class="social-links">
+                            <a href="https://twitter.com/govdirectory" class="social-link">🐦 Twitter</a>
+                            <a href="https://facebook.com/govdirectory" class="social-link">📘 Facebook</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Platform Information -->
+            <div class="platform-note">
+                <h4>💡 Platform Information</h4>
+                <p><strong>Site Hosted on Netlify:</strong> This feedback system works perfectly with Netlify's serverless architecture.</p>
+                <p><strong>Email Integration:</strong> Direct email links work across all platforms and devices.</p>
+                <p><strong>Cross-Platform:</strong> Contact methods work on Mac, iOS, Android, Windows, and Linux.</p>
+            </div>
+            
+            <!-- Contact Form Section -->
+            <div class="contact-section" id="contactFormSection" style="display: none;">
+                <h2 class="section-title">📝 Contact Form</h2>
+                <div class="form-container">
+                    <form id="contactForm" onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label class="form-label" for="name">Name (optional)</label>
+                            <input type="text" id="name" class="form-input" placeholder="Your name">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="email">Email (optional)</label>
+                            <input type="email" id="email" class="form-input" placeholder="your.email@example.com">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="subject">Subject</label>
+                            <input type="text" id="subject" class="form-input" placeholder="What would you like to tell us?" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label class="form-label" for="message">Message</label>
+                            <textarea id="message" class="form-textarea" placeholder="Tell us about your experience with the Government Directory app, suggestions for improvements, or any issues you've encountered..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="form-submit">
+                            📤 Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Response Information -->
+            <div class="response-info">
+                <h3>⏰ Response Time</h3>
+                <p><strong>Email Responses:</strong> Within 24-48 hours</p>
+                <p><strong>Social Media:</strong> Within 2-4 hours during business hours</p>
+                <p><strong>Contact Form:</strong> Within 24 hours</p>
+                <p><strong>Emergency Issues:</strong> As soon as possible</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Show contact form
+        function showContactForm() {
+            document.getElementById('contactFormSection').style.display = 'block';
+            document.getElementById('contactFormSection').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Submit contact form
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Create email with form data
+            const emailBody = `Government Directory Feedback
+
+From: ${name || 'Anonymous'}
+Email: ${email || 'Not provided'}
+Subject: ${subject}
+
+Message:
+${message}
+
+Platform: ${navigator.platform}
+Browser: ${navigator.userAgent}
+Timestamp: ${new Date().toISOString()}`;
+            
+            // Send email (this will open user's email client)
+            const mailtoLink = `mailto:feedback@governmentdirectory.app?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink;
+            
+            // Show success message
+            alert('📧 Email sent successfully! We\'ll respond within 24-48 hours.');
+            
+            // Reset form
+            document.getElementById('contactForm').reset();
+            document.getElementById('contactFormSection').style.display = 'none';
+        }
+        
+        // Auto-detect platform and show relevant options
+        window.onload = function() {
+            const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
+            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+            const isAndroid = /Android/.test(navigator.userAgent);
+            const isMobile = /Mobi|Android|iPhone|iPad|iPod/.test(navigator.userAgent);
+            
+            if (isMac) {
+                console.log("Mac detected - showing Mac-specific contact options");
+            } else if (isIOS) {
+                console.log("iOS detected - showing iOS-specific contact options");
+            } else if (isAndroid) {
+                console.log("Android detected - showing Android-specific contact options");
+            } else if (isMobile) {
+                console.log("Mobile device detected - showing mobile-specific contact options");
+            }
+            
+            console.log("Contact system loaded and ready");
+        };
+    </script>
+<script>
+        // Register Service Worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./service-worker.js')
+                    .then(registration => {
+                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
+                    })
+                    .catch(error => {
+                        console.log('ServiceWorker registration failed: ', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

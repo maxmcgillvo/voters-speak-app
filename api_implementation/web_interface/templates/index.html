@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voters Speak API Integration Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Voters Speak API Integration Dashboard</h1>
+            <div>
+                <button id="runUpdateBtn" class="btn btn-success">Run Update Now</button>
+                <button id="configBtn" class="btn">Configuration</button>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <div class="tab active" data-tab="dashboard">Dashboard</div>
+            <div class="tab" data-tab="updates">Update History</div>
+            <div class="tab" data-tab="logs">Logs</div>
+            <div class="tab" data-tab="settings">Settings</div>
+        </div>
+
+        <!-- Dashboard Tab -->
+        <div id="dashboard" class="tab-content active">
+            <div class="card">
+                <div class="card-header">
+                    <h2>System Status</h2>
+                    <div class="status-text">
+                        <span class="status-indicator {{ status_class }}"></span>
+                        {{ status_text }}
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <tr>
+                            <th>Last Update</th>
+                            <td>{{ last_update }}</td>
+                        </tr>
+                        <tr>
+                            <th>Next Scheduled Update</th>
+                            <td>{{ next_update }}</td>
+                        </tr>
+                        <tr>
+                            <th>Update Schedule</th>
+                            <td>{{ update_schedule }}</td>
+                        </tr>
+                        <tr>
+                            <th>House Members</th>
+                            <td>{{ house_count }}</td>
+                        </tr>
+                        <tr>
+                            <th>Senate Members</th>
+                            <td>{{ senate_count }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Recent Updates</h2>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>Changes</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for update in recent_updates %}
+                            <tr>
+                                <td>{{ update.date }}</td>
+                                <td>
+                                    <div class="status-text">
+                                        <span class="status-indicator {{ update.status_class }}"></span>
+                                        {{ update.status }}
+                                    </div>
+                                </td>
+                                <td>{{ update.changes }}</td>
+                                <td>
+                                    <a href="{{ url_for('view_report', report_id=update.id) }}" class="btn">View Report</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Update Statistics</h2>
+                </div>
+                <div class="card-body">
+                    <canvas id="updateChart" width="400" height="200"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Updates Tab -->
+        <div id="updates" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Update History</h2>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Status</th>
+                                <th>House Changes</th>
+                                <th>Senate Changes</th>
+                                <th>Duration</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for update in all_updates %}
+                            <tr>
+                                <td>{{ update.date }}</td>
+                                <td>
+                                    <div class="status-text">
+                                        <span class="status-indicator {{ update.status_class }}"></span>
+                                        {{ update.status }}
+                                    </div>
+                                </td>
+                                <td>{{ update.house_changes }}</td>
+                                <td>{{ update.senate_changes }}</td>
+                                <td>{{ update.duration }}</td>
+                                <td>
+                                    <a href="{{ url_for('view_report', report_id=update.id) }}" class="btn">View Report</a>
+                                    <a href="{{ url_for('download_report', report_id=update.id) }}" class="btn">Download</a>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- Logs Tab -->
+        <div id="logs" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>System Logs</h2>
+                    <div>
+                        <select id="logSelector">
+                            <option value="update_congress_data">Update Process</option>
+                            <option value="scheduler">Scheduler</option>
+                            <option value="data_validator">Data Validator</option>
+                            <option value="notification_manager">Notifications</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="log-container" id="logContent">
+                        {{ log_content }}
+                    </div>
+                    <button id="refreshLogsBtn" class="btn">Refresh Logs</button>
+                    <button id="downloadLogsBtn" class="btn">Download Logs</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Settings Tab -->
+        <div id="settings" class="tab-content">
+            <div class="card">
+                <div class="card-header">
+                    <h2>Update Schedule</h2>
+                </div>
+                <div class="card-body">
+                    <form id="scheduleForm">
+                        <div class="form-group">
+                            <label for="scheduleType">Schedule Type</label>
+                            <select id="scheduleType" name="scheduleType">
+                                <option value="daily" {% if update_schedule_type == 'daily' %}selected{% endif %}>Daily</option>
+                                <option value="weekly" {% if update_schedule_type == 'weekly' %}selected{% endif %}>Weekly</option>
+                                <option value="monthly" {% if update_schedule_type == 'monthly' %}selected{% endif %}>Monthly</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="scheduleTime">Time (HH:MM)</label>
+                            <input type="time" id="scheduleTime" name="scheduleTime" value="{{ update_schedule_time }}">
+                        </div>
+                        <button type="submit" class="btn btn-success">Save Schedule</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">
+                    <h2>Email Notifications</h2>
+                </div>
+                <div class="card-body">
+                    <form id="emailForm">
+                        <div class="form-group">
+                            <label for="smtpServer">SMTP Server</label>
+                            <input type="text" id="smtpServer" name="smtpServer" value="{{ smtp_server }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="smtpPort">SMTP Port</label>
+                            <input type="number" id="smtpPort" name="smtpPort" value="{{ smtp_port }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="smtpUsername">SMTP Username</label>
+                            <input type="text" id="smtpUsername" name="smtpUsername" value="{{ smtp_username }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="smtpPassword">SMTP Password</label>
+                            <input type="password" id="smtpPassword" name="smtpPassword" placeholder="Enter password">
+                        </div>
+                        <div class="form-group">
+                            <label for="fromAddress">From Address</label>
+                            <input type="email" id="fromAddress" name="fromAddress" value="{{ from_address }}">
+                        </div>
+                        <div class="form-group">
+                            <label for="recipients">Recipients (comma-separated)</label>
+                            <input type="text" id="recipients" name="recipients" value="{{ recipients }}">
+                        </div>
+                        <div class="form-group">
+                            <label>
+                                <input type="checkbox" id="useTLS" name="useTLS" {% if use_tls %}checked{% endif %}>
+                                Use TLS
+                            </label>
+                        </div>
+                        <button type="submit" class="btn btn-success">Save Email Settings</button>
+                        <button type="button" id="testEmailBtn" class="btn">Send Test Email</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Voters Speak API Integration Dashboard &copy; 2025</p>
+        </div>
+    </div>
+
+    <script>
+        // Tab switching
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Update active tab
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+                
+                // Show active content
+                document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Run update button
+        document.getElementById('runUpdateBtn').addEventListener('click', () => {
+            if (confirm('Are you sure you want to run an update now?')) {
+                fetch('/run-update', { method: 'POST' })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            alert('Update started successfully. Check logs for progress.');
+                        } else {
+                            alert('Error starting update: ' + data.error);
+                        }
+                    })
+                    .catch(error => {
+                        alert('Error: ' + error);
+                    });
+            }
+        });
+
+        // Refresh logs button
+        document.getElementById('refreshLogsBtn').addEventListener('click', () => {
+            const logType = document.getElementById('logSelector').value;
+            fetch(`/logs/${logType}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('logContent').textContent = data;
+                })
+                .catch(error => {
+                    alert('Error refreshing logs: ' + error);
+                });
+        });
+
+        // Log selector change
+        document.getElementById('logSelector').addEventListener('change', () => {
+            const logType = document.getElementById('logSelector').value;
+            fetch(`/logs/${logType}`)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('logContent').textContent = data;
+                })
+                .catch(error => {
+                    alert('Error loading logs: ' + error);
+                });
+        });
+
+        // Schedule form submission
+        document.getElementById('scheduleForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const scheduleType = document.getElementById('scheduleType').value;
+            const scheduleTime = document.getElementById('scheduleTime').value;
+            
+            fetch('/settings/schedule', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ scheduleType, scheduleTime })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Schedule updated successfully.');
+                    } else {
+                        alert('Error updating schedule: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    alert('Error: ' + error);
+                });
+        });
+
+        // Email form submission
+        document.getElementById('emailForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = {
+                smtpServer: document.getElementById('smtpServer').value,
+                smtpPort: document.getElementById('smtpPort').value,
+                smtpUsername: document.getElementById('smtpUsername').value,
+                smtpPassword: document.getElementById('smtpPassword').value,
+                fromAddress: document.getElementById('fromAddress').value,
+                recipients: document.getElementById('recipients').value,
+                useTLS: document.getElementById('useTLS').checked
+            };
+            
+            fetch('/settings/email', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Email settings updated successfully.');
+                    } else {
+                        alert('Error updating email settings: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    alert('Error: ' + error);
+                });
+        });
+
+        // Test email button
+        document.getElementById('testEmailBtn').addEventListener('click', () => {
+            fetch('/settings/test-email', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Test email sent successfully.');
+                    } else {
+                        alert('Error sending test email: ' + data.error);
+                    }
+                })
+                .catch(error => {
+                    alert('Error: ' + error);
+                });
+        });
+
+        // Initialize chart
+        const ctx = document.getElementById('updateChart').getContext('2d');
+        const updateChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: {{ chart_labels|safe }},
+                datasets: [
+                    {
+                        label: 'House Changes',
+                        data: {{ chart_house_data }},
+                        borderColor: 'rgba(52, 152, 219, 1)',
+                        backgroundColor: 'rgba(52, 152, 219, 0.2)',
+                        tension: 0.1
+                    },
+                    {
+                        label: 'Senate Changes',
+                        data: {{ chart_senate_data }},
+                        borderColor: 'rgba(231, 76, 60, 1)',
+                        backgroundColor: 'rgba(231, 76, 60, 0.2)',
+                        tension: 0.1
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>

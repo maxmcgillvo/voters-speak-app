@@ -1,0 +1,17 @@
+[Unit]
+Description=Voters Speak Congressional Data Update Service
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/path/to/api_implementation
+ExecStart=/usr/bin/python3 run_update.py --daemon
+Restart=on-failure
+RestartSec=5
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=voters-speak-update
+
+[Install]
+WantedBy=multi-user.target

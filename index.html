@@ -409,6 +409,8 @@
     </div>
 
     <script src="enhanced_phone_solution.js"></script>
+    <script src="js/social-media-component.js"></script>
+    <script src="js/modified_display_function.js"></script>
     <script>
         // Complete government officials data with CT, DE, FL representatives
         const governmentOfficials = {
@@ -421,9 +423,9 @@
                 {name: "Thomas Carper", title: "Senator", state: "DE", party: "Democratic", email: "contact@carper.senate.gov", phone: "202-224-2441", office: "110 Hart Senate Office Building", website: "https://www.carper.senate.gov"},
                 // Florida
                 {name: "Rick Scott", title: "Senator", state: "FL", party: "Republican", email: "contact@scott.senate.gov", phone: "202-224-5274", office: "110 Hart Senate Office Building", website: "https://www.scott.senate.gov"},
-                {name: "Marco Rubio", title: "Senator", state: "FL", party: "Republican", email: "contact@rubio.senate.gov", phone: "202-224-3041", office: "404 Russell Senate Office Building", website: "https://www.rubio.senate.gov"},
+                {name: "Marco Rubio", title: "Senator", state: "FL", party: "Republican", email: "contact@rubio.senate.gov", phone: "202-224-3041", office: "404 Russell Senate Office Building", website: "https://www.rubio.senate.gov", socialMedia: {twitter: "marcorubio", facebook: "SenatorMarcoRubio", instagram: "senmarcorubiio"}},
                 // California
-                {name: "Alex Padilla", title: "Senator", state: "CA", party: "Democratic", email: "contact@padilla.senate.gov", phone: "202-224-3553", office: "112 Hart Senate Office Building", website: "https://www.padilla.senate.gov"},
+                {name: "Alex Padilla", title: "Senator", state: "CA", party: "Democratic", email: "contact@padilla.senate.gov", phone: "202-224-3553", office: "112 Hart Senate Office Building", website: "https://www.padilla.senate.gov", socialMedia: {twitter: "AlexPadilla4CA", facebook: "SenAlexPadilla", linkedin: "alex-padilla"}},
                 {name: "Adam Schiff", title: "Senator", state: "CA", party: "Democratic", email: "contact@schiff.senate.gov", phone: "202-224-3841", office: "320 Hart Senate Office Building", website: "https://www.schiff.senate.gov"},
                 // Colorado
                 {name: "Michael Bennet", title: "Senator", state: "CO", party: "Democratic", email: "contact@bennet.senate.gov", phone: "202-224-5852", office: "261 Russell Senate Office Building", website: "https://www.bennet.senate.gov"},
@@ -1109,8 +1111,8 @@
                 {name: "Kimberlyn King-Hinds", title: "House Delegate", state: "MP", district: "MP-At-Large", party: "Republican", email: "kimberlyn.king-hinds@mail.house.gov", phone: "202-225-3271", office: "1123 Longworth House Office Building, Washington, DC 20515", website: "https://king-hinds.house.gov"},
             ],
             executive: [
-                {name: "Donald Trump", title: "President", state: "DC", party: "Republican", email: "president@whitehouse.gov", phone: "202-456-1111", office: "The White House, 1600 Pennsylvania Avenue NW", website: "https://www.whitehouse.gov"},
-                {name: "JD Vance", title: "Vice President", state: "DC", party: "Republican", email: "vice.president@whitehouse.gov", phone: "202-456-1111", office: "The White House, 1600 Pennsylvania Avenue NW", website: "https://www.whitehouse.gov"},
+                {name: "Donald Trump", title: "President", state: "DC", party: "Republican", email: "president@whitehouse.gov", phone: "202-456-1111", office: "The White House, 1600 Pennsylvania Avenue NW", website: "https://www.whitehouse.gov", socialMedia: {twitter: "realDonaldTrump", facebook: "DonaldTrump", instagram: "realdonaldtrump"}},
+                {name: "JD Vance", title: "Vice President", state: "DC", party: "Republican", email: "vice.president@whitehouse.gov", phone: "202-456-1111", office: "The White House, 1600 Pennsylvania Avenue NW", website: "https://www.whitehouse.gov", socialMedia: {twitter: "JDVance1", facebook: "JDVance", linkedin: "jd-vance"}},
                 {name: "Marco Rubio", title: "Secretary of State", state: "DC", party: "Republican", email: "contact@state.gov", phone: "202-647-4000", office: "2201 C Street NW, Washington, DC 20520", website: "https://www.state.gov"},
                 {name: "Scott Bessent", title: "Secretary of Treasury", state: "DC", party: "Republican", email: "contact@treasury.gov", phone: "202-622-2000", office: "1500 Pennsylvania Avenue NW, Washington, DC 20220", website: "https://www.treasury.gov"},
                 {name: "Pete Hegseth", title: "Secretary of Defense", state: "DC", party: "Republican", email: "contact@defense.gov", phone: "703-571-3343", office: "1000 Defense Pentagon, Washington, DC 20301-1000", website: "https://www.defense.gov"},
@@ -1148,57 +1150,7 @@
             });
         }
 
-        // Display functions
-        function displayOfficials(containerId, officials) {
-            const container = document.getElementById(containerId);
-            container.innerHTML = officials.map(official => `
-                <div class="official-card">
-                    <div class="official-header">
-                        <div>
-                            <div class="official-name">${official.name}</div>
-                            <div class="official-title">${official.title}${official.district ? ` - ${official.district}` : ''}</div>
-                        </div>
-                        <span class="party-badge party-${official.party.toLowerCase()}">${official.party}</span>
-                    </div>
-                    <div class="official-details">
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24">
-                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                            </svg>
-                            ${official.state}
-                        </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24">
-                                <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-                            </svg>
-                            <a href="mailto:${official.email}">${official.email}</a>
-                        </div>
-                        <div class="contact-item" style="cursor: pointer;" onclick="return handlePhoneClick('${official.phone.replace(/[^\d]/g, '')}', '${official.phone}')" title="Click to call ${official.phone}">
-                            <svg class="contact-icon" viewBox="0 0 24 24">
-                                <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
-                            </svg>
-                            <a href="tel:+1${official.phone.replace(/[^\d]/g, '')}" 
-                               onclick="return handlePhoneClick('${official.phone.replace(/[^\d]/g, '')}', '${official.phone}')"
-                               style="color: inherit; text-decoration: none;" 
-                               title="Click to call ${official.phone}">${official.phone}</a>
-                        </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24">
-                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                            </svg>
-                            ${official.office}
-                        </div>
-                        <div class="contact-item">
-                            <svg class="contact-icon" viewBox="0 0 24 24">
-                                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-                            </svg>
-                            <a href="${official.website}" target="_blank">Official Website</a>
-                        </div>
-                        ${official.appointment_year ? `<div class="contact-item"><strong>Appointed:</strong> ${official.appointment_year} by ${official.appointed_by}</div>` : ''}
-                    </div>
-                </div>
-            `).join('');
-        }
+        // Display functions are now loaded from js/modified_display_function.js
 
         function displaySenate() {
             displayOfficials('senateContainer', governmentOfficials.senate);

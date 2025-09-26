@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Concerns Feature</title>
+    <meta name="description" content="Stay informed about civic issues that matter to you">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/newsLogos.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Your Concerns</h1>
+        <p>Your voice matters in our democracy</p>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <section id="news-sources">
+            <h2>WHAT'S HAPPENING RIGHT NOW</h2>
+            <p>Stay informed with coverage from multiple perspectives</p>
+            <div id="news-logos" class="news-logos-flex">
+                <!-- News logos will be dynamically inserted here -->
+                <!-- Example structure for a news logo: -->
+                <!--
+                <a href="https://www.cnn.com/politics" target="_blank" class="news-source">
+                    <div class="news-logo logo-cnn">CNN</div>
+                    <span class="name">CNN</span>
+                </a>
+                -->
+            </div>
+        </section>
+
+        <section id="concerns">
+            <h2>Current Concerns</h2>
+            <div id="concerns-list">
+                <!-- Concerns will be dynamically inserted here -->
+                <!-- Example structure for a concern card: -->
+                <!--
+                <div class="concern-card">
+                    <h3>First Amendment</h3>
+                    <h4>Speak up, Be heard</h4>
+                    <p>Current debates around free speech, assembly rights, and government transparency continue across the country.</p>
+                    <div class="concern-actions">
+                        <button class="contact-officials-btn">CONTACT OFFICIALS</button>
+                    </div>
+                </div>
+                -->
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Your Concerns Feature. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/main.js"></script>
+    <script>
+        // Example JavaScript to load news sources
+        document.addEventListener('DOMContentLoaded', function() {
+            const newsSourcesData = [
+                { name: "CNN", url: "https://www.cnn.com/politics", logoClass: "logo-cnn" },
+                { name: "FOX NEWS", url: "https://www.foxnews.com/politics", logoClass: "logo-foxnews" },
+                { name: "NBC NEWS", url: "https://www.nbcnews.com/politics", logoClass: "logo-nbcnews" },
+                { name: "GITHUB", url: "https://github.com/topics/civic-tech", logoClass: "logo-github" }
+                // Add more news sources as needed
+            ];
+            
+            const newsLogosContainer = document.getElementById('news-logos');
+            
+            // Create and append news source elements
+            newsSourcesData.forEach(source => {
+                const newsSource = document.createElement('a');
+                newsSource.href = source.url;
+                newsSource.className = 'news-source';
+                newsSource.target = '_blank';
+                newsSource.rel = 'noopener noreferrer';
+                
+                const logo = document.createElement('div');
+                logo.className = `news-logo ${source.logoClass}`;
+                logo.textContent = source.name;
+                
+                const name = document.createElement('span');
+                name.className = 'name';
+                name.textContent = source.name;
+                
+                newsSource.appendChild(logo);
+                newsSource.appendChild(name);
+                newsLogosContainer.appendChild(newsSource);
+            });
+            
+            // Example concerns data
+            const concernsData = [
+                {
+                    id: "first-amendment",
+                    title: "First Amendment",
+                    subtitle: "Speak up, Be heard",
+                    description: "Current debates around free speech, assembly rights, and government transparency continue across the country."
+                },
+                {
+                    id: "economic-issues",
+                    title: "Economic Issues",
+                    subtitle: "Inflation, Housing, Jobs",
+                    description: "From housing affordability to inflation concerns, economic issues affect every American."
+                }
+                // Add more concerns as needed
+            ];
+            
+            const concernsListContainer = document.getElementById('concerns-list');
+            
+            // Create and append concern elements
+            concernsData.forEach(concern => {
+                const concernCard = document.createElement('div');
+                concernCard.className = 'concern-card';
+                concernCard.id = concern.id;
+                
+                const title = document.createElement('h3');
+                title.textContent = concern.title;
+                
+                const subtitle = document.createElement('h4');
+                subtitle.textContent = concern.subtitle;
+                
+                const description = document.createElement('p');
+                description.textContent = concern.description;
+                
+                const actions = document.createElement('div');
+                actions.className = 'concern-actions';
+                
+                const contactBtn = document.createElement('button');
+                contactBtn.className = 'contact-officials-btn';
+                contactBtn.textContent = 'CONTACT OFFICIALS';
+                
+                actions.appendChild(contactBtn);
+                
+                concernCard.appendChild(title);
+                concernCard.appendChild(subtitle);
+                concernCard.appendChild(description);
+                concernCard.appendChild(actions);
+                
+                concernsListContainer.appendChild(concernCard);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+This directory should contain logo images for the news sources referenced in the concernsData.json file.
+
+For example:
+- cnn.png
+- fox.png
+- npr.png
+- bbc.png
+- ap.png
+- nbc.png
+- huffpost.png
+- dailybeast.png
+- bloomberg.png
+- googlenews.png
+
+You can replace these with actual logos from the respective news sources.

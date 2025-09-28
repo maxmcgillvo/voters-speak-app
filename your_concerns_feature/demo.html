@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Concerns Feature Demo - Voters Speak</title>
+    <title>Your Concerns Feature - Vanilla JS Implementation</title>
+    <link rel="stylesheet" href="public/assets/images/news-logos/logos.css">
     <style>
         * {
             margin: 0;
@@ -16,12 +17,16 @@
             background-color: #f8f9fa;
             color: #333;
             line-height: 1.5;
+            padding: 20px;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
         }
 
         .header {
@@ -43,69 +48,244 @@
             opacity: 0.9;
         }
 
-        .demo-section {
-            background-color: white;
-            border-radius: 8px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        .content {
+            padding: 20px;
         }
 
-        .demo-section h2 {
-            margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
-            border-bottom: 1px solid #eaeaea;
-        }
-
-        .demo-section p {
-            margin-bottom: 1.5rem;
-        }
-
-        .component-demo {
-            margin-top: 2rem;
-            padding: 1.5rem;
-            border: 1px solid #eaeaea;
-            border-radius: 8px;
-        }
-
-        .controls {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            background-color: #f8f9fa;
-            border-radius: 8px;
-        }
-
-        .controls label {
-            display: block;
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
             margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .concern-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            position: relative;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .concern-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .rotating {
+            border: 2px solid #0066cc;
+        }
+
+        .rotating-badge {
+            position: absolute;
+            top: -10px;
+            right: 20px;
+            background-color: #0066cc;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 12px;
+            text-transform: uppercase;
+        }
+
+        .concern-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .concern-subtitle {
+            font-size: 1.1rem;
             font-weight: 500;
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-style: italic;
         }
 
-        .controls input[type="checkbox"] {
-            margin-right: 0.5rem;
+        .concern-description {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #444;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
         }
 
-        .footer {
-            text-align: center;
-            padding: 2rem;
-            color: #6c757d;
+        .concern-links {
+            margin-bottom: 1.5rem;
+        }
+
+        .links-heading {
             font-size: 0.9rem;
+            font-weight: 600;
+            color: #555;
+            margin-bottom: 0.5rem;
         }
 
-        .button {
+        .links-list {
+            list-style-type: none;
+            padding-left: 0;
+            margin: 0;
+        }
+
+        .links-list li {
+            margin-bottom: 0.5rem;
+        }
+
+        .concern-link {
+            color: #0066cc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            transition: color 0.2s ease;
+        }
+
+        .concern-link:hover, .concern-link:focus {
+            color: #004999;
+            text-decoration: underline;
+        }
+
+        .link-source {
+            color: #777;
+            font-size: 0.8rem;
+        }
+
+        .contact-button {
             background-color: #0066cc;
             color: white;
             border: none;
             border-radius: 4px;
-            padding: 0.75rem 1.5rem;
+            padding: 0.75rem 1rem;
             font-size: 1rem;
             font-weight: 600;
+            text-transform: uppercase;
             cursor: pointer;
+            transition: background-color 0.2s ease;
+            margin-top: auto;
+        }
+
+        .contact-button:hover, .contact-button:focus {
+            background-color: #004999;
+        }
+
+        .news-sources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .news-sources-carousel {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            margin-bottom: 1rem;
+        }
+
+        .news-source {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: #f8f8f8;
+            transition: all 0.2s ease-in-out;
+            height: 100px;
+            width: 100%;
+        }
+
+        .news-source:hover, .news-source:focus {
+            background-color: #eaeaea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-logo-container {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 0.5rem;
+        }
+
+        .news-sources-navigation {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 1rem;
+        }
+
+        .nav-button {
+            background-color: #f0f0f0;
+            border: none;
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            margin: 0 0.5rem;
+            font-size: 1.2rem;
+            color: #333;
             transition: background-color 0.2s ease;
         }
 
-        .button:hover, .button:focus {
-            background-color: #004999;
+        .nav-button:hover, .nav-button:focus {
+            background-color: #e0e0e0;
+        }
+
+        .page-indicator {
+            font-size: 0.9rem;
+            color: #666;
+            margin: 0 0.5rem;
+        }
+
+        .concerns-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .concern-card-wrapper {
+            height: 100%;
+        }
+
+        .concerns-footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eaeaea;
+        }
+
+        .last-updated {
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .concerns-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .concerns-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
@@ -113,221 +293,392 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>Your Concerns Feature Demo</h1>
-            <p>Voters Speak Application</p>
+            <h1>YOUR CONCERNS</h1>
+            <p>Your voice matters in our democracy</p>
         </header>
 
-        <section class="demo-section">
-            <h2>About This Demo</h2>
-            <p>
-                This demo showcases the "Your Concerns" feature for the Voters Speak application. 
-                The feature connects current political issues to relevant officials, helping users 
-                understand who to contact about specific concerns they care about.
-            </p>
-            <p>
-                You can interact with the components below to see how they work. The "Contact Officials" 
-                button would normally navigate to the officials directory with filters applied, but in 
-                this demo, it will just show an alert with the concern ID and relevant officials.
-            </p>
-        </section>
-
-        <section class="demo-section">
-            <h2>Full Page Demo</h2>
-            <p>
-                This is the complete "Your Concerns" page, including the news sources section and 
-                all concern cards.
-            </p>
-            <div class="controls">
-                <label>
-                    <input type="checkbox" id="mobile-toggle"> 
-                    Simulate Mobile View (News Sources Carousel)
-                </label>
-            </div>
-            <div class="component-demo">
-                <div id="concerns-page-demo"></div>
-            </div>
-        </section>
-
-        <section class="demo-section">
-            <h2>Individual Components</h2>
-            
-            <h3>News Sources Component</h3>
-            <p>
-                This component displays news source logos in a grid (desktop) or carousel (mobile).
-                Each logo links to the politics section of the respective news source.
-            </p>
-            <div class="controls">
-                <label>
-                    <input type="checkbox" id="news-mobile-toggle"> 
-                    Show Mobile Carousel View
-                </label>
-            </div>
-            <div class="component-demo">
-                <div id="news-sources-demo"></div>
-            </div>
-
-            <h3>Concern Card Component</h3>
-            <p>
-                This component displays information about a political concern and provides a button 
-                to contact relevant officials.
-            </p>
-            <div class="controls">
-                <label>
-                    <input type="checkbox" id="rotating-toggle"> 
-                    Show as Rotating Concern
-                </label>
-            </div>
-            <div class="component-demo">
-                <div id="concern-card-demo"></div>
-            </div>
-        </section>
-
-        <footer class="footer">
-            <p>&copy; 2025 Voters Speak. All rights reserved.</p>
-        </footer>
+        <div id="app" class="content">
+            <!-- The app will be rendered here -->
+            <div class="loading">Loading...</div>
+        </div>
     </div>
 
-    <!-- Load React and React DOM -->
-    <script src="https://unpkg.com/react@18/umd/react.development.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.min.js"></script>
-    <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.development.min.js"></script>
-    
-    <!-- Load our bundled React app -->
-    <script src="dist/voters-speak-your-concerns.umd.js"></script>
-    
     <script>
-        // Mock data for the demo
-        const mockConcern = {
-            id: "epstein-files",
-            title: "Epstein Files",
-            subtitle: "Should they be released?",
-            description: "The debate around transparency vs. privacy continues as courts consider releasing sealed documents related to Jeffrey Epstein. These files may contain information about high-profile individuals and raise questions about public interest versus privacy rights.",
-            iconName: "balance-scale",
-            relevantOfficials: [
-                "attorney-general",
-                "senate-judiciary-chair",
-                "house-oversight-chair"
-            ],
-            isActive: true,
-            isRotating: false,
-            dateAdded: "2025-09-25",
-            lastUpdated: "2025-09-25",
-            relatedLinks: [
-                {
-                    title: "FOIA Request Information",
-                    url: "https://www.foia.gov/how-to.html",
-                    source: "Official"
-                }
-            ],
-            order: 1
-        };
-
-        const mockNewsSources = [
-            {
-                name: "CNN",
-                url: "https://www.cnn.com/politics",
-                logoUrl: "https://cdn.cnn.com/cnn/.e/img/3.0/global/misc/cnn-logo.png",
-                isActive: true,
-                order: 1
-            },
-            {
-                name: "FOX News",
-                url: "https://www.foxnews.com/politics",
-                logoUrl: "https://static.foxnews.com/static/orion/styles/img/fox-news/logos/fox-news-logo.svg",
-                isActive: true,
-                order: 2
-            },
-            {
-                name: "NPR",
-                url: "https://www.npr.org/sections/politics/",
-                logoUrl: "https://media.npr.org/chrome/npr-logo.jpg",
-                isActive: true,
-                order: 3
-               },
-               {
-                   name: "GITHUB",
-                   url: "https://github.com/topics/civic-tech",
-                   logoUrl: "/public/assets/images/news-logos/github/github-logo.png",
-                   isActive: true,
-                   order: 4
-            }
+        // News sources with their CSS classes
+        const newsSourcesData = [
+            { name: "CNN", url: "https://www.cnn.com/politics", logoClass: "logo-cnn" },
+            { name: "FOX NEWS", url: "https://www.foxnews.com/politics", logoClass: "logo-foxnews" },
+            { name: "NBC NEWS", url: "https://www.nbcnews.com/politics", logoClass: "logo-nbcnews" },
+            { name: "ABC NEWS", url: "https://abcnews.go.com/Politics", logoClass: "logo-abcnews" },
+            { name: "BBC", url: "https://www.bbc.com/news/world/us_and_canada", logoClass: "logo-bbc" },
+            { name: "REUTERS", url: "https://www.reuters.com/world/us/", logoClass: "logo-reuters" },
+            { name: "NEW YORK TIMES", url: "https://www.nytimes.com/section/politics", logoClass: "logo-nytimes" },
+            { name: "WASHINGTON POST", url: "https://www.washingtonpost.com/politics/", logoClass: "logo-washingtonpost" },
+            { name: "BLOOMBERG", url: "https://www.bloomberg.com/politics", logoClass: "logo-bloomberg" },
+            { name: "GOOGLE NEWS", url: "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtVnVHZ0pWVXlnQVAB", logoClass: "logo-googlenews" },
+            { name: "CNBC", url: "https://www.cnbc.com/politics/", logoClass: "logo-cnbc" },
+            { name: "NPR", url: "https://www.npr.org/sections/politics/", logoClass: "logo-npr" },
+            { name: "MSN", url: "https://www.msn.com/en-us/news/politics", logoClass: "logo-msn" },
+            { name: "POLITICO", url: "https://www.politico.com/", logoClass: "logo-politico" },
+            { name: "SUBSTACK", url: "https://substack.com/discover/politics", logoClass: "logo-substack" },
+            { name: "YAHOO NEWS", url: "https://news.yahoo.com/politics/", logoClass: "logo-yahoonews" },
+            { name: "USA TODAY", url: "https://www.usatoday.com/news/politics/", logoClass: "logo-usatoday" },
+            { name: "GITHUB", url: "https://github.com/topics/civic-tech", logoClass: "logo-github" }
         ];
 
-        // Initialize the demo
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mock navigation function
-            window.navigateToOfficials = function(concernId, relevantOfficials) {
-                console.log('Navigating to officials with:', { concernId, relevantOfficials });
-                alert('In production, this would navigate to the officials directory with filters for: ' + concernId);
-            };
-
-            // Render the full page demo
-            window.renderYourConcerns('concerns-page-demo');
-
-            // Get the exported components
-            const { NewsSources, ConcernCard } = window.VotersSpeakConcerns;
-
-            // Create root for news sources demo
-            const newsRoot = ReactDOM.createRoot(document.getElementById('news-sources-demo'));
-            
-            // Create root for concern card demo
-            const cardRoot = ReactDOM.createRoot(document.getElementById('concern-card-demo'));
-            
-            // Initial render
-            newsRoot.render(
-                React.createElement(NewsSources, { 
-                    sources: mockNewsSources,
-                    isMobile: false
-                })
-            );
-            
-            cardRoot.render(
-                React.createElement(ConcernCard, { 
-                    concern: mockConcern,
-                    onContactClick: window.navigateToOfficials,
-                    isRotating: false
-                })
-            );
-            
-            // Handle mobile toggle for news sources
-            document.getElementById('news-mobile-toggle').addEventListener('change', function(e) {
-                newsRoot.render(
-                    React.createElement(NewsSources, { 
-                        sources: mockNewsSources,
-                        isMobile: e.target.checked
-                    })
-                );
-            });
-            
-            // Handle rotating toggle for concern card
-            document.getElementById('rotating-toggle').addEventListener('change', function(e) {
-                const updatedConcern = {...mockConcern, isRotating: e.target.checked};
-                cardRoot.render(
-                    React.createElement(ConcernCard, { 
-                        concern: updatedConcern,
-                        onContactClick: window.navigateToOfficials,
-                        isRotating: e.target.checked
-                    })
-                );
-            });
-            
-            // Handle mobile toggle for full page
-            document.getElementById('mobile-toggle').addEventListener('change', function(e) {
-                // We need to re-render the full page
-                // In a real app, we would use state management
-                // For this demo, we'll just reload with a query parameter
-                const url = new URL(window.location.href);
-                url.searchParams.set('mobile', e.target.checked);
-                window.location.href = url.toString();
-            });
-            
-            // Check if mobile parameter is set
-            const urlParams = new URLSearchParams(window.location.search);
-            const isMobile = urlParams.get('mobile') === 'true';
-            if (isMobile) {
-                document.getElementById('mobile-toggle').checked = true;
-                // We would update the state here in a real app
+        // Sample concerns data
+        const concernsData = {
+            "concerns": [
+                {
+                    "id": "epstein-files",
+                    "title": "Epstein Files",
+                    "subtitle": "Should they be released?",
+                    "description": "The debate around transparency vs. privacy continues as courts consider releasing sealed documents related to Jeffrey Epstein. These files may contain information about high-profile individuals and raise questions about public interest versus privacy rights.",
+                    "iconName": "balance-scale",
+                    "relevantOfficials": [
+                        "attorney-general",
+                        "senate-judiciary-chair",
+                        "house-oversight-chair"
+                    ],
+                    "isActive": true,
+                    "isRotating": false,
+                    "dateAdded": "2025-09-25",
+                    "lastUpdated": "2025-09-25",
+                    "relatedLinks": [
+                        {
+                            "title": "FOIA Request Information",
+                            "url": "https://www.foia.gov/how-to.html",
+                            "source": "Official"
+                        }
+                    ],
+                    "order": 1
+                },
+                {
+                    "id": "first-amendment",
+                    "title": "First Amendment",
+                    "subtitle": "Speak up, Be heard",
+                    "description": "Current debates around free speech, assembly rights, and government transparency continue across the country. Recent court decisions and legislative proposals have raised questions about the boundaries of protected speech and assembly.",
+                    "iconName": "gavel",
+                    "relevantOfficials": [
+                        "senate-rules-chair",
+                        "house-ethics-chair"
+                    ],
+                    "isActive": true,
+                    "isRotating": false,
+                    "dateAdded": "2025-09-25",
+                    "lastUpdated": "2025-09-25",
+                    "relatedLinks": [
+                        {
+                            "title": "First Amendment - Cornell Law School",
+                            "url": "https://www.law.cornell.edu/constitution/first_amendment",
+                            "source": "Educational"
+                        }
+                    ],
+                    "order": 2
+                },
+                {
+                    "id": "supreme-court-term",
+                    "title": "Supreme Court Term",
+                    "subtitle": "Key Cases to Watch",
+                    "description": "The Supreme Court's new term begins in October with several high-profile cases on the docket. These cases could have significant implications for voting rights, regulatory authority, and privacy protections.",
+                    "iconName": "landmark",
+                    "relevantOfficials": [
+                        "chief-justice",
+                        "senate-judiciary-chair"
+                    ],
+                    "isActive": true,
+                    "isRotating": true,
+                    "dateAdded": "2025-09-25",
+                    "lastUpdated": "2025-09-25",
+                    "relatedLinks": [
+                        {
+                            "title": "Supreme Court Calendar",
+                            "url": "https://www.supremecourt.gov/oral_arguments/argument_calendars.aspx",
+                            "source": "Official"
+                        }
+                    ],
+                    "order": 3
+                }
+            ],
+            "metadata": {
+                "lastUpdated": "2025-09-25T12:00:00Z",
+                "version": "1.0.0"
             }
+        };
+
+        // Handle contact officials button click
+        function handleContactClick(concernId, relevantOfficials) {
+            console.log('Contact officials for concern:', concernId, relevantOfficials);
+            alert(`In production, this would navigate to the officials directory with filters for: ${concernId}`);
+        }
+
+        // Create a news source element
+        function createNewsSource(source) {
+            const newsSource = document.createElement('a');
+            newsSource.href = source.url;
+            newsSource.className = 'news-source';
+            newsSource.target = '_blank';
+            newsSource.rel = 'noopener noreferrer';
+            
+            const logoContainer = document.createElement('div');
+            logoContainer.className = 'news-logo-container';
+            
+            const logo = document.createElement('div');
+            logo.className = `news-logo ${source.logoClass}`;
+            // For image-based logos, we'll hide the text with CSS
+            // For text-based logos, the text will still be displayed
+            logo.textContent = source.name;
+            
+            logoContainer.appendChild(logo);
+            newsSource.appendChild(logoContainer);
+            
+            return newsSource;
+        }
+
+        // Create a news sources section
+        function createNewsSources(sources, isMobile = false) {
+            const container = document.createElement('div');
+            container.className = 'news-sources-container';
+            
+            const heading = document.createElement('h2');
+            heading.className = 'section-title';
+            heading.textContent = "WHAT'S HAPPENING RIGHT NOW";
+            container.appendChild(heading);
+            
+            const subheading = document.createElement('p');
+            subheading.className = 'section-subtitle';
+            subheading.textContent = "Stay informed with coverage from multiple perspectives";
+            container.appendChild(subheading);
+            
+            const newsSourcesGrid = document.createElement('div');
+            newsSourcesGrid.className = isMobile ? 'news-sources-carousel' : 'news-sources-grid';
+            
+            // If mobile, only show a subset of sources
+            const displayedSources = isMobile ? sources.slice(0, 3) : sources;
+            
+            displayedSources.forEach(source => {
+                newsSourcesGrid.appendChild(createNewsSource(source));
+            });
+            
+            container.appendChild(newsSourcesGrid);
+            
+            // If mobile and we have more than 3 sources, add navigation
+            if (isMobile && sources.length > 3) {
+                const navigation = document.createElement('div');
+                navigation.className = 'news-sources-navigation';
+                
+                const prevButton = document.createElement('button');
+                prevButton.textContent = '<';
+                prevButton.className = 'nav-button';
+                prevButton.setAttribute('aria-label', 'Previous page');
+                
+                const pageIndicator = document.createElement('span');
+                pageIndicator.className = 'page-indicator';
+                pageIndicator.textContent = '1/' + Math.ceil(sources.length / 3);
+                
+                const nextButton = document.createElement('button');
+                nextButton.textContent = '>';
+                nextButton.className = 'nav-button';
+                nextButton.setAttribute('aria-label', 'Next page');
+                
+                navigation.appendChild(prevButton);
+                navigation.appendChild(pageIndicator);
+                navigation.appendChild(nextButton);
+                
+                container.appendChild(navigation);
+                
+                // Add event listeners for navigation
+                let currentPage = 0;
+                const totalPages = Math.ceil(sources.length / 3);
+                
+                prevButton.addEventListener('click', () => {
+                    currentPage = (currentPage - 1 + totalPages) % totalPages;
+                    updateCarousel();
+                });
+                
+                nextButton.addEventListener('click', () => {
+                    currentPage = (currentPage + 1) % totalPages;
+                    updateCarousel();
+                });
+                
+                function updateCarousel() {
+                    // Update page indicator
+                    pageIndicator.textContent = (currentPage + 1) + '/' + totalPages;
+                    
+                    // Update displayed sources
+                    newsSourcesGrid.innerHTML = '';
+                    const start = currentPage * 3;
+                    const end = Math.min(start + 3, sources.length);
+                    
+                    for (let i = start; i < end; i++) {
+                        newsSourcesGrid.appendChild(createNewsSource(sources[i]));
+                    }
+                }
+            }
+            
+            return container;
+        }
+
+        // Create a concern card
+        function createConcernCard(concern, onContactClick, isRotating = false) {
+            const card = document.createElement('div');
+            card.className = 'concern-card';
+            if (isRotating) {
+                card.classList.add('rotating');
+            }
+            
+            // Add rotating badge if needed
+            if (isRotating) {
+                const badge = document.createElement('div');
+                badge.className = 'rotating-badge';
+                badge.textContent = 'Current Issue';
+                card.appendChild(badge);
+            }
+            
+            // Add title
+            const title = document.createElement('h3');
+            title.className = 'concern-title';
+            title.textContent = concern.title;
+            card.appendChild(title);
+            
+            // Add subtitle if present
+            if (concern.subtitle) {
+                const subtitle = document.createElement('h4');
+                subtitle.className = 'concern-subtitle';
+                subtitle.textContent = concern.subtitle;
+                card.appendChild(subtitle);
+            }
+            
+            // Add description
+            const description = document.createElement('p');
+            description.className = 'concern-description';
+            description.textContent = concern.description;
+            card.appendChild(description);
+            
+            // Add related links if present
+            if (concern.relatedLinks && concern.relatedLinks.length > 0) {
+                const linksContainer = document.createElement('div');
+                linksContainer.className = 'concern-links';
+                
+                const linksHeading = document.createElement('h5');
+                linksHeading.className = 'links-heading';
+                linksHeading.textContent = 'Related Resources:';
+                linksContainer.appendChild(linksHeading);
+                
+                const linksList = document.createElement('ul');
+                linksList.className = 'links-list';
+                
+                concern.relatedLinks.forEach(link => {
+                    const listItem = document.createElement('li');
+                    
+                    const linkElement = document.createElement('a');
+                    linkElement.href = link.url;
+                    linkElement.target = '_blank';
+                    linkElement.rel = 'noopener noreferrer';
+                    linkElement.className = 'concern-link';
+                    linkElement.textContent = link.title;
+                    
+                    if (link.source) {
+                        const sourceSpan = document.createElement('span');
+                        sourceSpan.className = 'link-source';
+                        sourceSpan.textContent = ` (${link.source})`;
+                        linkElement.appendChild(sourceSpan);
+                    }
+                    
+                    listItem.appendChild(linkElement);
+                    linksList.appendChild(listItem);
+                });
+                
+                linksContainer.appendChild(linksList);
+                card.appendChild(linksContainer);
+            }
+            
+            // Add contact button
+            const contactButton = document.createElement('button');
+            contactButton.className = 'contact-button';
+            contactButton.textContent = 'CONTACT OFFICIALS';
+            contactButton.setAttribute('aria-label', `Contact officials about ${concern.title}`);
+            
+            contactButton.addEventListener('click', () => {
+                if (onContactClick) {
+                    onContactClick(concern.id, concern.relevantOfficials);
+                }
+            });
+            
+            card.appendChild(contactButton);
+            
+            return card;
+        }
+
+        // Create the concerns page
+        function createConcernsPage(concernsData, onContactClick) {
+            const container = document.createElement('div');
+            container.className = 'concerns-page';
+            
+            // Add news sources section
+            const newsSourcesSection = document.createElement('section');
+            newsSourcesSection.className = 'news-sources-section';
+            
+            // Check if mobile
+            const isMobile = window.innerWidth <= 768;
+            
+            newsSourcesSection.appendChild(createNewsSources(newsSourcesData, isMobile));
+            container.appendChild(newsSourcesSection);
+            
+            // Add concerns grid
+            const concernsSection = document.createElement('section');
+            concernsSection.className = 'concerns-section';
+            
+            const concernsGrid = document.createElement('div');
+            concernsGrid.className = 'concerns-grid';
+            
+            // Sort concerns by order property
+            const sortedConcerns = concernsData.concerns
+                ? [...concernsData.concerns].sort((a, b) => a.order - b.order)
+                : [];
+            
+            sortedConcerns.forEach(concern => {
+                const concernCardWrapper = document.createElement('div');
+                concernCardWrapper.className = 'concern-card-wrapper';
+                concernCardWrapper.appendChild(createConcernCard(
+                    concern,
+                    onContactClick,
+                    concern.isRotating
+                ));
+                concernsGrid.appendChild(concernCardWrapper);
+            });
+            
+            concernsSection.appendChild(concernsGrid);
+            container.appendChild(concernsSection);
+            
+            // Add footer with metadata if available
+            if (concernsData.metadata) {
+                const footer = document.createElement('footer');
+                footer.className = 'concerns-footer';
+                
+                const lastUpdated = document.createElement('p');
+                lastUpdated.className = 'last-updated';
+                lastUpdated.textContent = `Last updated: ${new Date(concernsData.metadata.lastUpdated).toLocaleDateString()}`;
+                footer.appendChild(lastUpdated);
+                
+                container.appendChild(footer);
+            }
+            
+            return container;
+        }
+
+        // Render the app when the DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            const appContainer = document.getElementById('app');
+            appContainer.innerHTML = ''; // Clear loading message
+            
+            // Create and render the concerns page
+            const concernsPage = createConcernsPage(
+                concernsData,
+                handleContactClick
+            );
+            
+            appContainer.appendChild(concernsPage);
         });
     </script>
 </body>

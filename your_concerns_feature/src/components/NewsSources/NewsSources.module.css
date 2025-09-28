@@ -1,0 +1,133 @@
+/* NewsSources Component Styles */
+
+.container {
+  width: 100%;
+  margin-bottom: 2rem;
+}
+
+.heading {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.subheading {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+/* Grid layout for desktop */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+/* Carousel layout for mobile */
+.carousel {
+  display: flex;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  margin-bottom: 1rem;
+}
+
+.newsSource {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: #f8f8f8;
+  transition: all 0.2s ease-in-out;
+  height: 100px;
+  width: 100%;
+}
+
+.newsSource:hover, .newsSource:focus {
+  background-color: #eaeaea;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  max-width: 80%;
+  max-height: 50px;
+  object-fit: contain;
+  margin-bottom: 0.5rem;
+}
+
+.name {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+}
+
+/* Navigation for carousel */
+.navigation {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.navButton {
+  background-color: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin: 0 0.5rem;
+  font-size: 1.2rem;
+  color: #333;
+  transition: background-color 0.2s ease;
+}
+
+.navButton:hover, .navButton:focus {
+  background-color: #e0e0e0;
+}
+
+.pageIndicator {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0 0.5rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  
+  .newsSource {
+    height: 80px;
+  }
+  
+  .logo {
+    max-height: 40px;
+  }
+  
+  .name {
+    font-size: 0.8rem;
+  }
+}
+
+/* Accessibility focus styles */
+.newsSource:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}
+
+.navButton:focus-visible {
+  outline: 2px solid #0066cc;
+  outline-offset: 2px;
+}

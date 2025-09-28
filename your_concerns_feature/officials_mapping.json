@@ -1,0 +1,218 @@
+{
+  "officials": [
+    {
+      "id": "attorney-general",
+      "title": "Attorney General",
+      "name": "Merrick Garland",
+      "department": "Department of Justice",
+      "contactUrl": "https://www.justice.gov/contact-us",
+      "relevantConcerns": ["epstein-files", "first-amendment"]
+    },
+    {
+      "id": "senate-judiciary-chair",
+      "title": "Chair, Senate Judiciary Committee",
+      "name": "Dick Durbin",
+      "chamber": "senate",
+      "contactUrl": "https://www.judiciary.senate.gov/contact",
+      "relevantConcerns": ["epstein-files", "first-amendment", "supreme-court-term"]
+    },
+    {
+      "id": "house-oversight-chair",
+      "title": "Chair, House Oversight Committee",
+      "name": "James Comer",
+      "chamber": "house",
+      "contactUrl": "https://oversight.house.gov/contact/",
+      "relevantConcerns": ["epstein-files"]
+    },
+    {
+      "id": "senate-rules-chair",
+      "title": "Chair, Senate Rules Committee",
+      "name": "Amy Klobuchar",
+      "chamber": "senate",
+      "contactUrl": "https://www.rules.senate.gov/contact",
+      "relevantConcerns": ["first-amendment"]
+    },
+    {
+      "id": "house-ethics-chair",
+      "title": "Chair, House Ethics Committee",
+      "name": "Michael Guest",
+      "chamber": "house",
+      "contactUrl": "https://ethics.house.gov/contact",
+      "relevantConcerns": ["first-amendment"]
+    },
+    {
+      "id": "treasury-secretary",
+      "title": "Secretary of the Treasury",
+      "name": "Janet Yellen",
+      "department": "Department of the Treasury",
+      "contactUrl": "https://home.treasury.gov/contact",
+      "relevantConcerns": ["economic-issues"]
+    },
+    {
+      "id": "federal-reserve-chair",
+      "title": "Chair of the Federal Reserve",
+      "name": "Jerome Powell",
+      "department": "Federal Reserve",
+      "contactUrl": "https://www.federalreserve.gov/aboutthefed/contact-us-general.htm",
+      "relevantConcerns": ["economic-issues"]
+    },
+    {
+      "id": "senate-banking-chair",
+      "title": "Chair, Senate Banking Committee",
+      "name": "Sherrod Brown",
+      "chamber": "senate",
+      "contactUrl": "https://www.banking.senate.gov/contact",
+      "relevantConcerns": ["economic-issues"]
+    },
+    {
+      "id": "house-financial-services-chair",
+      "title": "Chair, House Financial Services Committee",
+      "name": "Patrick McHenry",
+      "chamber": "house",
+      "contactUrl": "https://financialservices.house.gov/contact/",
+      "relevantConcerns": ["economic-issues"]
+    },
+    {
+      "id": "hhs-secretary",
+      "title": "Secretary of Health and Human Services",
+      "name": "Xavier Becerra",
+      "department": "Department of Health and Human Services",
+      "contactUrl": "https://www.hhs.gov/contact/index.html",
+      "relevantConcerns": ["healthcare"]
+    },
+    {
+      "id": "senate-health-chair",
+      "title": "Chair, Senate Health Committee",
+      "name": "Bernie Sanders",
+      "chamber": "senate",
+      "contactUrl": "https://www.help.senate.gov/contact",
+      "relevantConcerns": ["healthcare"]
+    },
+    {
+      "id": "house-energy-commerce-chair",
+      "title": "Chair, House Energy & Commerce Committee",
+      "name": "Cathy McMorris Rodgers",
+      "chamber": "house",
+      "contactUrl": "https://energycommerce.house.gov/contact",
+      "relevantConcerns": ["healthcare"]
+    },
+    {
+      "id": "dhs-secretary",
+      "title": "Secretary of Homeland Security",
+      "name": "Alejandro Mayorkas",
+      "department": "Department of Homeland Security",
+      "contactUrl": "https://www.dhs.gov/contact-us",
+      "relevantConcerns": ["immigration-border"]
+    },
+    {
+      "id": "senate-homeland-chair",
+      "title": "Chair, Senate Homeland Security Committee",
+      "name": "Gary Peters",
+      "chamber": "senate",
+      "contactUrl": "https://www.hsgac.senate.gov/contact",
+      "relevantConcerns": ["immigration-border"]
+    },
+    {
+      "id": "house-homeland-chair",
+      "title": "Chair, House Homeland Security Committee",
+      "name": "Mark Green",
+      "chamber": "house",
+      "contactUrl": "https://homeland.house.gov/contact",
+      "relevantConcerns": ["immigration-border"]
+    },
+    {
+      "id": "chief-justice",
+      "title": "Chief Justice of the United States",
+      "name": "John Roberts",
+      "branch": "judicial",
+      "contactUrl": "https://www.supremecourt.gov/contact/contact_pio.aspx",
+      "relevantConcerns": ["supreme-court-term"]
+    }
+  ],
+  "committees": [
+    {
+      "id": "senate-judiciary",
+      "name": "Senate Committee on the Judiciary",
+      "chamber": "senate",
+      "chair": "senate-judiciary-chair",
+      "contactUrl": "https://www.judiciary.senate.gov/contact",
+      "relevantConcerns": ["epstein-files", "first-amendment", "supreme-court-term"]
+    },
+    {
+      "id": "house-oversight",
+      "name": "House Committee on Oversight and Reform",
+      "chamber": "house",
+      "chair": "house-oversight-chair",
+      "contactUrl": "https://oversight.house.gov/contact/",
+      "relevantConcerns": ["epstein-files"]
+    },
+    {
+      "id": "senate-rules",
+      "name": "Senate Committee on Rules and Administration",
+      "chamber": "senate",
+      "chair": "senate-rules-chair",
+      "contactUrl": "https://www.rules.senate.gov/contact",
+      "relevantConcerns": ["first-amendment"]
+    },
+    {
+      "id": "house-ethics",
+      "name": "House Committee on Ethics",
+      "chamber": "house",
+      "chair": "house-ethics-chair",
+      "contactUrl": "https://ethics.house.gov/contact",
+      "relevantConcerns": ["first-amendment"]
+    },
+    {
+      "id": "senate-banking",
+      "name": "Senate Committee on Banking, Housing, and Urban Affairs",
+      "chamber": "senate",
+      "chair": "senate-banking-chair",
+      "contactUrl": "https://www.banking.senate.gov/contact",
+      "relevantConcerns": ["economic-issues"]
+    },
+    {
+      "id": "house-financial-services",
+      "name": "House Financial Services Committee",
+      "chamber": "house",
+      "chair": "house-financial-services-chair",
+      "contactUrl": "https://financialservices.house.gov/contact/",
+      "relevantConcerns": ["economic-issues"]
+    },
+    {
+      "id": "senate-health",
+      "name": "Senate Health, Education, Labor, and Pensions Committee",
+      "chamber": "senate",
+      "chair": "senate-health-chair",
+      "contactUrl": "https://www.help.senate.gov/contact",
+      "relevantConcerns": ["healthcare"]
+    },
+    {
+      "id": "house-energy-commerce",
+      "name": "House Energy & Commerce Committee",
+      "chamber": "house",
+      "chair": "house-energy-commerce-chair",
+      "contactUrl": "https://energycommerce.house.gov/contact",
+      "relevantConcerns": ["healthcare"]
+    },
+    {
+      "id": "senate-homeland",
+      "name": "Senate Committee on Homeland Security and Governmental Affairs",
+      "chamber": "senate",
+      "chair": "senate-homeland-chair",
+      "contactUrl": "https://www.hsgac.senate.gov/contact",
+      "relevantConcerns": ["immigration-border"]
+    },
+    {
+      "id": "house-homeland",
+      "name": "House Committee on Homeland Security",
+      "chamber": "house",
+      "chair": "house-homeland-chair",
+      "contactUrl": "https://homeland.house.gov/contact",
+      "relevantConcerns": ["immigration-border"]
+    }
+  ],
+  "metadata": {
+    "lastUpdated": "2025-09-25T12:00:00Z",
+    "version": "1.0.0"
+  }
+}

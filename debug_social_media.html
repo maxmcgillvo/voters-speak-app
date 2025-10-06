@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Debug Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .test-card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; }
+        .debug-info { background: #f0f0f0; padding: 10px; margin: 10px 0; }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <h1>🔍 Social Media Debug Test</h1>
+    
+    <div class="debug-info">
+        <h3>Debug Information:</h3>
+        <div id="debugOutput"></div>
+    </div>
+    
+    <div class="test-card">
+        <h3>Test 1: Direct HTML Injection</h3>
+        <div id="directTest">
+            <strong>Social Media:</strong> 
+            <a href="https://twitter.com/marcorubio" target="_blank" style="text-decoration:none; font-size:1.2em; margin-right:8px;">🐦</a>
+            <a href="https://facebook.com/SenatorMarcoRubio" target="_blank" style="text-decoration:none; font-size:1.2em; margin-right:8px;">📘</a>
+            <a href="https://instagram.com/senmarcorubiio" target="_blank" style="text-decoration:none; font-size:1.2em; margin-right:8px;">📷</a>
+        </div>
+    </div>
+    
+    <div class="test-card">
+        <h3>Test 2: JavaScript Generated</h3>
+        <div id="jsTest"></div>
+    </div>
+    
+    <div class="test-card">
+        <h3>Test 3: Marco Rubio Card Simulation</h3>
+        <div id="cardTest"></div>
+    </div>
+
+    <script>
+        // Debug logging
+        function log(message) {
+            console.log('🔍 DEBUG:', message);
+            document.getElementById('debugOutput').innerHTML += '<div>' + message + '</div>';
+        }
+        
+        log('Starting social media debug test...');
+        
+        // Test 2: JavaScript generated social media
+        try {
+            const jsTestDiv = document.getElementById('jsTest');
+            jsTestDiv.innerHTML = '<strong>Social Media:</strong> ';
+            
+            const socialMedia = {
+                twitter: 'marcorubio',
+                facebook: 'SenatorMarcoRubio', 
+                instagram: 'senmarcorubiio'
+            };
+            
+            const platforms = {
+                twitter: { icon: '🐦', baseUrl: 'https://twitter.com/', name: 'Twitter' },
+                facebook: { icon: '📘', baseUrl: 'https://facebook.com/', name: 'Facebook' },
+                instagram: { icon: '📷', baseUrl: 'https://instagram.com/', name: 'Instagram' }
+            };
+            
+            Object.entries(socialMedia).forEach(([platform, handle]) => {
+                if (handle && platforms[platform]) {
+                    const link = document.createElement('a');
+                    link.href = platforms[platform].baseUrl + handle;
+                    link.target = '_blank';
+                    link.textContent = platforms[platform].icon;
+                    link.style.cssText = 'text-decoration:none; font-size:1.2em; margin-right:8px;';
+                    jsTestDiv.appendChild(link);
+                    log(`Added ${platform} icon: ${platforms[platform].icon}`);
+                }
+            });
+            
+            log('✅ JavaScript social media generation successful');
+        } catch (error) {
+            log('❌ JavaScript social media generation failed: ' + error.message);
+        }
+        
+        // Test 3: Full card simulation
+        try {
+            const cardTestDiv = document.getElementById('cardTest');
+            
+            const official = {
+                name: "Marco Rubio",
+                title: "Senator", 
+                state: "FL",
+                party: "Republican",
+                email: "contact@rubio.senate.gov",
+                phone: "202-224-3041",
+                socialMedia: {
+                    twitter: "marcorubio",
+                    facebook: "SenatorMarcoRubio", 
+                    instagram: "senmarcorubiio"
+                }
+            };
+            
+            let cardHTML = `
+                <div><strong>Name:</strong> ${official.name}</div>
+                <div><strong>Title:</strong> ${official.title}</div>
+                <div><strong>State:</strong> ${official.state}</div>
+                <div><strong>Email:</strong> ${official.email}</div>
+                <div><strong>Phone:</strong> ${official.phone}</div>
+            `;
+            
+            // Add social media exactly like the main function
+            if (official.socialMedia) {
+                log('Adding social media to card...');
+                cardHTML += `<div><strong>Social Media:</strong> `;
+                
+                if (official.socialMedia.twitter) {
+                    cardHTML += `<a href="https://twitter.com/${official.socialMedia.twitter}" target="_blank" title="Twitter" style="text-decoration:none; font-size:1.2em; margin-right:8px;">🐦</a>`;
+                    log('Added Twitter icon');
+                }
+                
+                if (official.socialMedia.facebook) {
+                    cardHTML += `<a href="https://facebook.com/${official.socialMedia.facebook}" target="_blank" title="Facebook" style="text-decoration:none; font-size:1.2em; margin-right:8px;">📘</a>`;
+                    log('Added Facebook icon');
+                }
+                
+                if (official.socialMedia.instagram) {
+                    cardHTML += `<a href="https://instagram.com/${official.socialMedia.instagram}" target="_blank" title="Instagram" style="text-decoration:none; font-size:1.2em; margin-right:8px;">📷</a>`;
+                    log('Added Instagram icon');
+                }
+                
+                cardHTML += `</div>`;
+            }
+            
+            cardTestDiv.innerHTML = cardHTML;
+            log('✅ Full card simulation successful');
+            
+        } catch (error) {
+            log('❌ Full card simulation failed: ' + error.message);
+        }
+        
+        log('Debug test completed. Check results above.');
+    </script>
+</body>
+</html>

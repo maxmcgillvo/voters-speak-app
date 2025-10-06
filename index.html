@@ -1172,129 +1172,83 @@
             });
         }
 
-        // Enhanced display function with integrated social media
+        // BULLETPROOF Social Media Display Function
         function displayOfficials(containerId, officials) {
+            console.log('🔍 displayOfficials called with:', containerId, officials.length, 'officials');
+            
             const container = document.getElementById(containerId);
-            if (!container) return;
+            if (!container) {
+                console.error('❌ Container not found:', containerId);
+                return;
+            }
             
             container.innerHTML = '';
             
-            officials.forEach(official => {
+            officials.forEach((official, index) => {
+                console.log(`🔍 Processing official ${index + 1}:`, official.name, 'Social Media:', official.socialMedia);
+                
                 const card = document.createElement('div');
                 card.className = 'official-card';
                 
-                // Header
-                const header = document.createElement('div');
-                header.className = 'official-header';
+                let cardHTML = `
+                    <div class="official-header">
+                        <div class="official-name">${official.name}</div>
+                        <div class="official-title">${official.title}${official.district ? ` - ${official.district}` : ''}</div>
+                        <span class="party-badge party-${official.party.toLowerCase()}">${official.party}</span>
+                    </div>
+                    <div class="official-details">
+                `;
                 
-                const nameDiv = document.createElement('div');
-                nameDiv.className = 'official-name';
-                nameDiv.textContent = official.name;
+                // Add contact info
+                if (official.state) cardHTML += `<div class="contact-item"><strong>State:</strong> ${official.state}</div>`;
+                if (official.email) cardHTML += `<div class="contact-item"><strong>Email:</strong> <a href="mailto:${official.email}">${official.email}</a></div>`;
+                if (official.phone) cardHTML += `<div class="contact-item"><strong>Phone:</strong> <a href="tel:+1${official.phone.replace(/[^\\d]/g, '')}" title="Click to call ${official.phone}">${official.phone}</a></div>`;
+                if (official.office) cardHTML += `<div class="contact-item"><strong>Office:</strong> ${official.office}</div>`;
+                if (official.website) cardHTML += `<div class="contact-item"><strong>Website:</strong> <a href="${official.website}" target="_blank" rel="noopener noreferrer">Official Website</a></div>`;
                 
-                const titleDiv = document.createElement('div');
-                titleDiv.className = 'official-title';
-                titleDiv.textContent = official.title + (official.district ? ` - ${official.district}` : '');
-                
-                const partyBadge = document.createElement('span');
-                partyBadge.className = `party-badge party-${official.party.toLowerCase()}`;
-                partyBadge.textContent = official.party;
-                
-                header.appendChild(nameDiv);
-                header.appendChild(titleDiv);
-                header.appendChild(partyBadge);
-                
-                // Details
-                const details = document.createElement('div');
-                details.className = 'official-details';
-                
-                // Contact info
-                if (official.state) {
-                    const stateDiv = document.createElement('div');
-                    stateDiv.className = 'contact-item';
-                    stateDiv.innerHTML = `<strong>State:</strong> ${official.state}`;
-                    details.appendChild(stateDiv);
-                }
-                
-                if (official.email) {
-                    const emailDiv = document.createElement('div');
-                    emailDiv.className = 'contact-item';
-                    emailDiv.innerHTML = `<strong>Email:</strong> <a href="mailto:${official.email}">${official.email}</a>`;
-                    details.appendChild(emailDiv);
-                }
-                
-                if (official.phone) {
-                    const phoneDiv = document.createElement('div');
-                    phoneDiv.className = 'contact-item';
-                    phoneDiv.innerHTML = `<strong>Phone:</strong> <a href="tel:+1${official.phone.replace(/[^\\d]/g, '')}" title="Click to call ${official.phone}">${official.phone}</a>`;
-                    details.appendChild(phoneDiv);
-                }
-                
-                if (official.office) {
-                    const officeDiv = document.createElement('div');
-                    officeDiv.className = 'contact-item';
-                    officeDiv.innerHTML = `<strong>Office:</strong> ${official.office}`;
-                    details.appendChild(officeDiv);
-                }
-                
-                if (official.website) {
-                    const websiteDiv = document.createElement('div');
-                    websiteDiv.className = 'contact-item';
-                    websiteDiv.innerHTML = `<strong>Website:</strong> <a href="${official.website}" target="_blank" rel="noopener noreferrer">Official Website</a>`;
-                    details.appendChild(websiteDiv);
-                }
-                
-                // Social Media - DIRECT INTEGRATION
-                if (official.socialMedia && Object.keys(official.socialMedia).length > 0) {
-                    const socialDiv = document.createElement('div');
-                    socialDiv.className = 'contact-item social-media-item';
-                    socialDiv.innerHTML = '<strong>Social Media:</strong> ';
+                // GUARANTEED Social Media Display
+                if (official.socialMedia) {
+                    console.log('✅ Adding social media for:', official.name, official.socialMedia);
                     
-                    const socialLinks = document.createElement('ul');
-                    socialLinks.className = 'social-media-links';
-                    socialLinks.style.cssText = 'display: inline-flex; gap: 8px; list-style: none; margin: 0; padding: 0;';
+                    cardHTML += `<div class="contact-item"><strong>Social Media:</strong> `;
                     
-                    const platforms = {
-                        twitter: { icon: '🐦', baseUrl: 'https://twitter.com/', name: 'Twitter' },
-                        facebook: { icon: '📘', baseUrl: 'https://facebook.com/', name: 'Facebook' },
-                        instagram: { icon: '📷', baseUrl: 'https://instagram.com/', name: 'Instagram' },
-                        linkedin: { icon: '💼', baseUrl: 'https://linkedin.com/in/', name: 'LinkedIn' }
-                    };
+                    // Twitter
+                    if (official.socialMedia.twitter) {
+                        cardHTML += `<a href="https://twitter.com/${official.socialMedia.twitter}" target="_blank" title="Twitter" style="text-decoration:none; font-size:1.2em; margin-right:8px;">🐦</a>`;
+                    }
                     
-                    Object.entries(official.socialMedia).forEach(([platform, handle]) => {
-                        if (handle && platforms[platform]) {
-                            const li = document.createElement('li');
-                            li.setAttribute('role', 'listitem');
-                            
-                            const link = document.createElement('a');
-                            link.href = platforms[platform].baseUrl + handle.replace('@', '');
-                            link.target = '_blank';
-                            link.rel = 'noopener noreferrer';
-                            link.textContent = platforms[platform].icon;
-                            link.title = `Follow on ${platforms[platform].name}`;
-                            link.setAttribute('aria-label', `Follow ${official.name} on ${platforms[platform].name}`);
-                            link.style.cssText = 'text-decoration: none; font-size: 1.2em; padding: 4px;';
-                            
-                            li.appendChild(link);
-                            socialLinks.appendChild(li);
-                        }
-                    });
+                    // Facebook  
+                    if (official.socialMedia.facebook) {
+                        cardHTML += `<a href="https://facebook.com/${official.socialMedia.facebook}" target="_blank" title="Facebook" style="text-decoration:none; font-size:1.2em; margin-right:8px;">📘</a>`;
+                    }
                     
-                    socialDiv.appendChild(socialLinks);
-                    details.appendChild(socialDiv);
+                    // Instagram
+                    if (official.socialMedia.instagram) {
+                        cardHTML += `<a href="https://instagram.com/${official.socialMedia.instagram}" target="_blank" title="Instagram" style="text-decoration:none; font-size:1.2em; margin-right:8px;">📷</a>`;
+                    }
+                    
+                    // LinkedIn
+                    if (official.socialMedia.linkedin) {
+                        cardHTML += `<a href="https://linkedin.com/in/${official.socialMedia.linkedin}" target="_blank" title="LinkedIn" style="text-decoration:none; font-size:1.2em; margin-right:8px;">💼</a>`;
+                    }
+                    
+                    cardHTML += `</div>`;
+                } else {
+                    console.log('❌ No social media for:', official.name);
                 }
                 
                 // Appointment info for judicial
                 if (official.appointment_year) {
-                    const appointmentDiv = document.createElement('div');
-                    appointmentDiv.className = 'contact-item';
-                    appointmentDiv.innerHTML = `<strong>Appointed:</strong> ${official.appointment_year} by ${official.appointed_by}`;
-                    details.appendChild(appointmentDiv);
+                    cardHTML += `<div class="contact-item"><strong>Appointed:</strong> ${official.appointment_year} by ${official.appointed_by}</div>`;
                 }
                 
-                card.appendChild(header);
-                card.appendChild(details);
+                cardHTML += `</div>`; // Close official-details
+                
+                card.innerHTML = cardHTML;
                 container.appendChild(card);
             });
+            
+            console.log('✅ displayOfficials completed for', containerId);
         }
 
         function displaySenate() {

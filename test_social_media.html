@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Test</title>
+    <style>
+        .official-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+        }
+        .social-media-links {
+            display: inline-flex;
+            gap: 8px;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+        .social-media-links a {
+            text-decoration: none;
+            font-size: 1.2em;
+            padding: 4px;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <h1>Social Media Integration Test</h1>
+    <div id="testContainer"></div>
+
+    <script>
+        // Test data with social media
+        const testOfficial = {
+            name: "Marco Rubio",
+            title: "Senator",
+            state: "FL",
+            party: "Republican",
+            email: "contact@rubio.senate.gov",
+            phone: "202-224-3041",
+            socialMedia: {
+                twitter: "marcorubio",
+                facebook: "SenatorMarcoRubio",
+                instagram: "senmarcorubiio"
+            }
+        };
+
+        function createTestCard(official) {
+            const card = document.createElement('div');
+            card.className = 'official-card';
+            
+            // Basic info
+            card.innerHTML = `
+                <h3>${official.name}</h3>
+                <p><strong>Title:</strong> ${official.title}</p>
+                <p><strong>State:</strong> ${official.state}</p>
+                <p><strong>Email:</strong> <a href="mailto:${official.email}">${official.email}</a></p>
+                <p><strong>Phone:</strong> ${official.phone}</p>
+            `;
+            
+            // Social Media
+            if (official.socialMedia && Object.keys(official.socialMedia).length > 0) {
+                const socialDiv = document.createElement('div');
+                socialDiv.innerHTML = '<strong>Social Media:</strong> ';
+                
+                const socialLinks = document.createElement('ul');
+                socialLinks.className = 'social-media-links';
+                
+                const platforms = {
+                    twitter: { icon: '🐦', baseUrl: 'https://twitter.com/', name: 'Twitter' },
+                    facebook: { icon: '📘', baseUrl: 'https://facebook.com/', name: 'Facebook' },
+                    instagram: { icon: '📷', baseUrl: 'https://instagram.com/', name: 'Instagram' },
+                    linkedin: { icon: '💼', baseUrl: 'https://linkedin.com/in/', name: 'LinkedIn' }
+                };
+                
+                Object.entries(official.socialMedia).forEach(([platform, handle]) => {
+                    if (handle && platforms[platform]) {
+                        const li = document.createElement('li');
+                        const link = document.createElement('a');
+                        link.href = platforms[platform].baseUrl + handle;
+                        link.target = '_blank';
+                        link.textContent = platforms[platform].icon;
+                        link.title = `Follow on ${platforms[platform].name}`;
+                        li.appendChild(link);
+                        socialLinks.appendChild(li);
+                    }
+                });
+                
+                socialDiv.appendChild(socialLinks);
+                card.appendChild(socialDiv);
+            }
+            
+            return card;
+        }
+
+        // Create test
+        document.addEventListener('DOMContentLoaded', function() {
+            const container = document.getElementById('testContainer');
+            const testCard = createTestCard(testOfficial);
+            container.appendChild(testCard);
+            
+            console.log('✅ Test card created with social media links');
+        });
+    </script>
+</body>
+</html>

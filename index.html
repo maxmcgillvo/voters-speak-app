@@ -1206,35 +1206,42 @@
                 if (official.office) cardHTML += `<div class="contact-item"><strong>Office:</strong> ${official.office}</div>`;
                 if (official.website) cardHTML += `<div class="contact-item"><strong>Website:</strong> <a href="${official.website}" target="_blank" rel="noopener noreferrer">Official Website</a></div>`;
                 
-                // GUARANTEED Social Media Display
+                // GUARANTEED Social Media Display - ENHANCED DEBUGGING
+                console.log('🔍 Checking social media for:', official.name, 'Data:', official.socialMedia);
+                
                 if (official.socialMedia) {
-                    console.log('✅ Adding social media for:', official.name, official.socialMedia);
+                    console.log('✅ FOUND social media for:', official.name, official.socialMedia);
                     
-                    cardHTML += `<div class="contact-item"><strong>Social Media:</strong> `;
+                    cardHTML += `<div class="contact-item" style="background-color: yellow; padding: 5px;"><strong>Social Media:</strong> `;
                     
                     // Twitter
                     if (official.socialMedia.twitter) {
-                        cardHTML += `<a href="https://twitter.com/${official.socialMedia.twitter}" target="_blank" title="Twitter" style="text-decoration:none; font-size:1.2em; margin-right:8px;">🐦</a>`;
+                        cardHTML += `<a href="https://twitter.com/${official.socialMedia.twitter}" target="_blank" title="Twitter" style="text-decoration:none; font-size:1.5em; margin-right:10px; background-color: lightblue;">🐦</a>`;
+                        console.log('✅ Added Twitter icon for:', official.name);
                     }
                     
                     // Facebook  
                     if (official.socialMedia.facebook) {
-                        cardHTML += `<a href="https://facebook.com/${official.socialMedia.facebook}" target="_blank" title="Facebook" style="text-decoration:none; font-size:1.2em; margin-right:8px;">📘</a>`;
+                        cardHTML += `<a href="https://facebook.com/${official.socialMedia.facebook}" target="_blank" title="Facebook" style="text-decoration:none; font-size:1.5em; margin-right:10px; background-color: lightgreen;">📘</a>`;
+                        console.log('✅ Added Facebook icon for:', official.name);
                     }
                     
                     // Instagram
                     if (official.socialMedia.instagram) {
-                        cardHTML += `<a href="https://instagram.com/${official.socialMedia.instagram}" target="_blank" title="Instagram" style="text-decoration:none; font-size:1.2em; margin-right:8px;">📷</a>`;
+                        cardHTML += `<a href="https://instagram.com/${official.socialMedia.instagram}" target="_blank" title="Instagram" style="text-decoration:none; font-size:1.5em; margin-right:10px; background-color: lightcoral;">📷</a>`;
+                        console.log('✅ Added Instagram icon for:', official.name);
                     }
                     
                     // LinkedIn
                     if (official.socialMedia.linkedin) {
-                        cardHTML += `<a href="https://linkedin.com/in/${official.socialMedia.linkedin}" target="_blank" title="LinkedIn" style="text-decoration:none; font-size:1.2em; margin-right:8px;">💼</a>`;
+                        cardHTML += `<a href="https://linkedin.com/in/${official.socialMedia.linkedin}" target="_blank" title="LinkedIn" style="text-decoration:none; font-size:1.5em; margin-right:10px; background-color: lightyellow;">💼</a>`;
+                        console.log('✅ Added LinkedIn icon for:', official.name);
                     }
                     
                     cardHTML += `</div>`;
+                    console.log('✅ COMPLETED social media section for:', official.name);
                 } else {
-                    console.log('❌ No social media for:', official.name);
+                    console.log('❌ NO social media data for:', official.name);
                 }
                 
                 // Appointment info for judicial
@@ -1252,6 +1259,9 @@
         }
 
         function displaySenate() {
+            console.log('🔍 displaySenate called');
+            console.log('🔍 Senate data:', governmentOfficials.senate.length, 'officials');
+            console.log('🔍 Marco Rubio data:', governmentOfficials.senate.find(o => o.name === 'Marco Rubio'));
             displayOfficials('senateContainer', governmentOfficials.senate);
         }
 

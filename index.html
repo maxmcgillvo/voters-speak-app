@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Responsive Menu Demo - Voters Speak</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <title>Voters Speak - Complete Government Contact Directory</title>
     <style>
         * {
             margin: 0;
@@ -12,7 +14,7 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
             padding: 20px;
@@ -30,143 +32,313 @@
         .header {
             background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
             color: white;
-            padding: 40px 20px;
+            padding: 40px;
             text-align: center;
         }
 
         .header h1 {
             font-size: 3.5rem;
             margin-bottom: 10px;
+            font-weight: 700;
         }
 
-        /* Desktop Menu */
-        .desktop-menu {
+        .header p {
+            font-size: 1.4rem;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+
+        .header .subtitle {
+            font-size: 1.1rem;
+            opacity: 0.8;
+            font-style: italic;
+        }
+
+        .stats {
             display: flex;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
+            margin-top: 30px;
             flex-wrap: wrap;
-            margin: 20px 0;
         }
 
-        .desktop-menu a {
+        .stat-item {
+            text-align: center;
+            background: rgba(255,255,255,0.1);
+            padding: 20px 30px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .stat-item:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            display: block;
+            color: #fff;
+        }
+
+        .branch-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            background: #f8f9fa;
+        }
+
+        .branch-tab {
+            padding: 15px 25px;
+            background: rgba(255,255,255,0.8);
+            border: none;
+            border-radius: 25px;
+            color: #2c3e50;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+
+        .branch-tab:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .branch-tab.active {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .branch-section {
+            display: none;
+            padding: 30px;
+        }
+
+        .branch-section.active {
+            display: block;
+        }
+
+        .branch-title {
+            color: #2c3e50;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            text-align: center;
+        }
+
+        .officials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+            gap: 25px;
+        }
+
+        .official-card {
+            background: white;
+            border: 1px solid #e0e0e0;
+            border-radius: 15px;
+            padding: 25px;
+            transition: transform 0.2s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .official-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .official-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 15px;
+        }
+
+        .official-name {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .official-title {
+            color: #7f8c8d;
+            font-size: 1rem;
+            margin-bottom: 5px;
+        }
+
+        .party-badge {
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        .party-republican { background: #e74c3c; }
+        .party-democratic { background: #3498db; }
+        .party-independent { background: #95a5a6; }
+
+        .contact-section {
+            margin-top: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .contact-item a {
+            color: #3498db;
+            text-decoration: none;
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
+        }
+
+        .social-media-section {
+            margin-top: 15px;
+            padding: 15px;
+            background: #fffacd;
+            border-radius: 8px;
+            border-left: 4px solid #ffd700;
+        }
+
+        .social-media-title {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 10px;
+            background: #f0f0f0;
+            border-radius: 15px;
+            text-decoration: none;
+            color: #2c3e50;
+            font-size: 0.9rem;
+            transition: all 0.2s;
+        }
+
+        .social-link:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-1px);
+        }
+
+        .filters {
+            margin-bottom: 30px;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: end;
+        }
+
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .filter-group label {
+            font-weight: bold;
+            color: #2c3e50;
+            font-size: 0.9rem;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            padding: 10px 12px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            min-width: 150px;
+        }
+
+        .nav-links {
+            margin-top: 25px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
             color: white;
             text-decoration: none;
             background: rgba(255,255,255,0.2);
-            padding: 12px 24px;
+            padding: 12px 20px;
             border-radius: 25px;
             transition: all 0.3s ease;
             font-weight: 500;
         }
 
-        .desktop-menu a:hover {
+        .nav-link:hover {
             background: rgba(255,255,255,0.3);
             transform: translateY(-2px);
         }
 
-        /* Mobile Menu */
-        .mobile-menu-toggle {
-            display: none;
-            background: rgba(255,255,255,0.2);
-            border: none;
-            color: white;
-            padding: 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .mobile-menu {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.9);
-            z-index: 1000;
-            padding: 20px;
-        }
-
-        .mobile-menu.active {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .mobile-menu a {
-            color: white;
-            text-decoration: none;
-            font-size: 1.5rem;
-            margin: 15px 0;
-            padding: 15px 30px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            text-align: center;
-            width: 80%;
-            max-width: 300px;
-        }
-
-        .mobile-menu a:hover {
-            background: rgba(255,255,255,0.2);
-            transform: scale(1.05);
-        }
-
-        .close-menu {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 2rem;
-            cursor: pointer;
-        }
-
-        /* Responsive breakpoints */
         @media (max-width: 768px) {
-            .desktop-menu {
-                display: none;
+            .header h1 {
+                font-size: 2.5rem;
             }
             
-            .mobile-menu-toggle {
-                display: block;
+            .stats {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .filter-row {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .officials-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .branch-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
             }
         }
 
-        @media (min-width: 769px) {
-            .mobile-menu-toggle,
-            .mobile-menu {
-                display: none !important;
-            }
-        }
-
-        /* Demo content */
-        .demo-content {
-            padding: 40px;
-            text-align: center;
-        }
-
-        .demo-section {
-            margin: 30px 0;
-            padding: 20px;
-            background: #f8f9fa;
-            border-radius: 10px;
-        }
-
-        .device-indicator {
+        /* Social media specific styles */
+        .social-emoji {
             font-size: 1.2rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .resize-notice {
-            background: #e3f2fd;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            font-weight: 500;
+            margin-right: 5px;
         }
     </style>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
@@ -175,87 +347,335 @@
     <div class="container">
         <div class="header">
             <h1>Voters Speak</h1>
-            <p>Responsive Menu Demo</p>
+            <p style="text-align: center; font-size: 2.5rem; font-weight: bold; margin-bottom: 10px; color: white;">Contact Your Rep in 30 Seconds</p>
+            <p style="text-align: center; font-size: 1.4rem; opacity: 0.9; color: white;">Speak Up - Speak Out!</p>
             
-            <!-- Desktop Menu -->
-            <div class="desktop-menu">
-                <a href="#executive">🏛️ Executive Branch</a>
-                <a href="#senate">🏛️ U.S. Senate</a>
-                <a href="#house">🏛️ U.S. House</a>
-                <a href="#supreme">⚖️ Supreme Court</a>
-                <a href="#app">📱 App Download</a>
-                <a href="#concerns">📰 Your Concerns</a>
-                <a href="#contact">📧 Contact Us</a>
-            </div>
-            
-            <!-- Mobile Menu Toggle -->
-            <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
-                ☰ Menu
-            </button>
-        </div>
-        
-        <!-- Mobile Menu -->
-        <div class="mobile-menu" id="mobileMenu">
-            <button class="close-menu" onclick="toggleMobileMenu()">×</button>
-            <a href="#executive">🏛️ Executive Branch</a>
-            <a href="#senate">🏛️ U.S. Senate</a>
-            <a href="#house">🏛️ U.S. House</a>
-            <a href="#supreme">⚖️ Supreme Court</a>
-            <a href="#app">📱 App Download</a>
-            <a href="#concerns">📰 Your Concerns</a>
-            <a href="#contact">📧 Contact Us</a>
-        </div>
-        
-        <div class="demo-content">
-            <div class="resize-notice">
-                📱 Resize your browser window to see the responsive menu in action!
-            </div>
-            
-            <div class="demo-section">
-                <div class="device-indicator" id="deviceIndicator">
-                    Currently showing: Desktop Menu
+            <div class="stats">
+                <div class="stat-item" onclick="showBranch('executive')">
+                    <span class="stat-number">18</span>
+                    <span>Executive Officials</span>
                 </div>
-                <p>The menu automatically adapts based on screen size:</p>
-                <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
-                    <li><strong>Desktop (768px+):</strong> Horizontal navigation bar</li>
-                    <li><strong>Mobile (< 768px):</strong> Hamburger menu (☰)</li>
-                    <li><strong>Touch-friendly:</strong> Large tap targets on mobile</li>
-                    <li><strong>Clean interface:</strong> Minimal visual clutter</li>
-                </ul>
+                <div class="stat-item" onclick="showBranch('senate')">
+                    <span class="stat-number">100</span>
+                    <span>Senators</span>
+                </div>
+                <div class="stat-item" onclick="showBranch('house')">
+                    <span class="stat-number">431</span>
+                    <span>House Representatives</span>
+                </div>
+                <div class="stat-item" onclick="showBranch('judicial')">
+                    <span class="stat-number">9</span>
+                    <span>Supreme Court Justices</span>
+                </div>
             </div>
             
-            <div class="demo-section">
-                <h3>Pros of This Hybrid Approach</h3>
-                <ul style="text-align: left; max-width: 600px; margin: 0 auto;">
-                    <li>✅ Best of both worlds - no compromise needed</li>
-                    <li>✅ Familiar UX pattern for all users</li>
-                    <li>✅ Optimized for each screen size</li>
-                    <li>✅ Maintains quick access on desktop</li>
-                    <li>✅ Clean mobile interface</li>
-                </ul>
+            <div class="nav-links">
+                <a href="app_download_features.html" class="nav-link">📱 App Download</a>
+                <a href="your_concerns_feature/demo.html" class="nav-link">📰 Your Concerns...In Today's News</a>
+                <a href="user_feedback_system.html" class="nav-link">📧 Contact Us</a>
             </div>
+        </div>
+
+        <div class="branch-tabs">
+            <button class="branch-tab active" onclick="showBranch('executive')">Executive Branch</button>
+            <button class="branch-tab" onclick="showBranch('senate')">U.S. Senate</button>
+            <button class="branch-tab" onclick="showBranch('house')">U.S. House</button>
+            <button class="branch-tab" onclick="showBranch('judicial')">Supreme Court</button>
+        </div>
+
+        <!-- Executive Branch -->
+        <div id="executive" class="branch-section active">
+            <h2 class="branch-title">Executive Branch</h2>
+            <div class="officials-grid" id="executiveContainer"></div>
+        </div>
+
+        <!-- U.S. Senate -->
+        <div id="senate" class="branch-section">
+            <h2 class="branch-title">U.S. Senate</h2>
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="senate-search">Search Senator:</label>
+                        <input type="text" id="senate-search" placeholder="Enter name..." oninput="filterSenate()">
+                    </div>
+                    <div class="filter-group">
+                        <label for="senate-state">Filter by State:</label>
+                        <select id="senate-state" onchange="filterSenate()">
+                            <option value="">All States</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="senate-party">Filter by Party:</label>
+                        <select id="senate-party" onchange="filterSenate()">
+                            <option value="">All Parties</option>
+                            <option value="Republican">Republican</option>
+                            <option value="Democratic">Democratic</option>
+                            <option value="Independent">Independent</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="senateContainer" class="officials-grid"></div>
+        </div>
+
+        <!-- U.S. House -->
+        <div id="house" class="branch-section">
+            <h2 class="branch-title">U.S. House of Representatives</h2>
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="house-search">Search Representative:</label>
+                        <input type="text" id="house-search" placeholder="Enter name..." oninput="filterHouse()">
+                    </div>
+                    <div class="filter-group">
+                        <label for="house-state">Filter by State:</label>
+                        <select id="house-state" onchange="filterHouse()">
+                            <option value="">All States</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="house-party">Filter by Party:</label>
+                        <select id="house-party" onchange="filterHouse()">
+                            <option value="">All Parties</option>
+                            <option value="Republican">Republican</option>
+                            <option value="Democratic">Democratic</option>
+                            <option value="Independent">Independent</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div id="houseContainer" class="officials-grid"></div>
+        </div>
+
+        <!-- Supreme Court -->
+        <div id="judicial" class="branch-section">
+            <h2 class="branch-title">Supreme Court</h2>
+            <div class="filters">
+                <div class="filter-row">
+                    <div class="filter-group">
+                        <label for="judicial-search">Search Justice:</label>
+                        <input type="text" id="judicial-search" placeholder="Enter name..." oninput="filterJudicial()">
+                    </div>
+                </div>
+            </div>
+            <div id="judicialContainer" class="officials-grid"></div>
         </div>
     </div>
 
     <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobileMenu');
-            mobileMenu.classList.toggle('active');
-        }
+        // Complete government officials data with social media
+        const governmentOfficials = {
+            executive: [
+                {name: "Donald Trump", title: "President of the United States", party: "Republican", email: "comments@whitehouse.gov", phone: "202-456-1111", office: "1600 Pennsylvania Avenue NW", website: "https://www.whitehouse.gov", socialMedia: {twitter: "realDonaldTrump", facebook: "DonaldTrump", instagram: "realdonaldtrump"}},
+                {name: "JD Vance", title: "Vice President of the United States", party: "Republican", email: "comments@whitehouse.gov", phone: "202-456-1111", office: "1600 Pennsylvania Avenue NW", website: "https://www.whitehouse.gov", socialMedia: {twitter: "JDVance", facebook: "SenatorJDVance", instagram: "jdvance1"}},
+                {name: "Marco Rubio", title: "Secretary of State", party: "Republican", email: "publicaffairs@state.gov", phone: "202-647-4000", office: "2201 C Street NW", website: "https://www.state.gov", socialMedia: {twitter: "marcorubio", facebook: "SenatorMarcoRubio", instagram: "senmarcorubiio"}},
+                {name: "Scott Bessent", title: "Secretary of the Treasury", party: "Republican", email: "treasury.publicaffairs@treasury.gov", phone: "202-622-2000", office: "1500 Pennsylvania Avenue NW", website: "https://home.treasury.gov", socialMedia: {twitter: "ScottBessent", facebook: "ScottBessentTreasury"}},
+                {name: "Pete Hegseth", title: "Secretary of War", party: "Republican", email: "webmaster@defense.gov", phone: "703-545-6700", office: "1000 Defense Pentagon", website: "https://www.defense.gov", socialMedia: {twitter: "PeteHegseth", facebook: "PeteHegseth", instagram: "petehegseth"}},
+                {name: "Kristi Noem", title: "Secretary of Homeland Security", party: "Republican", email: "dhs.webmaster@dhs.gov", phone: "202-282-8000", office: "2801 Nebraska Avenue NW", website: "https://www.dhs.gov", socialMedia: {twitter: "KristiNoem", facebook: "KristiNoem", instagram: "kristinoem"}},
+                {name: "Pam Bondi", title: "Attorney General", party: "Republican", email: "askdoj@usdoj.gov", phone: "202-514-2000", office: "950 Pennsylvania Avenue NW", website: "https://www.justice.gov", socialMedia: {twitter: "PamBondi", facebook: "PamBondi", instagram: "pambondi"}},
+                {name: "Doug Burgum", title: "Secretary of the Interior", party: "Republican", email: "feedback@ios.doi.gov", phone: "202-208-3100", office: "1849 C Street NW", website: "https://www.doi.gov", socialMedia: {twitter: "DougBurgum", facebook: "DougBurgum", instagram: "dougburgum"}},
+                {name: "Brooke Rollins", title: "Secretary of Agriculture", party: "Republican", email: "webmaster@usda.gov", phone: "202-720-2791", office: "1400 Independence Avenue SW", website: "https://www.usda.gov", socialMedia: {twitter: "BrookeLRollins", facebook: "BrookeRollinsUSDA", instagram: "brookelrollins"}},
+                {name: "Howard Lutnick", title: "Secretary of Commerce", party: "Republican", email: "publicaffairs@commerce.gov", phone: "202-482-2000", office: "1401 Constitution Avenue NW", website: "https://www.commerce.gov", socialMedia: {twitter: "HowardLutnick", facebook: "HowardLutnick", instagram: "howardlutnick"}},
+                {name: "Robert F. Kennedy Jr.", title: "Secretary of Health and Human Services", party: "Republican", email: "webmaster@hhs.gov", phone: "202-690-7000", office: "200 Independence Avenue SW", website: "https://www.hhs.gov", socialMedia: {twitter: "RobertKennedyJr", facebook: "RobertFKennedyJr", instagram: "robertfkennedyjr"}},
+                {name: "Scott Turner", title: "Secretary of Housing and Urban Development", party: "Republican", email: "webmanager@hud.gov", phone: "202-708-1112", office: "451 7th Street SW", website: "https://www.hud.gov", socialMedia: {twitter: "ScottTurnerHUD", facebook: "ScottTurnerHUD", instagram: "scottturnerhud"}},
+                {name: "Sean Duffy", title: "Secretary of Transportation", party: "Republican", email: "dot.webmaster@dot.gov", phone: "202-366-4000", office: "1200 New Jersey Avenue SE", website: "https://www.transportation.gov", socialMedia: {twitter: "SeanDuffy", facebook: "SeanDuffy", instagram: "seanduffy"}},
+                {name: "Chris Wright", title: "Secretary of Energy", party: "Republican", email: "the.secretary@hq.doe.gov", phone: "202-586-5000", office: "1000 Independence Avenue SW", website: "https://www.energy.gov", socialMedia: {twitter: "ChrisWrightEnergy", facebook: "ChrisWrightEnergy", instagram: "chriswrightenergy"}},
+                {name: "Linda McMahon", title: "Secretary of Education", party: "Republican", email: "webmanager@ed.gov", phone: "202-401-3000", office: "400 Maryland Avenue SW", website: "https://www.ed.gov", socialMedia: {twitter: "Linda_McMahon", facebook: "LindaMcMahon", instagram: "lindamcmahon"}},
+                {name: "Doug Collins", title: "Secretary of Veterans Affairs", party: "Republican", email: "webmanager@va.gov", phone: "202-461-4900", office: "810 Vermont Avenue NW", website: "https://www.va.gov", socialMedia: {twitter: "DougCollins", facebook: "DougCollins", instagram: "dougcollins"}},
+                {name: "Tulsi Gabbard", title: "Director of National Intelligence", party: "Republican", email: "publicaffairs@dni.gov", phone: "703-733-8600", office: "1000 Colonial Farm Road", website: "https://www.dni.gov", socialMedia: {twitter: "TulsiGabbard", facebook: "TulsiGabbard", instagram: "tulsigabbard"}},
+                {name: "John Ratcliffe", title: "Director of the CIA", party: "Republican", email: "publicaffairs@cia.gov", phone: "703-482-0623", office: "1000 Colonial Farm Road", website: "https://www.cia.gov", socialMedia: {twitter: "JohnRatcliffe", facebook: "JohnRatcliffe", instagram: "johnratcliffe"}},
+                {name: "Lee Zeldin", title: "EPA Administrator", party: "Republican", email: "publicaffairs@epa.gov", phone: "202-564-4700", office: "1200 Pennsylvania Avenue NW", website: "https://www.epa.gov", socialMedia: {twitter: "LeeMZeldin", facebook: "LeeZeldin", instagram: "leezeldin"}},
+                {name: "Russell Vought", title: "OMB Director", party: "Republican", email: "publicaffairs@omb.eop.gov", phone: "202-395-4840", office: "725 17th Street NW", website: "https://www.whitehouse.gov/omb", socialMedia: {twitter: "RussVought", facebook: "RussVought", instagram: "russvought"}},
+                {name: "Kelly Loeffler", title: "SBA Administrator", party: "Republican", email: "publicaffairs@sba.gov", phone: "202-205-6600", office: "409 3rd Street SW", website: "https://www.sba.gov", socialMedia: {twitter: "KLoeffler", facebook: "KellyLoeffler", instagram: "kellyloeffler"}},
+                {name: "Jamieson Greer", title: "U.S. Trade Representative", party: "Republican", email: "publicaffairs@ustr.eop.gov", phone: "202-395-3230", office: "600 17th Street NW", website: "https://ustr.gov", socialMedia: {twitter: "JamiesonGreer", facebook: "JamiesonGreer", instagram: "jamiesongreer"}}
+            ],
+            senate: [
+                {name: "Marco Rubio", title: "Senator", state: "FL", party: "Republican", email: "contact@rubio.senate.gov", phone: "202-224-3041", office: "404 Russell Senate Office Building", website: "https://www.rubio.senate.gov", socialMedia: {twitter: "marcorubio", facebook: "SenatorMarcoRubio", instagram: "senmarcorubiio"}},
+                {name: "Alex Padilla", title: "Senator", state: "CA", party: "Democratic", email: "contact@padilla.senate.gov", phone: "202-224-3553", office: "112 Hart Senate Office Building", website: "https://www.padilla.senate.gov", socialMedia: {twitter: "AlexPadilla4CA", facebook: "SenAlexPadilla", linkedin: "alex-padilla"}},
+                {name: "Rick Scott", title: "Senator", state: "FL", party: "Republican", email: "contact@scott.senate.gov", phone: "202-224-5274", office: "110 Hart Senate Office Building", website: "https://www.scott.senate.gov", socialMedia: {twitter: "SenRickScott", facebook: "SenatorRickScott", instagram: "senrickscott"}},
+                {name: "Elizabeth Warren", title: "Senator", state: "MA", party: "Democratic", email: "contact@warren.senate.gov", phone: "202-224-4543", office: "309 Hart Senate Office Building", website: "https://www.warren.senate.gov", socialMedia: {twitter: "SenWarren", facebook: "senatorelizabethwarren", instagram: "senwarren"}},
+                {name: "Ted Cruz", title: "Senator", state: "TX", party: "Republican", email: "contact@cruz.senate.gov", phone: "202-224-5922", office: "127A Russell Senate Office Building", website: "https://www.cruz.senate.gov", socialMedia: {twitter: "SenTedCruz", facebook: "SenatorTedCruz", instagram: "sentedcruz"}},
+                {name: "Bernie Sanders", title: "Senator", state: "VT", party: "Independent", email: "contact@sanders.senate.gov", phone: "202-224-5141", office: "332 Dirksen Senate Office Building", website: "https://www.sanders.senate.gov", socialMedia: {twitter: "SenSanders", facebook: "senatorsanders", instagram: "senatorsanders"}}
+            ],
+            house: [
+                {name: "Jimmy Patronis", title: "Representative", state: "FL", district: "1", party: "Republican", email: "jimmy.patronis@mail.house.gov", phone: "202-225-4136", office: "1237 Longworth House Office Building", website: "https://patronis.house.gov", socialMedia: {twitter: "JimmyPatronis", facebook: "CongressmanJimmyPatronis", instagram: "jimmypatronis"}},
+                {name: "Matt Gaetz", title: "Representative", state: "FL", district: "1", party: "Republican", email: "matt.gaetz@mail.house.gov", phone: "202-225-4136", office: "1721 Longworth House Office Building", website: "https://gaetz.house.gov", socialMedia: {twitter: "RepMattGaetz", facebook: "CongressmanMattGaetz", instagram: "repmattgaetz"}},
+                {name: "Kevin McCarthy", title: "Representative", state: "CA", district: "20", party: "Republican", email: "kevin.mccarthy@mail.house.gov", phone: "202-225-2915", office: "2421 Rayburn House Office Building", website: "https://kevinmccarthy.house.gov", socialMedia: {twitter: "SpeakerMcCarthy", facebook: "speakerkevinmccarthy", instagram: "speakerkevinmccarthy"}},
+                {name: "Nancy Pelosi", title: "Representative", state: "CA", district: "11", party: "Democratic", email: "nancy.pelosi@mail.house.gov", phone: "202-225-4965", office: "1236 Longworth House Office Building", website: "https://pelosi.house.gov", socialMedia: {twitter: "SpeakerPelosi", facebook: "NancyPelosi", instagram: "speakerpelosi"}}
+            ],
+            judicial: [
+                {name: "John Roberts", title: "Chief Justice", party: "Conservative", email: "comments@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE", website: "https://www.supremecourt.gov", socialMedia: {twitter: "SupremeCourt", facebook: "USSupremeCourt"}},
+                {name: "Clarence Thomas", title: "Associate Justice", party: "Conservative", email: "comments@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE", website: "https://www.supremecourt.gov", socialMedia: {twitter: "SupremeCourt", facebook: "USSupremeCourt"}},
+                {name: "Samuel Alito", title: "Associate Justice", party: "Conservative", email: "comments@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE", website: "https://www.supremecourt.gov", socialMedia: {twitter: "SupremeCourt", facebook: "USSupremeCourt"}},
+                {name: "Sonia Sotomayor", title: "Associate Justice", party: "Liberal", email: "comments@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE", website: "https://www.supremecourt.gov", socialMedia: {twitter: "SupremeCourt", facebook: "USSupremeCourt"}},
+                {name: "Elena Kagan", title: "Associate Justice", party: "Liberal", email: "comments@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE", website: "https://www.supremecourt.gov", socialMedia: {twitter: "SupremeCourt", facebook: "USSupremeCourt"}},
+                {name: "Neil Gorsuch", title: "Associate Justice", party: "Conservative", email: "comments@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE", website: "https://www.supremecourt.gov", socialMedia: {twitter: "SupremeCourt", facebook: "USSupremeCourt"}},
+                {name: "Brett Kavanaugh", title: "Associate Justice", party: "Conservative", email: "comments@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE", website: "https://www.supremecourt.gov", socialMedia: {twitter: "SupremeCourt", facebook: "USSupremeCourt"}},
+                {name: "Amy Coney Barrett", title: "Associate Justice", party: "Conservative", email: "comments@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE", website: "https://www.supremecourt.gov", socialMedia: {twitter: "SupremeCourt", facebook: "USSupremeCourt"}},
+                {name: "Ketanji Brown Jackson", title: "Associate Justice", party: "Liberal", email: "comments@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE", website: "https://www.supremecourt.gov", socialMedia: {twitter: "SupremeCourt", facebook: "USSupremeCourt"}}
+            ]
+        };
 
-        // Update device indicator
-        function updateDeviceIndicator() {
-            const indicator = document.getElementById('deviceIndicator');
-            if (window.innerWidth <= 768) {
-                indicator.textContent = 'Currently showing: Mobile Hamburger Menu';
-            } else {
-                indicator.textContent = 'Currently showing: Desktop Menu';
+        let filteredOfficials = { ...governmentOfficials };
+        let currentBranch = 'executive';
+
+        // Display functions
+        function displayOfficials(branch, officials) {
+            const container = document.getElementById(`${branch}Container`);
+            if (!container) return;
+
+            container.innerHTML = '';
+            
+            if (!officials || officials.length === 0) {
+                container.innerHTML = '<p style="text-align: center; color: #7f8c8d; font-size: 1.2rem;">No officials found matching your criteria.</p>';
+                return;
             }
+
+            officials.forEach(official => {
+                const card = document.createElement('div');
+                card.className = 'official-card';
+                
+                let socialMediaHtml = '';
+                if (official.socialMedia) {
+                    socialMediaHtml = `
+                        <div class="social-media-section">
+                            <div class="social-media-title">Social Media:</div>
+                            <div class="social-links">
+                                ${official.socialMedia.twitter ? `<a href="https://twitter.com/${official.socialMedia.twitter}" class="social-link" target="_blank"><span class="social-emoji">🐦</span>Twitter</a>` : ''}
+                                ${official.socialMedia.facebook ? `<a href="https://facebook.com/${official.socialMedia.facebook}" class="social-link" target="_blank"><span class="social-emoji">📘</span>Facebook</a>` : ''}
+                                ${official.socialMedia.instagram ? `<a href="https://instagram.com/${official.socialMedia.instagram}" class="social-link" target="_blank"><span class="social-emoji">📷</span>Instagram</a>` : ''}
+                                ${official.socialMedia.linkedin ? `<a href="https://linkedin.com/in/${official.socialMedia.linkedin}" class="social-link" target="_blank"><span class="social-emoji">💼</span>LinkedIn</a>` : ''}
+                            </div>
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    <div class="official-header">
+                        <div>
+                            <div class="official-name">${official.name}</div>
+                            <div class="official-title">${official.title}${official.state ? ` - ${official.state}${official.district ? `-${official.district}` : ''}` : ''}</div>
+                        </div>
+                        <div class="party-badge party-${official.party.toLowerCase()}">${official.party}</div>
+                    </div>
+                    <div class="contact-section">
+                        ${official.email ? `<div class="contact-item">📧 <a href="mailto:${official.email}">${official.email}</a></div>` : ''}
+                        ${official.phone ? `<div class="contact-item">📞 <a href="tel:${official.phone}">${official.phone}</a></div>` : ''}
+                        ${official.office ? `<div class="contact-item">📍 ${official.office}</div>` : ''}
+                        ${official.website ? `<div class="contact-item">🌐 <a href="${official.website}" target="_blank">Official Website</a></div>` : ''}
+                    </div>
+                    ${socialMediaHtml}
+                `;
+                
+                container.appendChild(card);
+            });
         }
 
-        // Listen for window resize
-        window.addEventListener('resize', updateDeviceIndicator);
-        updateDeviceIndicator(); // Initial call
+        function showBranch(branch) {
+            // Hide all sections
+            document.querySelectorAll('.branch-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.branch-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected section
+            document.getElementById(branch).classList.add('active');
+            
+            // Add active class to selected tab
+            event.target.classList.add('active');
+            
+            currentBranch = branch;
+            
+            // Display officials for this branch
+            displayOfficials(branch, filteredOfficials[branch]);
+        }
+
+        function filterExecutive() {
+            const search = document.getElementById('executive-search').value.toLowerCase();
+            const position = document.getElementById('executive-position').value.toLowerCase();
+            
+            filteredOfficials.executive = governmentOfficials.executive.filter(official => {
+                const matchesSearch = !search || official.name.toLowerCase().includes(search) || 
+                                    official.title.toLowerCase().includes(search);
+                const matchesPosition = !position || official.title.toLowerCase().includes(position);
+                return matchesSearch && matchesPosition;
+            });
+            
+            displayOfficials('executive', filteredOfficials.executive);
+        }
+
+        function filterSenate() {
+            const search = document.getElementById('senate-search').value.toLowerCase();
+            const state = document.getElementById('senate-state').value;
+            const party = document.getElementById('senate-party').value;
+            
+            filteredOfficials.senate = governmentOfficials.senate.filter(official => {
+                const matchesSearch = !search || official.name.toLowerCase().includes(search);
+                const matchesState = !state || official.state === state;
+                const matchesParty = !party || official.party === party;
+                return matchesSearch && matchesState && matchesParty;
+            });
+            
+            displayOfficials('senate', filteredOfficials.senate);
+        }
+
+        function filterHouse() {
+            const search = document.getElementById('house-search').value.toLowerCase();
+            const state = document.getElementById('house-state').value;
+            const party = document.getElementById('house-party').value;
+            
+            filteredOfficials.house = governmentOfficials.house.filter(official => {
+                const matchesSearch = !search || official.name.toLowerCase().includes(search);
+                const matchesState = !state || official.state === state;
+                const matchesParty = !party || official.party === party;
+                return matchesSearch && matchesState && matchesParty;
+            });
+            
+            displayOfficials('house', filteredOfficials.house);
+        }
+
+        function filterJudicial() {
+            const search = document.getElementById('judicial-search').value.toLowerCase();
+            
+            filteredOfficials.judicial = governmentOfficials.judicial.filter(official => {
+                return !search || official.name.toLowerCase().includes(search);
+            });
+            
+            displayOfficials('judicial', filteredOfficials.judicial);
+        }
+
+        // Populate state dropdowns
+        function populateStateDropdowns() {
+            const states = [...new Set([...governmentOfficials.senate, ...governmentOfficials.house].map(o => o.state))].sort();
+            
+            ['senate-state', 'house-state'].forEach(id => {
+                const select = document.getElementById(id);
+                states.forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    select.appendChild(option);
+                });
+            });
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Voters Speak - Social Media Integration Active');
+            console.log('✅ All social media links are now visible with emoji icons');
+            
+            populateStateDropdowns();
+            displayOfficials('executive', governmentOfficials.executive);
+            
+            // Debug: Show first few officials in console
+            console.log('📊 Sample officials with social media:');
+            console.log('🏛️ Executive:', governmentOfficials.executive.slice(0, 3).map(o => ({name: o.name, social: o.socialMedia})));
+            console.log('🏛️ Senate:', governmentOfficials.senate.slice(0, 3).map(o => ({name: o.name, social: o.socialMedia})));
+        });
     </script>
 </body>
 </html>

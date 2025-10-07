@@ -305,7 +305,7 @@
             </div>
                <div class="nav-links" style="margin-top: 20px; display: flex; justify-content: center; gap: 15px;">
                    <a href="app_download_features.html" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;">📱 App Download</a>
-                   
+                   <a href="comprehensive_test_suite.html" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;">🔍 Test Suite</a>
                    <a href="your_concerns_feature/demo.html" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;">📰 Your Concerns...In Today's News</a>
                       <a href="user_feedback_system.html" style="color: white; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 15px; border-radius: 5px; transition: all 0.3s ease;">📧 Contact Us</a>
                </div>
@@ -415,7 +415,7 @@
     </div>
 
     <script src="enhanced_phone_solution.js"></script>
-    <!-- Social media component removed - using inline function -->
+    <script src="js/social-media-component.js"></script>
     <script src="js/modified_display_function.js"></script>
     <script>
         // Complete government officials data with CT, DE, FL representatives
@@ -1156,85 +1156,17 @@
             });
         }
 
-        // Inline displayOfficials function with social media support
-        function displayOfficials(containerId, officials) {
-            console.log('🚨 DEBUG: displayOfficials called for container:', containerId);
-            console.log('🚨 DEBUG: Number of officials:', officials.length);
-            
-            const container = document.getElementById(containerId);
-            if (!container) {
-                console.log('❌ DEBUG: Container not found:', containerId);
-                return;
-            }
-            
-            console.log('✅ DEBUG: Container found:', containerId);
-            container.innerHTML = '';
-            
-            officials.forEach((official, index) => {
-                console.log('👤 DEBUG: Processing official', index + 1, ':', official.name);
-                console.log('📱 DEBUG: Social media data:', official.socialMedia);
-                const officialDiv = document.createElement('div');
-                officialDiv.className = 'official-card';
-                
-                // Build social media HTML
-                let socialMediaHTML = '';
-                if (official.socialMedia) {
-                    console.log('📱 DEBUG: Building social media HTML for', official.name);
-                    socialMediaHTML = '<div style="background-color: #fff3cd; padding: 10px; margin: 10px 0; border-radius: 5px;"><strong>Social Media:</strong> ';
-                    
-                    if (official.socialMedia.twitter) {
-                        console.log('🐦 DEBUG: Adding Twitter for', official.name);
-                        socialMediaHTML += '<span style="margin-right: 10px;">🐦 <a href="https://twitter.com/' + official.socialMedia.twitter + '" target="_blank" style="color: #1da1f2;">Twitter</a></span>';
-                    }
-                    if (official.socialMedia.facebook) {
-                        console.log('📘 DEBUG: Adding Facebook for', official.name);
-                        socialMediaHTML += '<span style="margin-right: 10px;">📘 <a href="https://facebook.com/' + official.socialMedia.facebook + '" target="_blank" style="color: #4267B2;">Facebook</a></span>';
-                    }
-                    if (official.socialMedia.instagram) {
-                        console.log('📷 DEBUG: Adding Instagram for', official.name);
-                        socialMediaHTML += '<span style="margin-right: 10px;">📷 <a href="https://instagram.com/' + official.socialMedia.instagram + '" target="_blank" style="color: #E4405F;">Instagram</a></span>';
-                    }
-                    if (official.socialMedia.linkedin) {
-                        console.log('💼 DEBUG: Adding LinkedIn for', official.name);
-                        socialMediaHTML += '<span style="margin-right: 10px;">💼 <a href="https://linkedin.com/in/' + official.socialMedia.linkedin + '" target="_blank" style="color: #0077b5;">LinkedIn</a></span>';
-                    }
-                    
-                    socialMediaHTML += '</div>';
-                    console.log('✅ DEBUG: Final social media HTML:', socialMediaHTML);
-                } else {
-                    console.log('❌ DEBUG: No social media found for', official.name);
-                }
-                
-                officialDiv.innerHTML = 
-                    '<h3>' + official.name + '</h3>' +
-                    '<p><strong>Title:</strong> ' + official.title + '</p>' +
-                    '<p><strong>State:</strong> ' + official.state + '</p>' +
-                    '<p><strong>Party:</strong> ' + official.party + '</p>' +
-                    '<p><strong>Email:</strong> <a href="mailto:' + official.email + '">' + official.email + '</a></p>' +
-                    '<p><strong>Phone:</strong> <a href="tel:' + official.phone + '">' + official.phone + '</a></p>' +
-                    '<p><strong>Office:</strong> ' + official.office + '</p>' +
-                    '<p><strong>Website:</strong> <a href="' + official.website + '" target="_blank">' + official.website + '</a></p>' +
-                    socialMediaHTML;
-                
-                container.appendChild(officialDiv);
-                console.log('✅ DEBUG: Added', official.name, 'to container');
-            });
-            
-            console.log('🎉 DEBUG: displayOfficials completed for', officials.length, 'officials');
-        }
+        // Display functions are now loaded from js/modified_display_function.js
 
         function displaySenate() {
-            console.log('🏛️ DEBUG: displaySenate called');
             displayOfficials('senateContainer', governmentOfficials.senate);
         }
 
         function displayHouse() {
-            console.log('🏛️ DEBUG: displayHouse called');
             displayOfficials('houseContainer', governmentOfficials.house);
         }
 
         function displayExecutive() {
-            console.log('🏛️ DEBUG: displayExecutive called');
             displayOfficials('executiveContainer', governmentOfficials.executive);
         }
 

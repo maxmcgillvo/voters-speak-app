@@ -1173,32 +1173,31 @@
                     socialMediaHTML = '<div style="background-color: #fff3cd; padding: 10px; margin: 10px 0; border-radius: 5px;"><strong>Social Media:</strong> ';
                     
                     if (official.socialMedia.twitter) {
-                        socialMediaHTML += `<span style="margin-right: 10px;">🐦 <a href="https://twitter.com/${official.socialMedia.twitter}" target="_blank" style="color: #1da1f2;">Twitter</a></span>`;
+                        socialMediaHTML += '<span style="margin-right: 10px;">🐦 <a href="https://twitter.com/' + official.socialMedia.twitter + '" target="_blank" style="color: #1da1f2;">Twitter</a></span>';
                     }
                     if (official.socialMedia.facebook) {
-                        socialMediaHTML += `<span style="margin-right: 10px;">📘 <a href="https://facebook.com/${official.socialMedia.facebook}" target="_blank" style="color: #4267B2;">Facebook</a></span>`;
+                        socialMediaHTML += '<span style="margin-right: 10px;">📘 <a href="https://facebook.com/' + official.socialMedia.facebook + '" target="_blank" style="color: #4267B2;">Facebook</a></span>';
                     }
                     if (official.socialMedia.instagram) {
-                        socialMediaHTML += `<span style="margin-right: 10px;">📷 <a href="https://instagram.com/${official.socialMedia.instagram}" target="_blank" style="color: #E4405F;">Instagram</a></span>`;
+                        socialMediaHTML += '<span style="margin-right: 10px;">📷 <a href="https://instagram.com/' + official.socialMedia.instagram + '" target="_blank" style="color: #E4405F;">Instagram</a></span>';
                     }
                     if (official.socialMedia.linkedin) {
-                        socialMediaHTML += `<span style="margin-right: 10px;">💼 <a href="https://linkedin.com/in/${official.socialMedia.linkedin}" target="_blank" style="color: #0077b5;">LinkedIn</a></span>`;
+                        socialMediaHTML += '<span style="margin-right: 10px;">💼 <a href="https://linkedin.com/in/' + official.socialMedia.linkedin + '" target="_blank" style="color: #0077b5;">LinkedIn</a></span>';
                     }
                     
                     socialMediaHTML += '</div>';
                 }
                 
-                officialDiv.innerHTML = `
-                    <h3>${official.name}</h3>
-                    <p><strong>Title:</strong> ${official.title}</p>
-                    <p><strong>State:</strong> ${official.state}</p>
-                    <p><strong>Party:</strong> ${official.party}</p>
-                    <p><strong>Email:</strong> <a href="mailto:${official.email}">${official.email}</a></p>
-                    <p><strong>Phone:</strong> <a href="tel:${official.phone}">${official.phone}</a></p>
-                    <p><strong>Office:</strong> ${official.office}</p>
-                    <p><strong>Website:</strong> <a href="${official.website}" target="_blank">${official.website}</a></p>
-                    ${socialMediaHTML}
-                `;
+                officialDiv.innerHTML = 
+                    '<h3>' + official.name + '</h3>' +
+                    '<p><strong>Title:</strong> ' + official.title + '</p>' +
+                    '<p><strong>State:</strong> ' + official.state + '</p>' +
+                    '<p><strong>Party:</strong> ' + official.party + '</p>' +
+                    '<p><strong>Email:</strong> <a href="mailto:' + official.email + '">' + official.email + '</a></p>' +
+                    '<p><strong>Phone:</strong> <a href="tel:' + official.phone + '">' + official.phone + '</a></p>' +
+                    '<p><strong>Office:</strong> ' + official.office + '</p>' +
+                    '<p><strong>Website:</strong> <a href="' + official.website + '" target="_blank">' + official.website + '</a></p>' +
+                    socialMediaHTML;
                 
                 container.appendChild(officialDiv);
             });

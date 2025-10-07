@@ -1158,34 +1158,51 @@
 
         // Inline displayOfficials function with social media support
         function displayOfficials(containerId, officials) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
+            console.log('🚨 DEBUG: displayOfficials called for container:', containerId);
+            console.log('🚨 DEBUG: Number of officials:', officials.length);
             
+            const container = document.getElementById(containerId);
+            if (!container) {
+                console.log('❌ DEBUG: Container not found:', containerId);
+                return;
+            }
+            
+            console.log('✅ DEBUG: Container found:', containerId);
             container.innerHTML = '';
             
-            officials.forEach(official => {
+            officials.forEach((official, index) => {
+                console.log('👤 DEBUG: Processing official', index + 1, ':', official.name);
+                console.log('📱 DEBUG: Social media data:', official.socialMedia);
                 const officialDiv = document.createElement('div');
                 officialDiv.className = 'official-card';
                 
                 // Build social media HTML
                 let socialMediaHTML = '';
                 if (official.socialMedia) {
+                    console.log('📱 DEBUG: Building social media HTML for', official.name);
                     socialMediaHTML = '<div style="background-color: #fff3cd; padding: 10px; margin: 10px 0; border-radius: 5px;"><strong>Social Media:</strong> ';
                     
                     if (official.socialMedia.twitter) {
+                        console.log('🐦 DEBUG: Adding Twitter for', official.name);
                         socialMediaHTML += '<span style="margin-right: 10px;">🐦 <a href="https://twitter.com/' + official.socialMedia.twitter + '" target="_blank" style="color: #1da1f2;">Twitter</a></span>';
                     }
                     if (official.socialMedia.facebook) {
+                        console.log('📘 DEBUG: Adding Facebook for', official.name);
                         socialMediaHTML += '<span style="margin-right: 10px;">📘 <a href="https://facebook.com/' + official.socialMedia.facebook + '" target="_blank" style="color: #4267B2;">Facebook</a></span>';
                     }
                     if (official.socialMedia.instagram) {
+                        console.log('📷 DEBUG: Adding Instagram for', official.name);
                         socialMediaHTML += '<span style="margin-right: 10px;">📷 <a href="https://instagram.com/' + official.socialMedia.instagram + '" target="_blank" style="color: #E4405F;">Instagram</a></span>';
                     }
                     if (official.socialMedia.linkedin) {
+                        console.log('💼 DEBUG: Adding LinkedIn for', official.name);
                         socialMediaHTML += '<span style="margin-right: 10px;">💼 <a href="https://linkedin.com/in/' + official.socialMedia.linkedin + '" target="_blank" style="color: #0077b5;">LinkedIn</a></span>';
                     }
                     
                     socialMediaHTML += '</div>';
+                    console.log('✅ DEBUG: Final social media HTML:', socialMediaHTML);
+                } else {
+                    console.log('❌ DEBUG: No social media found for', official.name);
                 }
                 
                 officialDiv.innerHTML = 
@@ -1200,18 +1217,24 @@
                     socialMediaHTML;
                 
                 container.appendChild(officialDiv);
+                console.log('✅ DEBUG: Added', official.name, 'to container');
             });
+            
+            console.log('🎉 DEBUG: displayOfficials completed for', officials.length, 'officials');
         }
 
         function displaySenate() {
+            console.log('🏛️ DEBUG: displaySenate called');
             displayOfficials('senateContainer', governmentOfficials.senate);
         }
 
         function displayHouse() {
+            console.log('🏛️ DEBUG: displayHouse called');
             displayOfficials('houseContainer', governmentOfficials.house);
         }
 
         function displayExecutive() {
+            console.log('🏛️ DEBUG: displayExecutive called');
             displayOfficials('executiveContainer', governmentOfficials.executive);
         }
 

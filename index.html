@@ -3,393 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voters Speak - Complete Government Contact Directory</title>
-    <meta name="description" content="Contact your government representatives in 30 seconds">
+    <title>Voters Speak - Contact Your Rep in 30 Seconds</title>
+    <meta name="cache-control" content="no-cache, no-store, must-revalidate">
+    <meta name="pragma" content="no-cache">
+    <meta name="expires" content="0">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            color: #333;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .header {
-            text-align: center;
-            margin-bottom: 40px;
-            color: white;
-        }
-        
-        .header h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-        }
-        
-        .header p {
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-        
-        .header .subtitle {
-            font-size: 1.4rem;
-            font-weight: 600;
-            margin-bottom: 8px;
-            opacity: 0.9;
-        }
-        
-        .header .tagline {
-            font-size: 1.2rem;
-            opacity: 0.8;
-        }
-        
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 30px;
-            margin: 30px 0;
-            flex-wrap: wrap;
-        }
-        
-        .stat-item {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 15px;
-            padding: 20px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .stat-item:hover {
-            transform: translateY(-5px);
-            background: rgba(255,255,255,0.2);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            font-weight: bold;
-            color: #fff;
-        }
-        
-        .stat-label {
-            font-size: 1rem;
-            opacity: 0.9;
-        }
-        
-        .branch-tabs {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-        }
-        
-        .branch-tab {
-            padding: 12px 24px;
-            background: rgba(255,255,255,0.1);
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 1rem;
-            font-weight: 600;
-        }
-        
-        .branch-tab.active,
-        .branch-tab:hover {
-            background: rgba(255,255,255,0.3);
-            transform: translateY(-2px);
-        }
-        
-        .branch-section {
-            display: none;
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .branch-section.active {
-            display: block;
-        }
-        
-        .branch-title {
-            color: #2c3e50;
-            margin-bottom: 30px;
-            font-size: 2rem;
-            text-align: center;
-        }
-        
-        .filters {
-            margin-bottom: 20px;
-        }
-        
-        .filter-row {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        
-        .filter-group label {
-            font-weight: 600;
-            color: #555;
-        }
-        
-        .filter-group input,
-        .filter-group select {
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-        
-        .officials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 20px;
-        }
-        
-        .official-card {
-            background: white;
-            border: 1px solid #e0e0e0;
-            border-radius: 15px;
-            padding: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .official-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
-            border-color: #667eea;
-        }
-        
-        .official-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #667eea, #764ba2);
-        }
-        
-        .official-name {
-            font-size: 1.4rem;
-            font-weight: bold;
-            color: #2c3e50;
-            margin-bottom: 8px;
-        }
-        
-        .official-title {
-            color: #667eea;
-            font-size: 1.1rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-        }
-        
-        .official-location {
-            color: #666;
-            font-size: 0.9rem;
-            margin-bottom: 15px;
-        }
-        
-        .official-contact {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        .contact-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-        }
-        
-        .contact-icon {
-            width: 16px;
-            height: 16px;
-            fill: #667eea;
-        }
-        
-        .social-media {
-            margin-top: 15px;
-            padding-top: 15px;
-            border-top: 1px solid #eee;
-        }
-        
-        .social-media-title {
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 0.9rem;
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            padding: 5px 10px;
-            background: #f8f9fa;
-            border-radius: 15px;
-            text-decoration: none;
-            color: #333;
-            font-size: 0.8rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-link:hover {
-            background: #667eea;
-            color: white;
-            transform: translateY(-2px);
-        }
-        
-        .dialogue-modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            backdrop-filter: blur(5px);
-        }
-        
-        .dialogue-content {
-            background-color: white;
-            margin: 5% auto;
-            padding: 30px;
-            border-radius: 15px;
-            width: 90%;
-            max-width: 500px;
-            max-height: 80vh;
-            overflow-y: auto;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-            animation: slideIn 0.3s ease;
-        }
-        
-        @keyframes slideIn {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-        
-        .dialogue-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #667eea;
-        }
-        
-        .dialogue-title {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #2c3e50;
-        }
-        
-        .close-btn {
-            font-size: 1.5rem;
-            cursor: pointer;
-            color: #999;
-            transition: color 0.3s ease;
-        }
-        
-        .close-btn:hover {
-            color: #dc3545;
-        }
-        
-        .dialogue-details {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-        
-        .detail-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 10px;
-            background: #f8f9fa;
-            border-radius: 8px;
-        }
-        
-        .detail-icon {
-            width: 20px;
-            height: 20px;
-            fill: #667eea;
-        }
-        
-        @media (max-width: 768px) {
-            .header h1 {
-                font-size: 2.5rem;
-            }
-            
-            .header p {
-                font-size: 1.8rem;
-            }
-            
-            .stats {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .branch-tabs {
-                flex-direction: column;
-                align-items: center;
-            }
-            
-            .filter-row {
-                flex-direction: column;
-                align-items: stretch;
-            }
-            
-            .officials-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .dialogue-content {
-                width: 95%;
-                margin: 10% auto;
-                padding: 20px;
-            }
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #667eea, #764ba2); min-height: 100vh; color: white; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 15px; }
+        .mission { font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; }
+        .subtitle { font-size: 1.4rem; font-weight: 600; margin-bottom: 8px; opacity: 0.9; }
+        .branch-tabs { display: flex; justify-content: center; gap: 15px; margin: 30px 0; flex-wrap: wrap; }
+        .branch-tab { padding: 12px 24px; background: rgba(255,255,255,0.1); border: none; border-radius: 25px; cursor: pointer; transition: all 0.3s ease; font-size: 1rem; font-weight: 600; color: white; }
+        .branch-tab.active, .branch-tab:hover { background: rgba(255,255,255,0.3); transform: translateY(-2px); }
+        .branch-section { display: none; background: white; border-radius: 15px; padding: 30px; margin: 20px 0; color: #333; }
+        .branch-section.active { display: block; }
+        .officials-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 20px; }
+        .official-card { background: white; border: 1px solid #e0e0e0; border-radius: 15px; padding: 25px; cursor: pointer; transition: all 0.3s ease; }
+        .official-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .official-name { font-size: 1.4rem; font-weight: bold; color: #2c3e50; margin-bottom: 8px; }
+        .official-title { color: #667eea; font-size: 1.1rem; font-weight: 600; margin-bottom: 5px; }
+        .official-location { color: #666; font-size: 0.9rem; margin-bottom: 15px; }
+        .contact-info { margin-bottom: 10px; }
+        .contact-item { margin: 5px 0; font-size: 0.9rem; }
+        .social-media { margin-top: 15px; padding-top: 15px; border-top: 1px solid #eee; }
+        .social-links { display: flex; gap: 10px; flex-wrap: wrap; }
+        .social-link { padding: 5px 10px; background: #f8f9fa; border-radius: 15px; text-decoration: none; color: #333; font-size: 0.8rem; }
+        .dialogue-modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+        .dialogue-content { background: white; margin: 5% auto; padding: 30px; border-radius: 15px; width: 90%; max-width: 500px; }
+        .close-btn { float: right; font-size: 1.5rem; cursor: pointer; }
     </style>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
@@ -397,422 +41,146 @@
     <div class="container">
         <div class="header">
             <h1>Voters Speak</h1>
-            <p style="text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 15px; color: #fff;">Contact Your Rep in 30 Seconds</p>
-            <p style="text-align: center; font-size: 1.4rem; font-weight: 600; margin-bottom: 8px;">Speak Up - Speak Out!</p>
-            <p style="text-align: center;">Contact Your Government</p>
-        </div>
-
-        <div class="stats">
-            <div class="stat-item" onclick="showBranch('executive')">
-                <div class="stat-number">18</div>
-                <div class="stat-label">Executive Officials</div>
-            </div>
-            <div class="stat-item" onclick="showBranch('senate')">
-                <div class="stat-number">100</div>
-                <div class="stat-label">U.S. Senators</div>
-            </div>
-            <div class="stat-item" onclick="showBranch('house')">
-                <div class="stat-number">435</div>
-                <div class="stat-label">House Members</div>
-            </div>
-            <div class="stat-item" onclick="showBranch('judicial')">
-                <div class="stat-number">9</div>
-                <div class="stat-label">Supreme Court</div>
-            </div>
+            <div class="mission">Contact Your Rep in 30 Seconds</div>
+            <div class="subtitle">Speak Up - Speak Out!</div>
+            <div>Contact Your Government</div>
         </div>
 
         <div class="branch-tabs">
             <button class="branch-tab active" onclick="showBranch('executive')">Executive</button>
-            <button class="branch-tab" onclick="showBranch('senate')">U.S. Senate</button>
-            <button class="branch-tab" onclick="showBranch('house')">U.S. House</button>
-            <button class="branch-tab" onclick="showBranch('judicial')">Judicial Branch</button>
+            <button class="branch-tab" onclick="showBranch('senate')">Senate</button>
+            <button class="branch-tab" onclick="showBranch('house')">House</button>
+            <button class="branch-tab" onclick="showBranch('judicial')">Judicial</button>
         </div>
 
-        <!-- Executive Branch -->
         <div id="executive" class="branch-section active">
-            <h2 class="branch-title">Executive Branch</h2>
-            <div class="filters">
-                <div class="filter-row">
-                    <div class="filter-group">
-                        <label for="executive-search">Search Official:</label>
-                        <input type="text" id="executive-search" placeholder="Enter name..." oninput="filterExecutive()">
-                    </div>
-                    <div class="filter-group">
-                        <label for="executive-party">Filter by Party:</label>
-                        <select id="executive-party" onchange="filterExecutive()">
-                            <option value="">All Parties</option>
-                            <option value="Republican">Republican</option>
-                            <option value="Democratic">Democratic</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            <h2>Executive Branch</h2>
             <div id="executiveContainer" class="officials-grid"></div>
         </div>
 
-        <!-- U.S. Senate -->
         <div id="senate" class="branch-section">
-            <h2 class="branch-title">U.S. Senate</h2>
-            <div class="filters">
-                <div class="filter-row">
-                    <div class="filter-group">
-                        <label for="senate-search">Search Senator:</label>
-                        <input type="text" id="senate-search" placeholder="Enter name..." oninput="filterSenate()">
-                    </div>
-                    <div class="filter-group">
-                        <label for="senate-state">Filter by State:</label>
-                        <select id="senate-state" onchange="filterSenate()">
-                            <option value="">All States</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="senate-party">Filter by Party:</label>
-                        <select id="senate-party" onchange="filterSenate()">
-                            <option value="">All Parties</option>
-                            <option value="Republican">Republican</option>
-                            <option value="Democratic">Democratic</option>
-                            <option value="Independent">Independent</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            <h2>U.S. Senate</h2>
             <div id="senateContainer" class="officials-grid"></div>
         </div>
 
-        <!-- U.S. House -->
         <div id="house" class="branch-section">
-            <h2 class="branch-title">U.S. House of Representatives</h2>
-            <div class="filters">
-                <div class="filter-row">
-                    <div class="filter-group">
-                        <label for="house-search">Search Representative:</label>
-                        <input type="text" id="house-search" placeholder="Enter name..." oninput="filterHouse()">
-                    </div>
-                    <div class="filter-group">
-                        <label for="house-state">Filter by State:</label>
-                        <select id="house-state" onchange="filterHouse()">
-                            <option value="">All States</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="house-party">Filter by Party:</label>
-                        <select id="house-party" onchange="filterHouse()">
-                            <option value="">All Parties</option>
-                            <option value="Republican">Republican</option>
-                            <option value="Democratic">Democratic</option>
-                            <option value="Independent">Independent</option>
-                        </select>
-                    </div>
-                </div>
-            </div>
+            <h2>U.S. House of Representatives</h2>
             <div id="houseContainer" class="officials-grid"></div>
         </div>
 
-        <!-- Judicial Branch -->
         <div id="judicial" class="branch-section">
-            <h2 class="branch-title">Supreme Court</h2>
-            <div class="filters">
-                <div class="filter-row">
-                    <div class="filter-group">
-                        <label for="judicial-search">Search Justice:</label>
-                        <input type="text" id="judicial-search" placeholder="Enter name..." oninput="filterJudicial()">
-                    </div>
-                </div>
-            </div>
+            <h2>Supreme Court</h2>
             <div id="judicialContainer" class="officials-grid"></div>
         </div>
-    </div>
 
-    <!-- Dialogue Modal -->
-    <div id="dialogueModal" class="dialogue-modal" onclick="closeDialogue(event)">
-        <div class="dialogue-content" onclick="event.stopPropagation()">
-            <div class="dialogue-header">
-                <div class="dialogue-title" id="dialogueTitle">Official Details</div>
+        <div id="dialogueModal" class="dialogue-modal" onclick="closeDialogue(event)">
+            <div class="dialogue-content" onclick="event.stopPropagation()">
                 <span class="close-btn" onclick="closeDialogue()">&times;</span>
+                <div id="dialogueDetails"></div>
             </div>
-            <div class="dialogue-details" id="dialogueDetails"></div>
         </div>
     </div>
 
     <script>
-        // Complete government officials data
-        const governmentOfficials = {
+        const officials = {
             executive: [
-                {name: "Donald Trump", title: "President", state: "DC", party: "Republican", email: "president@whitehouse.gov", phone: "202-456-1111", office: "The White House, 1600 Pennsylvania Avenue NW", website: "https://www.whitehouse.gov", socialMedia: {twitter: "realDonaldTrump", facebook: "DonaldTrump", instagram: "realdonaldtrump"}},
-                {name: "JD Vance", title: "Vice President", state: "DC", party: "Republican", email: "vice.president@whitehouse.gov", phone: "202-456-1111", office: "The White House, 1600 Pennsylvania Avenue NW", website: "https://www.whitehouse.gov", socialMedia: {twitter: "JDVance1", facebook: "JDVance", linkedin: "jd-vance"}},
-                {name: "Scott Bessent", title: "Secretary of Treasury", state: "DC", party: "Republican", email: "feedback@treasury.gov", phone: "202-622-2000", office: "1500 Pennsylvania Avenue NW, Washington, DC 20220", website: "https://home.treasury.gov"},
-                {name: "Doug Burgum", title: "Secretary of Interior", state: "DC", party: "Republican", email: "feedback@ios.doi.gov", phone: "202-208-3100", office: "1849 C Street NW, Washington, DC 20240", website: "https://www.doi.gov"},
-                {name: "Brooke Rollins", title: "Secretary of Agriculture", state: "DC", party: "Republican", email: "feedback@usda.gov", phone: "202-720-2791", office: "1400 Independence Avenue SW, Washington, DC 20250", website: "https://www.usda.gov"}
+                {name: "Donald Trump", title: "President", state: "DC", party: "Republican", email: "president@whitehouse.gov", phone: "202-456-1111", office: "The White House", website: "https://whitehouse.gov", social: {twitter: "realDonaldTrump", facebook: "DonaldTrump", instagram: "realdonaldtrump"}},
+                {name: "JD Vance", title: "Vice President", state: "DC", party: "Republican", email: "vice.president@whitehouse.gov", phone: "202-456-1111", office: "The White House", website: "https://whitehouse.gov", social: {twitter: "JDVance1", facebook: "JDVance", linkedin: "jd-vance"}}
             ],
             senate: [
-                {name: "Marco Rubio", title: "Senator", state: "FL", party: "Republican", email: "contact@rubio.senate.gov", phone: "202-224-3041", office: "404 Russell Senate Office Building", website: "https://www.rubio.senate.gov", socialMedia: {twitter: "marcorubio", facebook: "SenatorMarcoRubio", instagram: "senmarcorubiio"}},
-                {name: "Alex Padilla", title: "Senator", state: "CA", party: "Democratic", email: "contact@padilla.senate.gov", phone: "202-224-3553", office: "112 Hart Senate Office Building", website: "https://www.padilla.senate.gov", socialMedia: {twitter: "AlexPadilla4CA", facebook: "SenAlexPadilla", linkedin: "alex-padilla"}},
-                {name: "Richard Blumenthal", title: "Senator", state: "CT", party: "Democratic", email: "contact@blumenthal.senate.gov", phone: "202-224-2823", office: "706 Hart Senate Office Building", website: "https://www.blumenthal.senate.gov"},
-                {name: "Christopher Murphy", title: "Senator", state: "CT", party: "Democratic", email: "contact@murphy.senate.gov", phone: "202-224-4041", office: "136 Hart Senate Office Building", website: "https://www.murphy.senate.gov"}
+                {name: "Marco Rubio", title: "Senator", state: "FL", party: "Republican", email: "contact@rubio.senate.gov", phone: "202-224-3041", office: "404 Russell SOB", website: "https://rubio.senate.gov", social: {twitter: "marcorubio", facebook: "SenatorMarcoRubio", instagram: "senmarcorubiio"}},
+                {name: "Alex Padilla", title: "Senator", state: "CA", party: "Democratic", email: "contact@padilla.senate.gov", phone: "202-224-3553", office: "112 Hart SOB", website: "https://padilla.senate.gov", social: {twitter: "AlexPadilla4CA", facebook: "SenAlexPadilla"}}
             ],
             house: [
-                {name: "Kevin McCarthy", title: "House Speaker", state: "CA", district: "CA-20", party: "Republican", email: "kevin.mccarthy@mail.house.gov", phone: "202-225-2915", office: "2468 Rayburn House Office Building", website: "https://kevinmccarthy.house.gov"},
-                {name: "Hakeem Jeffries", title: "House Minority Leader", state: "NY", district: "NY-8", party: "Democratic", email: "hakeem.jeffries@mail.house.gov", phone: "202-225-5936", office: "2433 Rayburn House Office Building", website: "https://jeffries.house.gov"},
-                {name: "Troy Carter", title: "House Representative", state: "LA", district: "LA-2", party: "Democratic", email: "troy.carter@mail.house.gov", phone: "202-225-6636", office: "1404 Longworth House Office Building", website: "https://troycarter.house.gov"}
+                {name: "Kevin McCarthy", title: "House Speaker", state: "CA", district: "CA-20", party: "Republican", email: "kevin.mccarthy@mail.house.gov", phone: "202-225-2915", office: "2468 Rayburn HOB", website: "https://kevinmccarthy.house.gov"}
             ],
             judicial: [
-                {name: "John Roberts", title: "Chief Justice", state: "DC", party: "Republican", email: "contact@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE, Washington, DC 20543", website: "https://www.supremecourt.gov", appointment_year: 2005, appointed_by: "George W. Bush"},
-                {name: "Clarence Thomas", title: "Associate Justice", state: "DC", party: "Republican", email: "contact@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE, Washington, DC 20543", website: "https://www.supremecourt.gov", appointment_year: 1991, appointed_by: "George H.W. Bush"},
-                {name: "Samuel Alito", title: "Associate Justice", state: "DC", party: "Republican", email: "contact@supremecourt.gov", phone: "202-479-3000", office: "1 First Street NE, Washington, DC 20543", website: "https://www.supremecourt.gov", appointment_year: 2006, appointed_by: "George W. Bush"}
+                {name: "John Roberts", title: "Chief Justice", state: "DC", party: "Republican", email: "contact@supremecourt.gov", phone: "202-479-3000", office: "Supreme Court", website: "https://supremecourt.gov"}
             ]
         };
-
-        // Display functions
-        function displayOfficials(containerId, officials) {
-            const container = document.getElementById(containerId);
-            if (!container) return;
-            
-            container.innerHTML = '';
-            
-            officials.forEach(official => {
-                const card = createOfficialCard(official);
-                container.appendChild(card);
-            });
-        }
 
         function createOfficialCard(official) {
             const card = document.createElement('div');
             card.className = 'official-card';
-            card.onclick = () => showOfficialDialogue(official);
+            card.onclick = () => showDialogue(official);
             
-            let socialLinks = '';
-            if (official.socialMedia) {
-                socialLinks = '<div class="social-media"><div class="social-media-title">Social Media:</div><div class="social-links">';
-                
-                Object.entries(official.socialMedia).forEach(([platform, username]) => {
-                    const icon = platform === 'twitter' ? '🐦' : 
-                                platform === 'facebook' ? '📘' : 
-                                platform === 'instagram' ? '📷' : 
-                                platform === 'linkedin' ? '💼' : '🔗';
-                    
-                    const url = platform === 'twitter' ? `https://twitter.com/${username}` :
-                               platform === 'facebook' ? `https://facebook.com/${username}` :
-                               platform === 'instagram' ? `https://instagram.com/${username}` :
-                               platform === 'linkedin' ? `https://linkedin.com/in/${username}` : '#';
-                    
-                    socialLinks += `<a href="${url}" target="_blank" class="social-link">${icon} ${platform}</a>`;
+            let socialHtml = '';
+            if (official.social) {
+                socialHtml = '<div class="social-media"><div class="social-links">';
+                Object.entries(official.social).forEach(([platform, username]) => {
+                    const icon = platform === 'twitter' ? '🐦' : platform === 'facebook' ? '📘' : platform === 'instagram' ? '📷' : '🔗';
+                    socialHtml += `<span class="social-link">${icon} ${platform}</span>`;
                 });
-                
-                socialLinks += '</div></div>';
+                socialHtml += '</div></div>';
             }
             
             card.innerHTML = `
                 <div class="official-name">${official.name}</div>
                 <div class="official-title">${official.title}</div>
                 <div class="official-location">${official.state}${official.district ? ' - ' + official.district : ''} • ${official.party}</div>
-                <div class="official-contact">
-                    <div class="contact-item">
-                        <span>📧</span>
-                        <span>${official.email}</span>
-                    </div>
-                    <div class="contact-item">
-                        <span>📞</span>
-                        <span>${official.phone}</span>
-                    </div>
-                    <div class="contact-item">
-                        <span>🏢</span>
-                        <span>${official.office}</span>
-                    </div>
+                <div class="contact-info">
+                    <div class="contact-item">📧 ${official.email}</div>
+                    <div class="contact-item">📞 ${official.phone}</div>
+                    <div class="contact-item">🏢 ${official.office}</div>
                 </div>
-                ${socialLinks}
+                ${socialHtml}
             `;
-            
             return card;
         }
 
-        function showOfficialDialogue(official) {
+        function showDialogue(official) {
             const modal = document.getElementById('dialogueModal');
-            const title = document.getElementById('dialogueTitle');
             const details = document.getElementById('dialogueDetails');
             
-            title.textContent = official.name;
-            
-            let socialMediaHtml = '';
-            if (official.socialMedia) {
-                socialMediaHtml = '<div class="detail-item"><span>📱</span><span>';
-                Object.entries(official.socialMedia).forEach(([platform, username]) => {
-                    const icon = platform === 'twitter' ? '🐦' : 
-                                platform === 'facebook' ? '📘' : 
-                                platform === 'instagram' ? '📷' : 
-                                platform === 'linkedin' ? '💼' : '🔗';
-                    
-                    const url = platform === 'twitter' ? `https://twitter.com/${username}` :
-                               platform === 'facebook' ? `https://facebook.com/${username}` :
-                               platform === 'instagram' ? `https://instagram.com/${username}` :
-                               platform === 'linkedin' ? `https://linkedin.com/in/${username}` : '#';
-                    
-                    socialMediaHtml += `<a href="${url}" target="_blank">${icon} ${platform}</a> `;
+            let socialHtml = '';
+            if (official.social) {
+                socialHtml = '<h3>Social Media:</h3>';
+                Object.entries(official.social).forEach(([platform, username]) => {
+                    socialHtml += `<p><strong>${platform}:</strong> ${username}</p>`;
                 });
-                socialMediaHtml += '</span></div>';
             }
             
             details.innerHTML = `
-                <div class="detail-item"><span>👤</span><span><strong>${official.title}</strong></span></div>
-                <div class="detail-item"><span>📍</span><span>${official.state}${official.district ? ' - ' + official.district : ''}</span></div>
-                <div class="detail-item"><span>🏛️</span><span>${official.party}</span></div>
-                <div class="detail-item"><span>📧</span><span><a href="mailto:${official.email}">${official.email}</a></span></div>
-                <div class="detail-item"><span>📞</span><span><a href="tel:${official.phone}">${official.phone}</a></span></div>
-                <div class="detail-item"><span>🏢</span><span>${official.office}</span></div>
-                <div class="detail-item"><span>🌐</span><span><a href="${official.website}" target="_blank">${official.website}</a></span></div>
-                ${socialMediaHtml}
-                ${official.appointment_year ? `<div class="detail-item"><span>📅</span><span>Appointed ${official.appointment_year} by ${official.appointed_by}</span></div>` : ''}
+                <h2>${official.name}</h2>
+                <p><strong>Title:</strong> ${official.title}</p>
+                <p><strong>Location:</strong> ${official.state}${official.district ? ' - ' + official.district : ''}</p>
+                <p><strong>Party:</strong> ${official.party}</p>
+                <p><strong>Email:</strong> <a href="mailto:${official.email}">${official.email}</a></p>
+                <p><strong>Phone:</strong> <a href="tel:${official.phone}">${official.phone}</a></p>
+                <p><strong>Office:</strong> ${official.office}</p>
+                <p><strong>Website:</strong> <a href="${official.website}" target="_blank">${official.website}</a></p>
+                ${socialHtml}
             `;
-            
             modal.style.display = 'block';
         }
 
         function closeDialogue(event) {
-            if (event && event.target && event.target.id === 'dialogueModal') {
-                document.getElementById('dialogueModal').style.display = 'none';
-            } else if (!event) {
-                document.getElementById('dialogueModal').style.display = 'none';
-            }
+            document.getElementById('dialogueModal').style.display = 'none';
         }
 
         function showBranch(branch) {
-            // Hide all sections
-            document.querySelectorAll('.branch-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Remove active class from all tabs
-            document.querySelectorAll('.branch-tab').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            
-            // Show selected branch
+            document.querySelectorAll('.branch-section').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.branch-tab').forEach(t => t.classList.remove('active'));
             document.getElementById(branch).classList.add('active');
             event.target.classList.add('active');
             
-            // Display officials
-            displayOfficials(branch + 'Container', governmentOfficials[branch]);
-        }
-
-        function filterExecutive() {
-            const searchTerm = document.getElementById('executive-search').value.toLowerCase();
-            const partyFilter = document.getElementById('executive-party').value;
-            
-            let filtered = governmentOfficials.executive;
-            
-            if (searchTerm) {
-                filtered = filtered.filter(official => 
-                    official.name.toLowerCase().includes(searchTerm) ||
-                    official.title.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            if (partyFilter) {
-                filtered = filtered.filter(official => official.party === partyFilter);
-            }
-            
-            displayOfficials('executiveContainer', filtered);
-        }
-
-        function filterSenate() {
-            const searchTerm = document.getElementById('senate-search').value.toLowerCase();
-            const stateFilter = document.getElementById('senate-state').value;
-            const partyFilter = document.getElementById('senate-party').value;
-            
-            let filtered = governmentOfficials.senate;
-            
-            if (searchTerm) {
-                filtered = filtered.filter(official => 
-                    official.name.toLowerCase().includes(searchTerm) ||
-                    official.title.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            if (stateFilter) {
-                filtered = filtered.filter(official => official.state === stateFilter);
-            }
-            
-            if (partyFilter) {
-                filtered = filtered.filter(official => official.party === partyFilter);
-            }
-            
-            displayOfficials('senateContainer', filtered);
-        }
-
-        function filterHouse() {
-            const searchTerm = document.getElementById('house-search').value.toLowerCase();
-            const stateFilter = document.getElementById('house-state').value;
-            const partyFilter = document.getElementById('house-party').value;
-            
-            let filtered = governmentOfficials.house;
-            
-            if (searchTerm) {
-                filtered = filtered.filter(official => 
-                    official.name.toLowerCase().includes(searchTerm) ||
-                    official.title.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            if (stateFilter) {
-                filtered = filtered.filter(official => official.state === stateFilter);
-            }
-            
-            if (partyFilter) {
-                filtered = filtered.filter(official => official.party === partyFilter);
-            }
-            
-            displayOfficials('houseContainer', filtered);
-        }
-
-        function filterJudicial() {
-            const searchTerm = document.getElementById('judicial-search').value.toLowerCase();
-            
-            let filtered = governmentOfficials.judicial;
-            
-            if (searchTerm) {
-                filtered = filtered.filter(official => 
-                    official.name.toLowerCase().includes(searchTerm) ||
-                    official.title.toLowerCase().includes(searchTerm)
-                );
-            }
-            
-            displayOfficials('judicialContainer', filtered);
-        }
-
-        // Initialize states dropdown
-        function initializeStates() {
-            const states = [...new Set([...governmentOfficials.senate, ...governmentOfficials.house].map(o => o.state))].sort();
-            
-            ['senate-state', 'house-state'].forEach(id => {
-                const select = document.getElementById(id);
-                states.forEach(state => {
-                    const option = document.createElement('option');
-                    option.value = state;
-                    option.textContent = state;
-                    select.appendChild(option);
-                });
+            const container = document.getElementById(branch + 'Container');
+            container.innerHTML = '';
+            officials[branch].forEach(official => {
+                container.appendChild(createOfficialCard(official));
             });
         }
 
-        // Initialize the page
+        // Initialize
         document.addEventListener('DOMContentLoaded', function() {
-            initializeStates();
-            displayOfficials('executiveContainer', governmentOfficials.executive);
+            showBranch('executive');
         });
 
-        // Close modal when clicking outside
         window.onclick = function(event) {
-            const modal = document.getElementById('dialogueModal');
-            if (event.target === modal) {
-                modal.style.display = 'none';
+            if (event.target === document.getElementById('dialogueModal')) {
+                closeDialogue();
             }
         };
-
-        // Close modal with Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape') {
-                document.getElementById('dialogueModal').style.display = 'none';
-            }
-        });
     </script>
 </body>
 </html>

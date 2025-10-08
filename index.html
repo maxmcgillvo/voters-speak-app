@@ -328,31 +328,22 @@
 
         <!-- Executive Branch -->
         <div id="executive" class="branch-section active">
-            <h2 class="branch-title">U.S. Senate</h2>
+            <h2 class="branch-title">Executive Branch</h2>
             <div class="filters">
                 <div class="filter-row">
                     <div class="filter-group">
-                        <label for="senate-search">Search Senator:</label>
-                        <input type="text" id="senate-search" placeholder="Enter name..." oninput="filterSenate()">
+                        <label for="executive-search">Search Official:</label>
+                        <input type="text" id="executive-search" placeholder="Enter name..." oninput="filterExecutive()">
                     </div>
                     <div class="filter-group">
-                        <label for="senate-state">Filter by State:</label>
-                        <select id="senate-state" onchange="filterSenate()">
-                            <option value="">All States</option>
-                        </select>
-                    </div>
-                    <div class="filter-group">
-                        <label for="senate-party">Filter by Party:</label>
-                        <select id="senate-party" onchange="filterSenate()">
-                            <option value="">All Parties</option>
-                            <option value="Republican">Republican</option>
-                            <option value="Democratic">Democratic</option>
-                            <option value="Independent">Independent</option>
+                        <label for="executive-position">Filter by Position:</label>
+                        <select id="executive-position" onchange="filterExecutive()">
+                            <option value="">All Positions</option>
                         </select>
                     </div>
                 </div>
             </div>
-            <div id="senateContainer" class="officials-grid"></div>
+            <div id="executiveContainer" class="officials-grid"></div>
         </div>
 
         <!-- U.S. House -->

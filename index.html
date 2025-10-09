@@ -280,6 +280,15 @@
             font-size: 0.9rem;
             color: #888;
         }
+
+        .official-contact a {
+            color: #2c3e50;
+            text-decoration: none;
+        }
+
+        .official-contact a:hover {
+            text-decoration: underline;
+        }
     </style>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
@@ -368,21 +377,6 @@
     </div>
 
     <script>
-        // Basic functionality for showing branches
-        function showBranch(branchId) {
-            // Hide all sections
-            document.querySelectorAll('.branch-section').forEach(section => {
-                section.classList.remove('active');
-            });
-            
-            // Show selected section
-            const targetSection = document.getElementById(branchId);
-            if (targetSection) {
-                targetSection.classList.add('active');
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
-
         // Complete government officials data from existing site
         const governmentOfficials = {
             senate: [
@@ -429,7 +423,22 @@
             ]
         };
 
-        // Function to render officials
+        // Basic functionality for showing branches
+        function showBranch(branchId) {
+            // Hide all sections
+            document.querySelectorAll('.branch-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            
+            // Show selected section
+            const targetSection = document.getElementById(branchId);
+            if (targetSection) {
+                targetSection.classList.add('active');
+                targetSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+
+        // ENHANCED PHONE SYSTEM - Function to render officials with clickable phone numbers
         function renderOfficials(branchId, officials) {
             const container = document.getElementById(branchId + 'Container');
             if (!container || !officials) return;
@@ -439,8 +448,9 @@
                     <div class="official-name">${official.name}</div>
                     <div class="official-title">${official.title}</div>
                     <div class="official-contact">
-                        ${official.email ? `<div>📧 ${official.email}</div>` : ''}
-                        ${official.phone ? `<div>📞 ${official.phone}</div>` : ''}
+                        ${official.email ? `<div>📧 <a href="mailto:${official.email}" style="color: #2c3e50; text-decoration: none;">${official.email}</a></div>` : ''}
+                        ${official.phone ? `<div>📞 <a href="tel:${official.phone}" style="color: #2c3e50; text-decoration: none;">${official.phone}</a></div>` : ''}
+                        ${official.website ? `<div>🌐 <a href="${official.website}" target="_blank" style="color: #2c3e50; text-decoration: none;">${official.website}</a></div>` : ''}
                     </div>
                 </div>
             `).join('');

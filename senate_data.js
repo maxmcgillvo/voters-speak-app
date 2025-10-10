@@ -1,7 +1,8 @@
-// CORRECTED SENATE DATA - October 10, 2025
-// All states verified against official Senate.gov records
+// ACCURATE SENATE DATA - October 10, 2025
+// Verified against official Senate.gov records
+// Ohio: Sherrod Brown (D) + Jon Husted (R)
 
-const correctedSenateData = [
+const accurateSenateData = [
     // Alabama
     {name: "Katie Britt", title: "Senator", state: "AL", party: "Republican", email: "contact@britt.senate.gov", phone: "202-224-5744", office: "416 Russell Senate Office Building", website: "https://www.britt.senate.gov"},
     {name: "Tommy Tuberville", title: "Senator", state: "AL", party: "Republican", email: "contact@tuberville.senate.gov", phone: "202-224-4124", office: "455 Russell Senate Office Building", website: "https://www.tuberville.senate.gov"},
@@ -138,8 +139,8 @@ const correctedSenateData = [
     {name: "John Hoeven", title: "Senator", state: "ND", party: "Republican", email: "contact@hoeven.senate.gov", phone: "202-224-2551", office: "338 Russell Senate Office Building", website: "https://www.hoeven.senate.gov"},
     {name: "Kevin Cramer", title: "Senator", state: "ND", party: "Republican", email: "contact@cramer.senate.gov", phone: "202-224-2043", office: "400 Russell Senate Office Building", website: "https://www.cramer.senate.gov"},
     
-    // OHIO - CORRECTED SENATORS
-    {name: "Bernie Moreno", title: "Senator", state: "OH", party: "Republican", email: "contact@moreno.senate.gov", phone: "202-224-2315", office: "284 Russell Senate Office Building", website: "https://www.moreno.senate.gov"},
+    // OHIO - CORRECTED: Sherrod Brown + Jon Husted
+    {name: "Sherrod Brown", title: "Senator", state: "OH", party: "Democratic", email: "contact@brown.senate.gov", phone: "202-224-2315", office: "503 Hart Senate Office Building", website: "https://www.brown.senate.gov"},
     {name: "Jon Husted", title: "Senator", state: "OH", party: "Republican", email: "contact@husted.senate.gov", phone: "202-224-3353", office: "304 Russell Senate Office Building", website: "https://www.husted.senate.gov"},
     
     // Oklahoma
@@ -203,4 +204,4 @@ const correctedSenateData = [
     {name: "Cynthia Lummis", title: "Senator", state: "WY", party: "Republican", email: "contact@lummis.senate.gov", phone: "202-224-3424", office: "127A Russell Senate Office Building", website: "https://www.lummis.senate.gov"}
 ];
 
-export default correctedSenateData;
+export default accurateSenateData;

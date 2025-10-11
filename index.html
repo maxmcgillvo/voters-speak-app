@@ -410,42 +410,15 @@
         </div>
 
         <div class="navigation">
-            <button class="nav-button active" onclick="showBranch('executive')">Executive Branch</button>
-            <button class="nav-button" onclick="showBranch('senate')">U.S. Senate</button>
-            <button class="nav-button" onclick="showBranch('house')">House</button>
-            <button class="nav-button" onclick="showBranch('judicial')">Supreme Court</button>
-            <button class="nav-button" onclick="showBranch('issues')">Today's Issues</button>
+            <button class="nav-button active" data-branch="executive" onclick="showBranch('executive')">Executive Branch</button>
+            <button class="nav-button" data-branch="senate" onclick="showBranch('senate')">U.S. Senate</button>
+            <button class="nav-button" data-branch="house" onclick="showBranch('house')">House</button>
+            <button class="nav-button" data-branch="judicial" onclick="showBranch('judicial')">Supreme Court</button>
+            <button class="nav-button" data-branch="issues" onclick="showBranch('issues')">Today's Issues</button>
         </div>
            <!-- Executive Branch Section -->
            <div id="executive" class="branch-section active">
-               <div class="branch-title">Executive Branch</div>
-               <div class="executive-departments">
-                   <div class="department-card" onclick="showExecutiveDepartment('white-house')">
-                       <div class="department-icon">🏛️</div>
-                       <div class="department-title">White House Leadership</div>
-                       <div class="department-desc">President, VP, and senior White House staff</div>
-                   </div>
-                   
-                   <div class="department-card" onclick="showExecutiveDepartment('cabinet')">
-                       <div class="department-icon">🗂️</div>
-                       <div class="department-title">Cabinet Secretaries</div>
-                       <div class="department-desc">Heads of major federal departments</div>
-                   </div>
-                   
-                   <div class="department-card" onclick="showExecutiveDepartment('agencies')">
-                       <div class="department-icon">🏢</div>
-                       <div class="department-title">Federal Agencies</div>
-                       <div class="department-desc">Directors and administrators of key agencies</div>
-                   </div>
-                   
-                   <div class="department-card" onclick="showExecutiveDepartment('all')">
-                       <div class="department-icon">📋</div>
-                       <div class="department-title">All Executive Officials</div>
-                       <div class="department-desc">Complete list of executive branch officials</div>
-                   </div>
-               </div>
-               
-               <div id="executiveDepartmentContainer" class="officials-grid" style="margin-top: 30px;"></div>
+               <div id="executiveContainer" class="officials-grid"></div>
            </div>
 
         <!-- U.S. Senate Section -->
@@ -969,7 +942,15 @@
         function showBranch(branch) {
             document.querySelectorAll('.branch-section').forEach(section => section.classList.remove('active'));
             document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
-            event.target.classList.add('active');
+            
+            // Find and activate the correct button
+            const buttons = document.querySelectorAll('.nav-button');
+            buttons.forEach(btn => {
+                if (btn.dataset.branch === branch) {
+                    btn.classList.add('active');
+                }
+            });
+            
             document.getElementById(branch).classList.add('active');
             
             // Load data for the selected branch
@@ -992,7 +973,7 @@
             const card = document.createElement('div');
             card.className = 'official-card';
             
-            const partyClass = `party-${official.party.toLowerCase()}`;
+            const partyClass = official.party ? `party-${official.party.toLowerCase()}` : '';
             
             card.innerHTML = `
                 <div class="official-header">
@@ -1000,7 +981,7 @@
                         <div class="official-name">${official.name}</div>
                         <div class="official-title">${official.title}${official.district ? ` (${official.district})` : ''}</div>
                     </div>
-                    <div class="party-badge ${partyClass}">${official.party}</div>
+                    ${official.party ? `<div class="party-badge ${partyClass}">${official.party}</div>` : ''}
                 </div>
                 <div class="contact-info">
                     <div class="contact-item" onclick="window.open('mailto:${official.email}', '_blank')">
@@ -1080,6 +1061,7 @@
                 const card = createOfficialCard(official);
                 container.appendChild(card);
             });
+        }
 
         function showExecutiveDepartment(department) {
             const container = document.getElementById('executiveDepartmentContainer');
@@ -1117,15 +1099,6 @@
             });
         }
 
-        // Initialize executive department view
-        document.addEventListener('DOMContentLoaded', function() {
-            // Auto-load White House section when executive tab is active
-            if (document.getElementById('executive').classList.contains('active')) {
-                showExecutiveDepartment('white-house');
-            }
-        });
-        }
-
         // Initialize
         document.addEventListener('DOMContentLoaded', function() {
             populateStates();
@@ -1136,7 +1109,10 @@
                 button.addEventListener('click', function() {
                     document.querySelectorAll('.nav-button').forEach(btn => btn.classList.remove('active'));
                     this.classList.add('active');
-                    showBranch(this.textContent.split(' ')[0].toLowerCase());
+                    const branch = this.dataset.branch;
+                    if (branch) {
+                        showBranch(branch);
+                    }
                 });
             });
         });

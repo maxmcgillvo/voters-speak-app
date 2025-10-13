@@ -1,66 +1,104 @@
 #!/bin/bash
 
-# GitHub Integration Deployment Script
-# This script deploys the GitHub integration to the "Your Concerns" feature on the main site
+# Voters Speak Deployment Script
+# This script helps deploy the site to various platforms
 
-echo "Starting GitHub integration deployment..."
+set -e
 
-# Check if the main site directory is provided
-if [ -z "$1" ]; then
-  echo "Error: Main site directory not provided"
-  echo "Usage: ./deploy.sh <main_site_directory>"
-  exit 1
+echo "🗳️  Voters Speak Deployment Script"
+echo "=================================="
+
+# Check if we're in the right directory
+if [ ! -f "index.html" ]; then
+    echo "❌ Error: index.html not found. Run this from the project root."
+    exit 1
 fi
 
-MAIN_SITE_DIR=$1
-SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+# Function to deploy to GitHub Pages
+deploy_github() {
+    echo "📦 Deploying to GitHub Pages..."
+    
+    # Check if git is initialized
+    if [ ! -d ".git" ]; then
+        echo "🔄 Initializing git repository..."
+        git init
+        git add .
+        git commit -m "Initial commit: Voters Speak"
+    fi
+    
+    echo "✅ Ready for GitHub Pages deployment!"
+    echo "   1. Push to GitHub"
+    echo "   2. Go to Settings → Pages"
+    echo "   3. Select 'Deploy from a branch'"
+    echo "   4. Choose 'main' branch"
+}
 
-# Create GitHub logo directory if it doesn't exist
-echo "Creating GitHub logo directory..."
-mkdir -p "$MAIN_SITE_DIR/public/assets/images/news-logos/github"
+# Function to deploy to Netlify
+deploy_netlify() {
+    echo "🚀 Deploying to Netlify..."
+    
+    # Check if netlify-cli is installed
+    if command -v netlify &> /dev/null; then
+        netlify deploy --prod --dir=.
+    else
+        echo "📋 Manual Netlify deployment:"
+        echo "   1. Go to https://netlify.com"
+        echo "   2. Drag and drop this folder"
+        echo "   3. Your site will be live instantly!"
+    fi
+}
 
-# Copy GitHub logo
-echo "Copying GitHub logo..."
-cp "$SCRIPT_DIR/public/assets/images/news-logos/github/github-logo.png" "$MAIN_SITE_DIR/public/assets/images/news-logos/github/"
+# Function to validate the build
+validate() {
+    echo "🔍 Validating build..."
+    
+    # Check essential files
+    files=("index.html" "executive_data.js" "senate_data.js" "house_data.js" "judicial_data.js")
+    for file in "${files[@]}"; do
+        if [ -f "$file" ]; then
+            echo "   ✅ $file exists"
+        else
+            echo "   ❌ $file missing"
+            exit 1
+        fi
+    done
+    
+    echo "✅ All essential files present"
+}
 
-# Update CSS
-echo "Updating CSS..."
-# Check if the logos.css file exists in the main site
-if [ -f "$MAIN_SITE_DIR/public/assets/images/news-logos/logos.css" ]; then
-  # Check if GitHub styles are already in the CSS file
-  if grep -q "logo-github" "$MAIN_SITE_DIR/public/assets/images/news-logos/logos.css"; then
-    echo "GitHub styles already exist in logos.css, skipping..."
-  else
-    # Extract GitHub-specific styles and append to the main CSS file
-    grep -A 5 "logo-github" "$SCRIPT_DIR/public/assets/images/news-logos/logos.css" >> "$MAIN_SITE_DIR/public/assets/images/news-logos/logos.css"
-    echo "GitHub styles added to logos.css"
-  fi
-else
-  # If logos.css doesn't exist, copy the entire file
-  cp "$SCRIPT_DIR/public/assets/images/news-logos/logos.css" "$MAIN_SITE_DIR/public/assets/images/news-logos/"
-  echo "Created new logos.css file with GitHub styles"
-fi
+# Main menu
+echo "Choose deployment option:"
+echo "1) GitHub Pages"
+echo "2) Netlify"
+echo "3) Validate only"
+echo "4) All options"
 
-# Update HTML templates
-echo "Updating HTML templates..."
-# This part depends on the structure of the main site
-# For now, we'll just copy the demo files as reference
-mkdir -p "$MAIN_SITE_DIR/reference"
-cp "$SCRIPT_DIR/demo.html" "$MAIN_SITE_DIR/reference/"
-cp "$SCRIPT_DIR/vanilla-demo.html" "$MAIN_SITE_DIR/reference/"
-cp "$SCRIPT_DIR/integrated_template.html" "$MAIN_SITE_DIR/reference/"
-cp "$SCRIPT_DIR/github-logo-test.html" "$MAIN_SITE_DIR/reference/"
+read -p "Enter choice (1-4): " choice
 
-# Copy documentation
-echo "Copying documentation..."
-mkdir -p "$MAIN_SITE_DIR/docs/github_integration"
-cp "$SCRIPT_DIR/github_integration_guide.md" "$MAIN_SITE_DIR/docs/github_integration/"
-cp "$SCRIPT_DIR/github_civic_tech_examples.md" "$MAIN_SITE_DIR/docs/github_integration/"
-cp "$SCRIPT_DIR/github_integration_deployment.md" "$MAIN_SITE_DIR/docs/github_integration/"
-cp "$SCRIPT_DIR/README.md" "$MAIN_SITE_DIR/docs/github_integration/"
+case $choice in
+    1)
+        validate
+        deploy_github
+        ;;
+    2)
+        validate
+        deploy_netlify
+        ;;
+    3)
+        validate
+        ;;
+    4)
+        validate
+        deploy_github
+        deploy_netlify
+        ;;
+    *)
+        echo "❌ Invalid choice. Exiting."
+        exit 1
+        ;;
+esac
 
-echo "GitHub integration deployment completed!"
-echo "Please verify the integration by checking the following:"
-echo "1. The GitHub logo appears in the news sources grid"
-echo "2. Clicking on the GitHub logo navigates to the civic tech topics page"
-echo "3. The integration is responsive on mobile devices"
+echo ""
+echo "🎉 Deployment complete!"
+echo "   GitHub: https://yourusername.github.io/voters-speak"
+echo "   Netlify: https://your-site-name.netlify.app"

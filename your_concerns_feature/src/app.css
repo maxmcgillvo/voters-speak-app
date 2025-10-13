@@ -1,0 +1,24 @@
+/* App component styles */
+.app {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+/* When integrated with the existing site, we may need to adjust these styles */
+.integrated-app {
+  padding: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .app {
+    padding: 15px;
+  }
+}

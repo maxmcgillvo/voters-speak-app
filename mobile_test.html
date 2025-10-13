@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mobile Test - Your Concerns Feature</title>
+    <link rel="stylesheet" href="public/assets/images/news-logos/logos.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .header h1 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 10px;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 1rem;
+        }
+
+        .news-sources-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .news-source {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 0.5rem;
+            border-radius: 8px;
+            background-color: #f8f8f8;
+            transition: all 0.2s ease-in-out;
+            height: 80px;
+            width: 100%;
+        }
+
+        .news-logo-container {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 0.25rem;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>YOUR CONCERNS</h1>
+            <p>Your voice matters in our democracy</p>
+        </header>
+
+        <div class="content">
+            <h2 class="section-title">WHAT'S HAPPENING RIGHT NOW</h2>
+            <p class="section-subtitle">Stay informed with multiple perspectives</p>
+            
+            <div class="news-sources-grid">
+                <a href="https://www.cnn.com/politics" target="_blank" class="news-source">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-cnn">CNN</div>
+                    </div>
+                </a>
+                <a href="https://www.foxnews.com/politics" target="_blank" class="news-source">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-foxnews">FOX NEWS</div>
+                    </div>
+                </a>
+                <a href="https://www.nbcnews.com/politics" target="_blank" class="news-source">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-nbcnews">NBC NEWS</div>
+                    </div>
+                </a>
+                <a href="https://github.com/topics/civic-tech" target="_blank" class="news-source">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-github">GITHUB</div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

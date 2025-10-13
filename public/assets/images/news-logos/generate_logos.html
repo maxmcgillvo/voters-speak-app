@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate News Logos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .logo-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        .logo {
+            width: 200px;
+            height: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            text-align: center;
+            border-radius: 8px;
+        }
+        .download-all {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <h1>News Source Logos</h1>
+    <p>These are simple text-based logos for the news sources. Right-click on each logo and select "Save image as..." to download.</p>
+    
+    <div class="logo-container" id="logos">
+        <!-- Logos will be generated here -->
+    </div>
+    
+    <script>
+        // News sources with their colors
+        const newsSources = [
+            { name: "CNN", color: "#CC0000" },
+            { name: "FOX NEWS", color: "#003366" },
+            { name: "NBC NEWS", color: "#FF7E00" },
+            { name: "ABC NEWS", color: "#000000" },
+            { name: "BBC", color: "#BB1919" },
+            { name: "REUTERS", color: "#FF8000" },
+            { name: "NEW YORK TIMES", color: "#000000" },
+            { name: "WASHINGTON POST", color: "#000000" },
+            { name: "BLOOMBERG", color: "#000000" },
+            { name: "GOOGLE NEWS", color: "#4285F4" },
+            { name: "CNBC", color: "#005594" },
+            { name: "NPR", color: "#D62021" },
+            { name: "MSN", color: "#0078D4" },
+            { name: "POLITICO", color: "#CD1717" },
+            { name: "SUBSTACK", color: "#FF6719" },
+            { name: "YAHOO NEWS", color: "#6001D2" },
+            { name: "USA TODAY", color: "#1877F2" }
+        ];
+        
+        const logosContainer = document.getElementById('logos');
+        
+        // Generate logos
+        newsSources.forEach(source => {
+            const logo = document.createElement('div');
+            logo.className = 'logo';
+            logo.style.backgroundColor = source.color;
+            logo.textContent = source.name;
+            logo.id = source.name.toLowerCase().replace(/\s+/g, '');
+            logosContainer.appendChild(logo);
+        });
+    </script>
+</body>
+</html>

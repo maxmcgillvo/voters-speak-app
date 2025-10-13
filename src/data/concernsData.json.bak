@@ -1,0 +1,307 @@
+{
+  "concerns": [
+    {
+      "id": "epstein-files",
+      "title": "Epstein Files",
+      "subtitle": "Should they be released?",
+      "description": "The debate around transparency vs. privacy continues as courts consider releasing sealed documents related to Jeffrey Epstein. These files may contain information about high-profile individuals and raise questions about public interest versus privacy rights.",
+      "iconName": "balance-scale",
+      "relevantOfficials": [
+        "attorney-general",
+        "senate-judiciary-chair",
+        "house-oversight-chair"
+      ],
+      "relevantCommittees": [
+        {
+          "name": "Senate Committee on the Judiciary",
+          "chamber": "senate"
+        },
+        {
+          "name": "House Committee on Oversight and Reform",
+          "chamber": "house"
+        }
+      ],
+      "isActive": true,
+      "isRotating": false,
+      "dateAdded": "2025-09-25",
+      "lastUpdated": "2025-09-25",
+      "relatedLinks": [
+        {
+          "title": "FOIA Request Information",
+          "url": "https://www.foia.gov/how-to.html",
+          "source": "Official"
+        }
+      ],
+      "order": 1
+    },
+    {
+      "id": "first-amendment",
+      "title": "First Amendment",
+      "subtitle": "Speak up, Be heard",
+      "description": "Current debates around free speech, assembly rights, and government transparency continue across the country. Recent court decisions and legislative proposals have raised questions about the boundaries of protected speech and assembly.",
+      "iconName": "gavel",
+      "relevantOfficials": [
+        "senate-rules-chair",
+        "house-ethics-chair"
+      ],
+      "relevantCommittees": [
+        {
+          "name": "Senate Committee on Rules and Administration",
+          "chamber": "senate"
+        },
+        {
+          "name": "House Committee on Ethics",
+          "chamber": "house"
+        }
+      ],
+      "isActive": true,
+      "isRotating": false,
+      "dateAdded": "2025-09-25",
+      "lastUpdated": "2025-09-25",
+      "relatedLinks": [
+        {
+          "title": "First Amendment - Cornell Law School",
+          "url": "https://www.law.cornell.edu/constitution/first_amendment",
+          "source": "Educational"
+        }
+      ],
+      "order": 2
+    },
+    {
+      "id": "economic-issues",
+      "title": "Economic Issues",
+      "subtitle": "Inflation, Housing, Jobs",
+      "description": "From housing affordability to inflation concerns, economic issues affect every American. Recent data shows mixed signals on inflation while housing costs continue to challenge many households across the country.",
+      "iconName": "chart-line",
+      "relevantOfficials": [
+        "treasury-secretary",
+        "federal-reserve-chair",
+        "senate-banking-chair",
+        "house-financial-services-chair"
+      ],
+      "relevantCommittees": [
+        {
+          "name": "Senate Committee on Banking, Housing, and Urban Affairs",
+          "chamber": "senate"
+        },
+        {
+          "name": "House Financial Services Committee",
+          "chamber": "house"
+        }
+      ],
+      "isActive": true,
+      "isRotating": false,
+      "dateAdded": "2025-09-25",
+      "lastUpdated": "2025-09-25",
+      "order": 3
+    },
+    {
+      "id": "healthcare",
+      "title": "Healthcare Access",
+      "subtitle": "Costs, Coverage, Care",
+      "description": "Rising prescription costs, Medicare expansion, and mental health services remain critical concerns for Americans. Recent legislative efforts have focused on drug pricing transparency and expanding coverage for mental health treatment.",
+      "iconName": "heartbeat",
+      "relevantOfficials": [
+        "hhs-secretary",
+        "senate-health-chair",
+        "house-energy-commerce-chair"
+      ],
+      "relevantCommittees": [
+        {
+          "name": "Senate Health, Education, Labor, and Pensions Committee",
+          "chamber": "senate"
+        },
+        {
+          "name": "House Energy & Commerce Committee",
+          "chamber": "house"
+        }
+      ],
+      "isActive": true,
+      "isRotating": false,
+      "dateAdded": "2025-09-25",
+      "lastUpdated": "2025-09-25",
+      "order": 4
+    },
+    {
+      "id": "immigration-border",
+      "title": "Immigration & Border",
+      "subtitle": "Policy & Enforcement",
+      "description": "Border security, immigration reform, and sanctuary city debates continue across the country. Recent executive orders have modified asylum procedures while state governors have implemented their own border policies.",
+      "iconName": "globe-americas",
+      "relevantOfficials": [
+        "dhs-secretary",
+        "senate-homeland-chair",
+        "house-homeland-chair"
+      ],
+      "relevantCommittees": [
+        {
+          "name": "Senate Committee on Homeland Security and Governmental Affairs",
+          "chamber": "senate"
+        },
+        {
+          "name": "House Committee on Homeland Security",
+          "chamber": "house"
+        }
+      ],
+      "isActive": true,
+      "isRotating": false,
+      "dateAdded": "2025-09-25",
+      "lastUpdated": "2025-09-25",
+      "order": 5
+    },
+    {
+      "id": "supreme-court-term",
+      "title": "Supreme Court Term",
+      "subtitle": "Key Cases to Watch",
+      "description": "The Supreme Court's new term begins in October with several high-profile cases on the docket. These cases could have significant implications for voting rights, regulatory authority, and privacy protections.",
+      "iconName": "landmark",
+      "relevantOfficials": [
+        "chief-justice",
+        "senate-judiciary-chair"
+      ],
+      "relevantCommittees": [
+        {
+          "name": "Senate Committee on the Judiciary",
+          "chamber": "senate"
+        }
+      ],
+      "isActive": true,
+      "isRotating": true,
+      "dateAdded": "2025-09-25",
+      "lastUpdated": "2025-09-25",
+      "relatedLinks": [
+        {
+          "title": "Supreme Court Calendar",
+          "url": "https://www.supremecourt.gov/oral_arguments/argument_calendars.aspx",
+          "source": "Official"
+        }
+      ],
+      "order": 6
+    }
+  ],
+  "newsSources": [
+    {
+      "name": "CNN",
+      "url": "https://www.cnn.com/politics",
+      "logoUrl": "/assets/images/news-logos/cnn.png",
+      "isActive": true,
+      "order": 1
+    },
+    {
+      "name": "FOX NEWS",
+      "url": "https://www.foxnews.com/politics",
+      "logoUrl": "/assets/images/news-logos/fox.png",
+      "isActive": true,
+      "order": 2
+    },
+    {
+      "name": "NBC NEWS",
+      "url": "https://www.nbcnews.com/politics",
+      "logoUrl": "/assets/images/news-logos/nbc.png",
+      "isActive": true,
+      "order": 3
+    },
+    {
+      "name": "ABC NEWS",
+      "url": "https://abcnews.go.com/Politics",
+      "logoUrl": "/assets/images/news-logos/abc.png",
+      "isActive": true,
+      "order": 4
+    },
+    {
+      "name": "BBC",
+      "url": "https://www.bbc.com/news/world/us_and_canada",
+      "logoUrl": "/assets/images/news-logos/bbc.png",
+      "isActive": true,
+      "order": 5
+    },
+    {
+      "name": "REUTERS",
+      "url": "https://www.reuters.com/world/us/",
+      "logoUrl": "/assets/images/news-logos/reuters.png",
+      "isActive": true,
+      "order": 6
+    },
+    {
+      "name": "NEW YORK TIMES",
+      "url": "https://www.nytimes.com/section/politics",
+      "logoUrl": "/assets/images/news-logos/nyt.png",
+      "isActive": true,
+      "order": 7
+    },
+    {
+      "name": "WASHINGTON POST",
+      "url": "https://www.washingtonpost.com/politics/",
+      "logoUrl": "/assets/images/news-logos/wapo.png",
+      "isActive": true,
+      "order": 8
+    },
+    {
+      "name": "BLOOMBERG",
+      "url": "https://www.bloomberg.com/politics",
+      "logoUrl": "/assets/images/news-logos/bloomberg.png",
+      "isActive": true,
+      "order": 9
+    },
+    {
+      "name": "GOOGLE NEWS",
+      "url": "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtVnVHZ0pWVXlnQVAB",
+      "logoUrl": "/assets/images/news-logos/googlenews.png",
+      "isActive": true,
+      "order": 10
+    },
+    {
+      "name": "CNBC",
+      "url": "https://www.cnbc.com/politics/",
+      "logoUrl": "/assets/images/news-logos/cnbc.png",
+      "isActive": true,
+      "order": 11
+    },
+    {
+      "name": "NPR",
+      "url": "https://www.npr.org/sections/politics/",
+      "logoUrl": "/assets/images/news-logos/npr.png",
+      "isActive": true,
+      "order": 12
+    },
+    {
+      "name": "MSN",
+      "url": "https://www.msn.com/en-us/news/politics",
+      "logoUrl": "/assets/images/news-logos/msn.png",
+      "isActive": true,
+      "order": 13
+    },
+    {
+      "name": "POLITICO",
+      "url": "https://www.politico.com/",
+      "logoUrl": "/assets/images/news-logos/politico.png",
+      "isActive": true,
+      "order": 14
+    },
+    {
+      "name": "SUBSTACK",
+      "url": "https://substack.com/discover/politics",
+      "logoUrl": "/assets/images/news-logos/substack.png",
+      "isActive": true,
+      "order": 15
+    },
+    {
+      "name": "YAHOO NEWS",
+      "url": "https://news.yahoo.com/politics/",
+      "logoUrl": "/assets/images/news-logos/yahoo.png",
+      "isActive": true,
+      "order": 16
+    },
+    {
+      "name": "USA TODAY",
+      "url": "https://www.usatoday.com/news/politics/",
+      "logoUrl": "/assets/images/news-logos/usatoday.png",
+      "isActive": true,
+      "order": 17
+    }
+  ],
+  "metadata": {
+    "lastUpdated": "2025-09-25T12:00:00Z",
+    "version": "1.0.0"
+  }
+}

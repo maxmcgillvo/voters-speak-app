@@ -1,559 +1,267 @@
-# Social Media Component Integration Guide
+# Your Concerns Feature - Integration Guide
 
-## Overview
+This guide explains how to integrate the "Your Concerns" React components with the existing Voters Speak static HTML site.
 
-This guide provides comprehensive step-by-step instructions for integrating and using the Social Media Component in the Voters Speak app. The Social Media Component allows government officials' social media profiles to be displayed as interactive links alongside their contact information.
+## Prerequisites
 
-## Table of Contents
+- Node.js 16+ and npm (for building the React components)
+- Basic understanding of HTML, CSS, and JavaScript
 
-1. [File Structure](#file-structure)
-2. [Integration Steps](#integration-steps)
-3. [Data Structure Requirements](#data-structure-requirements)
-4. [Component Configuration](#component-configuration)
-5. [Testing Instructions](#testing-instructions)
-6. [Accessibility Features](#accessibility-features)
-7. [Customization Options](#customization-options)
-8. [Troubleshooting](#troubleshooting)
-9. [Performance Considerations](#performance-considerations)
-10. [Browser Compatibility](#browser-compatibility)
+## Building the React Components
 
-## File Structure
+1. Navigate to the `your_concerns_react` directory:
 
-The Social Media Component integration consists of two main JavaScript files:
-
-```
-js/
-├── social-media-component.js        # Core social media component class
-└── modified_display_function.js     # Updated displayOfficials function
+```bash
+cd your_concerns_react
 ```
 
-### File Descriptions
+2. Install dependencies:
 
-- **`social-media-component.js`**: Contains the `SocialMediaComponent` class that handles rendering, styling, and functionality of social media links.
-- **`modified_display_function.js`**: Updated version of the `displayOfficials` function that uses DOM manipulation and integrates the Social Media Component.
+```bash
+npm install
+```
+
+3. Build the React components:
+
+```bash
+npm run build
+```
+
+This will create a UMD bundle in the `dist` directory that can be integrated with the existing static HTML site.
 
 ## Integration Steps
 
-### Step 1: Include JavaScript Files
+### 1. Copy the Required Files
 
-Add the JavaScript files to your HTML document in the correct order, after existing scripts:
+Copy the following files to your static site:
 
-```html
-<script src="enhanced_phone_solution.js"></script>
-<script src="js/social-media-component.js"></script>
-<script src="js/modified_display_function.js"></script>
-```
+- `dist/voters-speak-your-concerns.umd.js` - The bundled React components
+- `public/assets/images/news-logos/` - The news source logos (if not already available)
 
-**Important**: The social media component must be loaded before the modified display function.
+### 2. Create a New HTML Page
 
-### Step 2: Remove Old displayOfficials Function
-
-Remove the existing `displayOfficials` function from your inline JavaScript to avoid conflicts. The new function is provided by `modified_display_function.js`.
-
-**Before (remove this)**:
-```javascript
-function displayOfficials(containerId, officials) {
-    const container = document.getElementById(containerId);
-    container.innerHTML = officials.map(official => `...`).join('');
-}
-```
-
-**After**:
-```javascript
-// Display functions are now loaded from js/modified_display_function.js
-```
-
-### Step 3: Add Social Media Data
-
-Update your officials' data structure to include social media information:
-
-```javascript
-{
-    name: "Official Name",
-    title: "Position",
-    // ... existing fields ...
-    socialMedia: {
-        twitter: "username",        // Twitter handle (without @)
-        facebook: "username",       // Facebook username or page name
-        instagram: "username",      // Instagram handle (without @)
-        linkedin: "profile-name",   // LinkedIn profile path
-        youtube: "channel",         // YouTube channel name or ID
-        tiktok: "username"          // TikTok handle (without @)
-    }
-}
-```
-
-### Step 4: Verify Integration
-
-1. Load your webpage in a browser
-2. Navigate to officials who have social media data
-3. Confirm social media links appear below contact information
-4. Test that links open correctly in new tabs
-
-## Data Structure Requirements
-
-### Supported Social Media Platforms
-
-The component supports the following platforms:
-
-| Platform  | Key         | URL Format                    | Example Handle |
-|-----------|-------------|-------------------------------|----------------|
-| Twitter   | `twitter`   | `https://twitter.com/`        | `username`     |
-| Facebook  | `facebook`  | `https://facebook.com/`       | `PageName`     |
-| Instagram | `instagram` | `https://instagram.com/`      | `username`     |
-| LinkedIn  | `linkedin`  | `https://linkedin.com/in/`    | `profile-name` |
-| YouTube   | `youtube`   | `https://youtube.com/`        | `channel`      |
-| TikTok    | `tiktok`    | `https://tiktok.com/@`        | `username`     |
-
-### Data Format Examples
-
-```javascript
-// Full example with all platforms
-socialMedia: {
-    twitter: "realDonaldTrump",
-    facebook: "DonaldTrump", 
-    instagram: "realdonaldtrump",
-    linkedin: "donald-trump",
-    youtube: "c/TrumpChannel",
-    tiktok: "realdonaldtrump"
-}
-
-// Partial example (only some platforms)
-socialMedia: {
-    twitter: "SenTedCruz",
-    facebook: "SenatorTedCruz"
-}
-
-// Officials without social media
-// Simply omit the socialMedia property or set to null/empty object
-```
-
-### Data Validation
-
-The component automatically:
-- Filters out empty or null values
-- Removes '@' symbols from handles
-- Validates platform keys against supported platforms
-- Limits display to maximum of 6 social media links per official
-
-## Component Configuration
-
-### Default Configuration
-
-```javascript
-{
-    showIcons: true,        // Display platform icons (emojis)
-    showLabels: false,      // Display platform names
-    style: 'horizontal',    // Layout: 'horizontal' or 'vertical'
-    maxLinks: 6            // Maximum number of links to display
-}
-```
-
-### Custom Configuration
-
-To customize the social media display, modify the `createSocialMediaContainer` function call in `modified_display_function.js`:
-
-```javascript
-const socialLinksContainer = window.socialMediaComponent.render(socialMediaData, {
-    showIcons: true,
-    showLabels: true,       // Show both icons and labels
-    style: 'vertical',      // Stack links vertically
-    maxLinks: 4            // Limit to 4 links maximum
-});
-```
-
-## Testing Instructions
-
-### Manual Testing Steps
-
-1. **Basic Functionality Test**
-   ```bash
-   # Open the application in a browser
-   # Navigate to officials with social media data
-   # Verify social media links are displayed
-   # Click each link to ensure they open correctly
-   ```
-
-2. **Data Validation Test**
-   ```javascript
-   // Test with invalid data
-   socialMedia: {
-       twitter: "",           // Should be filtered out
-       facebook: null,        // Should be filtered out  
-       instagram: "username", // Should display
-       unsupported: "test"    // Should be filtered out
-   }
-   ```
-
-3. **Responsive Design Test**
-   ```bash
-   # Test on different screen sizes
-   # Verify links wrap properly on mobile devices
-   # Check that touch targets are accessible
-   ```
-
-4. **Accessibility Test**
-   ```bash
-   # Use screen reader to verify ARIA labels
-   # Test keyboard navigation with Tab key
-   # Verify high contrast mode compatibility
-   ```
-
-### Automated Testing
-
-If you have a testing framework, use these test cases:
-
-```javascript
-// Example test cases (pseudo-code)
-describe('Social Media Component', () => {
-    it('renders social media links for officials with data', () => {
-        // Test rendering functionality
-    });
-    
-    it('filters out empty and invalid social media handles', () => {
-        // Test data validation
-    });
-    
-    it('respects maxLinks configuration', () => {
-        // Test link limiting
-    });
-    
-    it('applies correct ARIA labels for accessibility', () => {
-        // Test accessibility features
-    });
-});
-```
-
-## Accessibility Features
-
-### ARIA Support
-
-The component includes comprehensive ARIA support:
+Create a new HTML page for the "Your Concerns" feature. You can use the `integration-example.html` file as a starting point.
 
 ```html
-<div class="social-media-links" 
-     role="list" 
-     aria-label="Social media profiles">
-    <a role="listitem" 
-       aria-label="Twitter profile" 
-       title="Follow on Twitter">
-        🐦
-    </a>
-</div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voters Speak - Your Concerns</title>
+    <!-- Include your existing CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Include your existing header and navigation -->
+    <header>
+        <!-- Your header content -->
+    </header>
+
+    <nav>
+        <!-- Your navigation content -->
+    </nav>
+
+    <!-- Container for the React app -->
+    <main>
+        <div id="your-concerns-app"></div>
+    </main>
+
+    <!-- Include your existing footer -->
+    <footer>
+        <!-- Your footer content -->
+    </footer>
+
+    <!-- Load React and React DOM -->
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.production.min.js"></script>
+    
+    <!-- Load our bundled React app -->
+    <script src="dist/voters-speak-your-concerns.umd.js"></script>
+    
+    <script>
+        // Initialize the React app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Call the render function exported from our bundle
+            window.renderYourConcerns('your-concerns-app');
+        });
+    </script>
+</body>
+</html>
 ```
 
-### Keyboard Navigation
+### 3. Implement the Officials Directory Integration
 
-- All links are keyboard accessible via Tab navigation
-- Focus indicators are clearly visible
-- Links have descriptive titles and ARIA labels
+The "Contact Officials" button in the ConcernCard component needs to navigate to the officials directory with filters applied. There are two ways to implement this:
 
-### Screen Reader Support
+#### Option 1: URL Parameters
 
-- Social media containers have descriptive labels
-- Individual links announce platform and purpose
-- Icons are marked as decorative (`aria-hidden="true"`)
-
-### High Contrast Mode
-
-The component includes CSS for high contrast accessibility:
-
-```css
-@media (prefers-contrast: high) {
-    .social-link {
-        border-width: 2px !important;
-        font-weight: bold !important;
-    }
-}
-```
-
-### Reduced Motion Support
-
-Respects user preferences for reduced motion:
-
-```css
-@media (prefers-reduced-motion: reduce) {
-    .social-link {
-        transition: none !important;
-    }
-}
-```
-
-## Customization Options
-
-### Styling Customization
-
-#### Color Themes
-Each platform has a predefined color scheme, but you can customize:
+Modify the `navigateToOfficials` function in your HTML page to use URL parameters:
 
 ```javascript
-// In social-media-component.js, modify the socialPlatforms object:
-this.socialPlatforms = {
-    twitter: {
-        name: 'Twitter',
-        icon: '🐦',
-        baseUrl: 'https://twitter.com/',
-        color: '#1DA1F2'  // Customize this color
+window.navigateToOfficials = function(concernId, relevantOfficials) {
+    const params = new URLSearchParams();
+    params.append('concernId', concernId);
+    
+    if (relevantOfficials && relevantOfficials.length) {
+        params.append('officials', relevantOfficials.join(','));
     }
-    // ... other platforms
+    
+    // Redirect to the officials page with the filter parameters
+    window.location.href = `officials.html?${params.toString()}`;
 };
 ```
 
-#### Layout Options
-Choose between horizontal and vertical layouts:
+Then, in your officials directory page, parse the URL parameters and apply the filters:
 
 ```javascript
-// Horizontal layout (default)
-style: 'horizontal'
-
-// Vertical layout
-style: 'vertical'
-```
-
-#### Icon Customization
-Replace emoji icons with custom icons:
-
-```javascript
-// Option 1: Use different emojis
-icon: '📱'  // Instead of '🐦' for Twitter
-
-// Option 2: Use SVG or Font Icons (requires code modification)
-icon: '<svg>...</svg>'  // Custom SVG
-icon: '<i class="fab fa-twitter"></i>'  // Font Awesome
-```
-
-### Advanced Customization
-
-#### Adding New Platforms
-
-To add support for new social media platforms:
-
-1. Add platform definition to `socialPlatforms` object:
-```javascript
-this.socialPlatforms = {
-    // ... existing platforms ...
-    mastodon: {
-        name: 'Mastodon',
-        icon: '🐘',
-        baseUrl: 'https://mastodon.social/@',
-        color: '#563ACC'
+document.addEventListener('DOMContentLoaded', function() {
+    const params = new URLSearchParams(window.location.search);
+    const concernId = params.get('concernId');
+    const officials = params.get('officials');
+    
+    if (concernId && officials) {
+        const officialIds = officials.split(',');
+        // Apply filters to your officials directory
+        filterOfficialsByIds(officialIds);
     }
+});
+```
+
+#### Option 2: Session Storage
+
+Alternatively, you can use session storage to pass the filter information:
+
+```javascript
+window.navigateToOfficials = function(concernId, relevantOfficials) {
+    // Store the filter information in session storage
+    sessionStorage.setItem('concernFilter', JSON.stringify({
+        concernId,
+        relevantOfficials
+    }));
+    
+    // Redirect to the officials page
+    window.location.href = 'officials.html';
 };
 ```
 
-2. Update data structure to include new platform:
+Then, in your officials directory page, check for the filter information in session storage:
+
 ```javascript
-socialMedia: {
-    twitter: "username",
-    mastodon: "username"  // New platform
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const filterJson = sessionStorage.getItem('concernFilter');
+    
+    if (filterJson) {
+        const filter = JSON.parse(filterJson);
+        // Apply filters to your officials directory
+        filterOfficialsByIds(filter.relevantOfficials);
+        
+        // Clear the filter information from session storage
+        sessionStorage.removeItem('concernFilter');
+    }
+});
 ```
 
-#### Custom Styling
-Override default styles by adding CSS:
+### 4. Add News Source Logos
 
-```css
-.social-media-links {
-    gap: 12px !important;  /* Increase spacing */
-}
+The NewsSources component requires logo images for each news source. Make sure these images are available at the paths specified in the `concernsData.json` file.
 
-.social-link {
-    border-radius: 8px !important;  /* Square corners */
-    font-size: 1rem !important;     /* Larger text */
-}
+Default path: `/assets/images/news-logos/`
+
+You can modify the paths in the `concernsData.json` file if needed.
+
+### 5. Update the Navigation
+
+Add a link to the "Your Concerns" page in your navigation menu:
+
+```html
+<nav>
+    <a href="index.html">Home</a>
+    <a href="officials.html">Officials Directory</a>
+    <a href="concerns.html">Your Concerns</a>
+    <a href="about.html">About</a>
+</nav>
 ```
+
+### 6. Test the Integration
+
+Open the "Your Concerns" page in your browser and test the following:
+
+- The page loads without errors
+- The news sources are displayed correctly
+- The concern cards are displayed correctly
+- The "Contact Officials" button navigates to the officials directory with filters applied
+
+## Customizing the Content
+
+### Updating the Concerns
+
+The concerns data is stored in the `concernsData.json` file. You can modify this file to update the concerns, add new concerns, or remove existing concerns.
+
+Make sure the data follows the schema defined in `concernCategories.schema.json`.
+
+### Updating the News Sources
+
+The news sources data is also stored in the `concernsData.json` file. You can modify this file to update the news sources, add new sources, or remove existing sources.
+
+### Updating the Officials Mapping
+
+The officials mapping is stored in the `officialMapping.json` file. You can modify this file to update the mapping between concerns and officials.
+
+## Advanced Integration
+
+### Using Individual Components
+
+If you want to use the individual components instead of the full page, you can import them directly:
+
+```javascript
+const { NewsSources, ConcernCard } = window.VotersSpeakConcerns;
+
+// Create root for news sources
+const newsRoot = ReactDOM.createRoot(document.getElementById('news-sources-container'));
+newsRoot.render(
+    React.createElement(NewsSources, { 
+        sources: newsSources,
+        isMobile: false
+    })
+);
+
+// Create root for concern card
+const cardRoot = ReactDOM.createRoot(document.getElementById('concern-card-container'));
+cardRoot.render(
+    React.createElement(ConcernCard, { 
+        concern: concern,
+        onContactClick: handleContactClick,
+        isRotating: false
+    })
+);
+```
+
+### Customizing the Styling
+
+The components use CSS modules for styling. If you need to customize the styling, you'll need to modify the CSS files and rebuild the React components.
+
+Alternatively, you can override the styles using CSS custom properties (variables) or by adding custom CSS rules with higher specificity.
 
 ## Troubleshooting
 
-### Common Issues
+### React Not Defined
 
-#### 1. Social Media Links Not Appearing
+If you see an error like "React is not defined", make sure you've included the React and ReactDOM scripts in your HTML file.
 
-**Problem**: Officials have social media data but links don't display.
+### Component Not Rendering
 
-**Solutions**:
-- Verify JavaScript files are loaded in correct order
-- Check browser console for JavaScript errors
-- Ensure `socialMedia` property exists in official data
-- Confirm social media data contains valid platform keys
+If the components are not rendering, check the browser console for errors. Make sure the container element exists in the DOM before calling `renderYourConcerns`.
 
-**Debug Code**:
-```javascript
-// Add to console to check data
-console.log('Official data:', official);
-console.log('Social media data:', official.socialMedia);
-```
+### Missing News Source Logos
 
-#### 2. Links Opening Incorrectly
+If the news source logos are not displaying, check that the image paths in `concernsData.json` are correct and that the images exist at those paths.
 
-**Problem**: Social media links redirect to wrong pages.
+### Contact Officials Button Not Working
 
-**Solutions**:
-- Verify handle format (remove @ symbols)
-- Check platform URL patterns match your data format
-- Test handles manually by visiting platform URLs
-- Ensure handles don't contain special characters
+If the "Contact Officials" button is not navigating to the officials directory, make sure you've implemented the `navigateToOfficials` function correctly.
 
-**Debug Code**:
-```javascript
-// Test URL construction
-const platform = 'twitter';
-const handle = 'username';
-const url = 'https://twitter.com/' + handle;
-console.log('Generated URL:', url);
-```
+## Need Help?
 
-#### 3. Styling Issues
-
-**Problem**: Social media links don't match site design.
-
-**Solutions**:
-- Check CSS load order and specificity
-- Verify component styles are added to document
-- Test with browser developer tools
-- Consider CSS conflicts with existing styles
-
-**Debug Code**:
-```javascript
-// Verify component styles are loaded
-console.log('Component styles loaded:', 
-    !!document.getElementById('social-media-component-styles'));
-```
-
-#### 4. JavaScript Errors
-
-**Problem**: Browser console shows errors.
-
-**Common Errors**:
-```javascript
-// "SocialMediaComponent is not defined"
-// Solution: Ensure social-media-component.js loads first
-
-// "Cannot read property 'render' of undefined" 
-// Solution: Check component initialization
-
-// "Cannot read property 'socialMedia' of null"
-// Solution: Add null checks in data processing
-```
-
-### Performance Issues
-
-#### 1. Slow Rendering
-
-**Symptoms**: Page takes long to load with many officials.
-
-**Solutions**:
-- Use pagination or lazy loading for large datasets
-- Optimize DOM manipulation (already implemented)
-- Consider virtual scrolling for very large lists
-
-#### 2. Memory Usage
-
-**Symptoms**: High memory consumption with many officials.
-
-**Solutions**:
-- Implement pagination
-- Use `DocumentFragment` for batch DOM operations
-- Clean up event listeners when removing elements
-
-### Browser Compatibility Issues
-
-#### 1. Older Browser Support
-
-**Problem**: Component doesn't work in Internet Explorer or older browsers.
-
-**Solutions**:
-- Add polyfills for modern JavaScript features
-- Use Babel to transpile code to ES5
-- Provide fallback functionality
-
-**Polyfills Needed**:
-```html
-<!-- For IE support -->
-<script src="https://polyfill.io/v3/polyfill.min.js?features=es6,Array.prototype.includes"></script>
-```
-
-#### 2. Mobile Browser Issues
-
-**Problem**: Touch interactions don't work properly.
-
-**Solutions**:
-- Ensure adequate touch target sizes (minimum 44px)
-- Test on actual devices, not just browser dev tools
-- Check for touch event handling
-
-## Performance Considerations
-
-### Optimization Strategies
-
-1. **Lazy Loading**: Load social media component only when needed
-2. **Caching**: Store component instances to avoid recreation
-3. **Batch Operations**: Process multiple officials at once
-4. **CSS Optimization**: Use efficient selectors and minimize reflows
-
-### Performance Monitoring
-
-Add performance timing to monitor component impact:
-
-```javascript
-console.time('SocialMediaComponent');
-// Component rendering code
-console.timeEnd('SocialMediaComponent');
-```
-
-### Memory Management
-
-- Component automatically manages its own styles
-- No manual cleanup required for standard usage
-- For dynamic content, consider implementing cleanup methods
-
-## Browser Compatibility
-
-### Supported Browsers
-
-| Browser | Version | Support Level |
-|---------|---------|---------------|
-| Chrome  | 60+     | Full Support  |
-| Firefox | 55+     | Full Support  |
-| Safari  | 12+     | Full Support  |
-| Edge    | 79+     | Full Support  |
-| IE      | 11      | Partial*      |
-
-*IE 11 requires polyfills for full functionality.
-
-### Feature Support Requirements
-
-- **ES6 Classes**: Required for SocialMediaComponent
-- **Template Literals**: Used for URL construction
-- **Array Methods**: includes(), filter(), forEach()
-- **CSS Grid/Flexbox**: For responsive layouts
-- **SVG Support**: For icons (fallback to emojis available)
-
-### Fallback Strategy
-
-For unsupported browsers:
-
-```javascript
-// Feature detection
-if (typeof window.SocialMediaComponent === 'undefined') {
-    // Provide basic fallback
-    console.warn('Social Media Component not supported');
-    // Could show basic text links instead
-}
-```
-
-## Conclusion
-
-The Social Media Component provides a robust, accessible, and customizable solution for displaying government officials' social media profiles. Following this integration guide ensures proper implementation and optimal user experience.
-
-For additional support or custom requirements, please refer to the component source code or contact the development team.
-
-## Version History
-
-- **v1.0.0**: Initial release with basic social media platform support
-- **v1.0.1**: Added accessibility enhancements and mobile optimization
-- **v1.1.0**: Added support for additional platforms and customization options
-
-## License
-
-This component is part of the Voters Speak application and follows the same licensing terms as the main project.
+If you encounter any issues with the integration, please refer to the README.md file or contact the development team for assistance.

@@ -1,39 +1,67 @@
-# Voters Speak - Government Contact Directory
+# Your Concerns Feature - Voters Speak
 
-A comprehensive government contact directory connecting citizens with their elected officials.
+This package contains the implementation of the "Your Concerns" feature for the Voters Speak application. The feature connects current events to relevant officials, helping users understand who to contact about issues that matter to them.
 
-## 🚀 Quick Deployment
+## Contents
 
-### GitHub Pages (Recommended)
-1. Create a new repository on GitHub
-2. Upload all files to the repository
-3. Go to Settings → Pages
-4. Select "Deploy from a branch"
-5. Choose "main" or "master" branch
-6. Your site will be live at `https://yourusername.github.io/repository-name`
+- `src/` - Source code for the React components
+- `public/` - Public assets (images, etc.)
+- `integration-example.html` - Example HTML file showing how to integrate the components
+- `demo.html` - Interactive demo of the components
+- `INTEGRATION_GUIDE.md` - Detailed guide for integrating the components with the existing site
+- `package.json` - Node.js package configuration
+- `vite.config.js` - Vite build configuration
 
-### Netlify
-1. Go to [netlify.com](https://netlify.com)
-2. Drag and drop the entire folder
-3. Your site will be live instantly
+## Quick Start
 
-### Local Testing
+1. Install dependencies:
+
 ```bash
-# Simple HTTP server
-python3 -m http.server 8000
-# Then visit http://localhost:8000
+npm install
 ```
 
-## 📁 Files Included
+2. Start the development server:
 
-- `index.html` - Main application
-- `executive_data.js` - White House and Cabinet contacts
-- `senate_data.js` - All 100 senators
-- `house_data.js` - All 435 representatives
-- `judicial_data.js` - Supreme Court justices
-- `concernsdata.json` - Current issues tracking
-- `assets/` - Icons and images
+```bash
+npm start
+```
 
-## ✅ No Build Required
+3. Build for production:
 
-This is a static website - no build process, no dependencies, no configuration needed. Just upload the files and go!
+```bash
+npm run build
+```
+
+## Integration
+
+See `INTEGRATION_GUIDE.md` for detailed instructions on integrating the components with the existing Voters Speak site.
+
+## Components
+
+### NewsSources
+
+A responsive component that displays news source logos in a grid (desktop) or carousel (mobile). Each logo links to the politics section of the respective news source.
+
+### ConcernCard
+
+A card component that displays information about a political concern and provides a button to contact relevant officials.
+
+### ConcernsPage
+
+The main page component that displays the "Your Concerns" feature. It loads concern data and renders the NewsSources and ConcernCard components.
+
+## Data Structure
+
+The components use the following data files:
+
+- `src/data/concernsData.json` - Data for the concerns and news sources
+- `src/data/officialMapping.json` - Mapping between concerns and officials
+- `src/data/concernCategories.schema.json` - JSON schema for the concerns data
+
+## Demo
+
+Open `demo.html` in your browser to see an interactive demo of the components.
+
+## License
+
+MIT

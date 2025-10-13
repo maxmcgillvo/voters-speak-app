@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Concerns Feature Preview</title>
+    <link rel="stylesheet" href="public/assets/images/news-logos/logos.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .content {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 1.5rem;
+        }
+
+        .concern-card {
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .concern-card h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+
+        .concern-card h4 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: #666;
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .concern-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #444;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .contact-button:hover {
+            background-color: #004999;
+        }
+
+        .news-sources {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .news-source {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            padding: 1rem;
+            border-radius: 8px;
+            background-color: #f8f8f8;
+            transition: all 0.2s ease-in-out;
+            height: 100px;
+        }
+
+        .news-source:hover {
+            background-color: #eaeaea;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .news-logo-container {
+            width: 100%;
+            height: 60px;
+            margin-bottom: 0.5rem;
+        }
+
+        .concerns-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eaeaea;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1024px) {
+            .concerns-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .concerns-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>YOUR CONCERNS</h1>
+            <p>Your voice matters in our democracy</p>
+        </header>
+
+        <section class="content">
+            <h2 class="section-title">WHAT'S HAPPENING RIGHT NOW</h2>
+            <p class="section-subtitle">Stay informed with coverage from multiple perspectives</p>
+            
+            <div class="news-sources">
+                <a href="https://www.cnn.com/politics" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-cnn">CNN</div>
+                    </div>
+                </a>
+                <a href="https://www.foxnews.com/politics" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-foxnews">FOX NEWS</div>
+                    </div>
+                </a>
+                <a href="https://www.nbcnews.com/politics" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-nbcnews">NBC NEWS</div>
+                    </div>
+                </a>
+                <a href="https://abcnews.go.com/Politics" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-abcnews">ABC NEWS</div>
+                    </div>
+                </a>
+                <a href="https://www.bbc.com/news/world/us_and_canada" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-bbc">BBC</div>
+                    </div>
+                </a>
+                <a href="https://www.reuters.com/world/us/" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-reuters">REUTERS</div>
+                    </div>
+                </a>
+                <a href="https://www.nytimes.com/section/politics" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-nytimes">NEW YORK TIMES</div>
+                    </div>
+                </a>
+                <a href="https://www.washingtonpost.com/politics/" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-washingtonpost">WASHINGTON POST</div>
+                    </div>
+                </a>
+                <a href="https://www.bloomberg.com/politics" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-bloomberg">BLOOMBERG</div>
+                    </div>
+                </a>
+                <a href="https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtVnVHZ0pWVXlnQVAB" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-googlenews">GOOGLE NEWS</div>
+                    </div>
+                </a>
+                <a href="https://www.cnbc.com/politics/" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-cnbc">CNBC</div>
+                    </div>
+                </a>
+                <a href="https://www.npr.org/sections/politics/" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-npr">NPR</div>
+                    </div>
+                </a>
+                <a href="https://www.msn.com/en-us/news/politics" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-msn">MSN</div>
+                    </div>
+                </a>
+                <a href="https://www.politico.com/" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-politico">POLITICO</div>
+                    </div>
+                </a>
+                <a href="https://substack.com/discover/politics" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-substack">SUBSTACK</div>
+                    </div>
+                </a>
+                <a href="https://news.yahoo.com/politics/" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-yahoonews">YAHOO NEWS</div>
+                    </div>
+                </a>
+                <a href="https://www.usatoday.com/news/politics/" class="news-source" target="_blank">
+                    <div class="news-logo-container">
+                        <div class="news-logo logo-usatoday">USA TODAY</div>
+                    </div>
+                </a>
+            </div>
+
+            <div class="concerns-grid">
+                <div class="concern-card">
+                    <h3>Epstein Files</h3>
+                    <h4>Should they be released?</h4>
+                    <p>The debate around transparency vs. privacy continues as courts consider releasing sealed documents related to Jeffrey Epstein. These files may contain information about high-profile individuals and raise questions about public interest versus privacy rights.</p>
+                    <button class="contact-button">CONTACT OFFICIALS</button>
+                </div>
+
+                <div class="concern-card">
+                    <h3>First Amendment</h3>
+                    <h4>Speak up, Be heard</h4>
+                    <p>Current debates around free speech, assembly rights, and government transparency continue across the country. Recent court decisions and legislative proposals have raised questions about the boundaries of protected speech and assembly.</p>
+                    <button class="contact-button">CONTACT OFFICIALS</button>
+                </div>
+
+                <div class="concern-card">
+                    <h3>Economic Issues</h3>
+                    <h4>Inflation, Housing, Jobs</h4>
+                    <p>From housing affordability to inflation concerns, economic issues affect every American. Recent data shows mixed signals on inflation while housing costs continue to challenge many households across the country.</p>
+                    <button class="contact-button">CONTACT OFFICIALS</button>
+                </div>
+
+                <div class="concern-card">
+                    <h3>Healthcare Access</h3>
+                    <h4>Costs, Coverage, Care</h4>
+                    <p>Rising prescription costs, Medicare expansion, and mental health services remain critical concerns for Americans. Recent legislative efforts have focused on drug pricing transparency and expanding coverage for mental health treatment.</p>
+                    <button class="contact-button">CONTACT OFFICIALS</button>
+                </div>
+
+                <div class="concern-card">
+                    <h3>Immigration & Border</h3>
+                    <h4>Policy & Enforcement</h4>
+                    <p>Border security, immigration reform, and sanctuary city debates continue across the country. Recent executive orders have modified asylum procedures while state governors have implemented their own border policies.</p>
+                    <button class="contact-button">CONTACT OFFICIALS</button>
+                </div>
+
+                <div class="concern-card" style="border: 2px solid #0066cc; position: relative;">
+                    <div style="position: absolute; top: -10px; right: 20px; background-color: #0066cc; color: white; font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.75rem; border-radius: 12px; text-transform: uppercase;">
+                        Current Issue
+                    </div>
+                    <h3>Supreme Court Term</h3>
+                    <h4>Key Cases to Watch</h4>
+                    <p>The Supreme Court's new term begins in October with several high-profile cases on the docket. These cases could have significant implications for voting rights, regulatory authority, and privacy protections.</p>
+                    <button class="contact-button">CONTACT OFFICIALS</button>
+                </div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>Last updated: September 25, 2025</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add click event listeners to the contact buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const contactButtons = document.querySelectorAll('.contact-button');
+            contactButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const concernTitle = this.parentElement.querySelector('h3').textContent;
+                    alert(`In production, this would navigate to the officials directory with filters for: ${concernTitle}`);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Concerns Feature Demo - Voters Speak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            border-radius: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .demo-section {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .demo-section h2 {
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #eaeaea;
+        }
+
+        .demo-section p {
+            margin-bottom: 1.5rem;
+        }
+
+        .component-demo {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border: 1px solid #eaeaea;
+            border-radius: 8px;
+        }
+
+        .controls {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .controls label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .controls input[type="checkbox"] {
+            margin-right: 0.5rem;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            color: #6c757d;
+            font-size: 0.9rem;
+        }
+
+        .button {
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .button:hover, .button:focus {
+            background-color: #004999;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>Your Concerns Feature Demo</h1>
+            <p>Voters Speak Application</p>
+        </header>
+
+        <section class="demo-section">
+            <h2>About This Demo</h2>
+            <p>
+                This demo showcases the "Your Concerns" feature for the Voters Speak application. 
+                The feature connects current political issues to relevant officials, helping users 
+                understand who to contact about specific concerns they care about.
+            </p>
+            <p>
+                You can interact with the components below to see how they work. The "Contact Officials" 
+                button would normally navigate to the officials directory with filters applied, but in 
+                this demo, it will just show an alert with the concern ID and relevant officials.
+            </p>
+        </section>
+
+        <section class="demo-section">
+            <h2>Full Page Demo</h2>
+            <p>
+                This is the complete "Your Concerns" page, including the news sources section and 
+                all concern cards.
+            </p>
+            <div class="controls">
+                <label>
+                    <input type="checkbox" id="mobile-toggle"> 
+                    Simulate Mobile View (News Sources Carousel)
+                </label>
+            </div>
+            <div class="component-demo">
+                <div id="concerns-page-demo"></div>
+            </div>
+        </section>
+
+        <section class="demo-section">
+            <h2>Individual Components</h2>
+            
+            <h3>News Sources Component</h3>
+            <p>
+                This component displays news source logos in a grid (desktop) or carousel (mobile).
+                Each logo links to the politics section of the respective news source.
+            </p>
+            <div class="controls">
+                <label>
+                    <input type="checkbox" id="news-mobile-toggle"> 
+                    Show Mobile Carousel View
+                </label>
+            </div>
+            <div class="component-demo">
+                <div id="news-sources-demo"></div>
+            </div>
+
+            <h3>Concern Card Component</h3>
+            <p>
+                This component displays information about a political concern and provides a button 
+                to contact relevant officials.
+            </p>
+            <div class="controls">
+                <label>
+                    <input type="checkbox" id="rotating-toggle"> 
+                    Show as Rotating Concern
+                </label>
+            </div>
+            <div class="component-demo">
+                <div id="concern-card-demo"></div>
+            </div>
+        </section>
+
+        <footer class="footer">
+            <p>&copy; 2025 Voters Speak. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Load React and React DOM -->
+    <script src="https://unpkg.com/react@18/umd/react.development.min.js"></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.min.js"></script>
+    <script src="https://unpkg.com/react-router-dom@6/umd/react-router-dom.development.min.js"></script>
+    
+    <!-- Load our bundled React app -->
+    <script src="dist/voters-speak-your-concerns.umd.js"></script>
+    
+    <script>
+        // Mock data for the demo
+        const mockConcern = {
+            id: "epstein-files",
+            title: "Epstein Files",
+            subtitle: "Should they be released?",
+            description: "The debate around transparency vs. privacy continues as courts consider releasing sealed documents related to Jeffrey Epstein. These files may contain information about high-profile individuals and raise questions about public interest versus privacy rights.",
+            iconName: "balance-scale",
+            relevantOfficials: [
+                "attorney-general",
+                "senate-judiciary-chair",
+                "house-oversight-chair"
+            ],
+            isActive: true,
+            isRotating: false,
+            dateAdded: "2025-09-25",
+            lastUpdated: "2025-09-25",
+            relatedLinks: [
+                {
+                    title: "FOIA Request Information",
+                    url: "https://www.foia.gov/how-to.html",
+                    source: "Official"
+                }
+            ],
+            order: 1
+        };
+
+        const mockNewsSources = [
+            {
+                name: "CNN",
+                url: "https://www.cnn.com/politics",
+                logoUrl: "https://cdn.cnn.com/cnn/.e/img/3.0/global/misc/cnn-logo.png",
+                isActive: true,
+                order: 1
+            },
+            {
+                name: "FOX News",
+                url: "https://www.foxnews.com/politics",
+                logoUrl: "https://static.foxnews.com/static/orion/styles/img/fox-news/logos/fox-news-logo.svg",
+                isActive: true,
+                order: 2
+            },
+            {
+                name: "NPR",
+                url: "https://www.npr.org/sections/politics/",
+                logoUrl: "https://media.npr.org/chrome/npr-logo.jpg",
+                isActive: true,
+                order: 3
+               },
+               {
+                   name: "GITHUB",
+                   url: "https://github.com/topics/civic-tech",
+                   logoUrl: "/public/assets/images/news-logos/github/github-logo.png",
+                   isActive: true,
+                   order: 4
+            }
+        ];
+
+        // Initialize the demo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mock navigation function
+            window.navigateToOfficials = function(concernId, relevantOfficials) {
+                console.log('Navigating to officials with:', { concernId, relevantOfficials });
+                alert('In production, this would navigate to the officials directory with filters for: ' + concernId);
+            };
+
+            // Render the full page demo
+            window.renderYourConcerns('concerns-page-demo');
+
+            // Get the exported components
+            const { NewsSources, ConcernCard } = window.VotersSpeakConcerns;
+
+            // Create root for news sources demo
+            const newsRoot = ReactDOM.createRoot(document.getElementById('news-sources-demo'));
+            
+            // Create root for concern card demo
+            const cardRoot = ReactDOM.createRoot(document.getElementById('concern-card-demo'));
+            
+            // Initial render
+            newsRoot.render(
+                React.createElement(NewsSources, { 
+                    sources: mockNewsSources,
+                    isMobile: false
+                })
+            );
+            
+            cardRoot.render(
+                React.createElement(ConcernCard, { 
+                    concern: mockConcern,
+                    onContactClick: window.navigateToOfficials,
+                    isRotating: false
+                })
+            );
+            
+            // Handle mobile toggle for news sources
+            document.getElementById('news-mobile-toggle').addEventListener('change', function(e) {
+                newsRoot.render(
+                    React.createElement(NewsSources, { 
+                        sources: mockNewsSources,
+                        isMobile: e.target.checked
+                    })
+                );
+            });
+            
+            // Handle rotating toggle for concern card
+            document.getElementById('rotating-toggle').addEventListener('change', function(e) {
+                const updatedConcern = {...mockConcern, isRotating: e.target.checked};
+                cardRoot.render(
+                    React.createElement(ConcernCard, { 
+                        concern: updatedConcern,
+                        onContactClick: window.navigateToOfficials,
+                        isRotating: e.target.checked
+                    })
+                );
+            });
+            
+            // Handle mobile toggle for full page
+            document.getElementById('mobile-toggle').addEventListener('change', function(e) {
+                // We need to re-render the full page
+                // In a real app, we would use state management
+                // For this demo, we'll just reload with a query parameter
+                const url = new URL(window.location.href);
+                url.searchParams.set('mobile', e.target.checked);
+                window.location.href = url.toString();
+            });
+            
+            // Check if mobile parameter is set
+            const urlParams = new URLSearchParams(window.location.search);
+            const isMobile = urlParams.get('mobile') === 'true';
+            if (isMobile) {
+                document.getElementById('mobile-toggle').checked = true;
+                // We would update the state here in a real app
+            }
+        });
+    </script>
+</body>
+</html>

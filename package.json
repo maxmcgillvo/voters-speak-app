@@ -1,27 +1,34 @@
 {
-  "name": "voters-speak",
+  "name": "voters-speak-your-concerns",
   "version": "1.0.0",
-  "description": "Government contact directory - connect with your representatives",
-  "main": "index.html",
+  "description": "Your Concerns feature for the Voters Speak application",
+  "main": "src/index.js",
   "scripts": {
-    "start": "python3 -m http.server 3000",
-    "serve": "python3 -m http.server 3000"
+    "start": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest run"
   },
   "keywords": [
-    "government",
-    "contact-directory",
-    "representatives",
-    "senators",
+    "voters-speak",
+    "react",
+    "political-concerns",
     "civic-engagement"
   ],
   "author": "Voters Speak Team",
   "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/yourusername/voters-speak.git"
+  "dependencies": {
+    "ajv": "^8.12.0",
+    "ajv-formats": "^2.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.16.0"
   },
-  "homepage": "https://yourusername.github.io/voters-speak",
-  "engines": {
-    "node": ">=14.0.0"
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.1.3",
+    "@testing-library/react": "^14.0.0",
+    "@vitejs/plugin-react": "^4.0.4",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.4"
   }
 }

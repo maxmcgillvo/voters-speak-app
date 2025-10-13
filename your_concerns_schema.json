@@ -1,0 +1,155 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Your Concerns Schema",
+  "description": "Schema for the Your Concerns feature categories",
+  "type": "object",
+  "properties": {
+    "concerns": {
+      "type": "array",
+      "description": "List of concern categories",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description", "relevantOfficials", "isActive"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the concern"
+          },
+          "title": {
+            "type": "string",
+            "description": "Short, attention-grabbing title for the concern"
+          },
+          "subtitle": {
+            "type": "string",
+            "description": "Optional subtitle or tagline"
+          },
+          "description": {
+            "type": "string",
+            "description": "Neutral description of the concern (2-3 sentences)"
+          },
+          "iconName": {
+            "type": "string",
+            "description": "Name of the icon to use for this concern"
+          },
+          "relevantOfficials": {
+            "type": "array",
+            "description": "List of official IDs relevant to this concern",
+            "items": {
+              "type": "string"
+            }
+          },
+          "relevantCommittees": {
+            "type": "array",
+            "description": "List of congressional committees relevant to this concern",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Name of the committee"
+                },
+                "chamber": {
+                  "type": "string",
+                  "enum": ["house", "senate", "joint"],
+                  "description": "Which chamber the committee belongs to"
+                }
+              }
+            }
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Whether this concern is currently active"
+          },
+          "isRotating": {
+            "type": "boolean",
+            "description": "Whether this is the rotating concern slot",
+            "default": false
+          },
+          "dateAdded": {
+            "type": "string",
+            "format": "date",
+            "description": "Date when this concern was added"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date",
+            "description": "Date when this concern was last updated"
+          },
+          "relatedLinks": {
+            "type": "array",
+            "description": "Optional related links for more information",
+            "items": {
+              "type": "object",
+              "properties": {
+                "title": {
+                  "type": "string",
+                  "description": "Title of the link"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri",
+                  "description": "URL of the link"
+                },
+                "source": {
+                  "type": "string",
+                  "description": "Source of the link (e.g., 'Official', 'News')"
+                }
+              }
+            }
+          },
+          "order": {
+            "type": "integer",
+            "description": "Display order (lower numbers appear first)"
+          }
+        }
+      }
+    },
+    "newsSources": {
+      "type": "array",
+      "description": "List of news sources",
+      "items": {
+        "type": "object",
+        "required": ["name", "url", "logoUrl"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "Name of the news source"
+          },
+          "url": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to the politics section of the news source"
+          },
+          "logoUrl": {
+            "type": "string",
+            "description": "Path to the logo image"
+          },
+          "isActive": {
+            "type": "boolean",
+            "description": "Whether this news source is currently active",
+            "default": true
+          },
+          "order": {
+            "type": "integer",
+            "description": "Display order (lower numbers appear first)"
+          }
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Metadata about the concerns feature",
+      "properties": {
+        "lastUpdated": {
+          "type": "string",
+          "format": "date-time",
+          "description": "When the concerns were last updated"
+        },
+        "version": {
+          "type": "string",
+          "description": "Version of the concerns data"
+        }
+      }
+    }
+  }
+}

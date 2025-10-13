@@ -1,25 +1,27 @@
 {
-  "name": "voters-speak-government-directory",
-  "version": "3.0.0",
-  "description": "Complete government contact directory with 549 verified officials",
+  "name": "voters-speak",
+  "version": "1.0.0",
+  "description": "Government contact directory - connect with your representatives",
   "main": "index.html",
   "scripts": {
-    "start": "python3 -m http.server 3000"
+    "start": "python3 -m http.server 3000",
+    "serve": "python3 -m http.server 3000"
   },
   "keywords": [
     "government",
     "contact-directory",
     "representatives",
     "senators",
-    "supreme-court",
-    "political",
     "civic-engagement"
   ],
   "author": "Voters Speak Team",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/maxmcgillvo/voters-speak-app.git"
+    "url": "https://github.com/yourusername/voters-speak.git"
   },
-  "homepage": "https://voters-speak-app.netlify.app"
+  "homepage": "https://yourusername.github.io/voters-speak",
+  "engines": {
+    "node": ">=14.0.0"
+  }
 }

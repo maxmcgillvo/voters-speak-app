@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2c3e50">
+    <title>Voters Speak - Your Voice. Your Representatives. One Place.</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Landing Page Styles */
+        .landing-page {
+            display: block;
+        }
+
+        /* Header with Logo */
+        .header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: #e74c3c;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+
+        .logo-icon::after {
+            content: "✓";
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+        }
+
+        .logo h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .mission-statement {
+            max-width: 600px;
+            margin: 0 auto 40px auto;
+            padding: 0 20px;
+        }
+
+        .mission-statement p {
+            font-size: 1.1rem;
+            color: #555;
+            line-height: 1.7;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        /* Clean Navigation Styles */
+        .clean-header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px 0;
+        }
+
+        .clean-header a:hover .logo h1,
+        .header a:hover .logo h1 {
+            color: #7c3aed;
+            transition: color 0.3s ease;
+        }
+
+        .clean-header .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 0;
+        }
+
+        .clean-header .logo h1 {
+            font-size: 2rem;
+            margin: 0;
+        }
+
+        .clean-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 40px;
+            background: #e8f4f8;
+            border-radius: 25px;
+            padding: 8px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+        }
+
+        .clean-nav-btn {
+            background: transparent;
+            color: #666;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .clean-nav-btn:hover {
+            background: rgba(255, 255, 255, 0.5);
+            color: #2c3e50;
+        }
+
+        .clean-nav-btn.active {
+            background: #2c3e50;
+            color: white;
+            box-shadow: 0 2px 8px rgba(44, 62, 80, 0.3);
+        }
+
+        /* Issues Section Styles */
+        .issues-content {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .issues-content p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .issues-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .issue-card {
+            background: #f8f9fa;
+            padding: 30px 20px;
+            border-radius: 10px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .issue-card:hover {
+            border-color: #3498db;
+            transform: translateY(-3px);
+        }
+
+        .issue-card h3 {
+            font-size: 1.3rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .issue-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* App Download Section Styles */
+        .app-download-section {
+            text-align: center;
+            margin-bottom: 60px;
+            padding: 40px 20px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 60px;
+        }
+
+        .app-download-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .app-download-section p {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        .download-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px 20px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            gap: 15px;
+        }
+
+        .download-btn:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(44, 62, 80, 0.3);
+        }
+
+        .download-icon {
+            font-size: 2rem;
+        }
+
+        .download-text {
+            text-align: left;
+        }
+
+        .download-text small {
+            display: block;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .download-text strong {
+            display: block;
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+
+        /* Main Navigation Section Styles */
+        .main-navigation-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .main-navigation-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .large-navigation {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .large-nav-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 25px 30px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            gap: 15px;
+        }
+
+        .large-nav-btn:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3);
+        }
+
+        .large-nav-btn.active {
+            background: #34495e;
+            box-shadow: 0 8px 25px rgba(52, 73, 94, 0.3);
+        }
+
+        .nav-icon {
+            font-size: 1.5rem;
+        }
+
+        /* Elected Officials Section */
+        .officials-section {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .officials-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 20px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            line-height: 1;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .stat-sublabel {
+            font-size: 0.9rem;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        /* Get Involved Section */
+        .get-involved {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .get-involved h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 40px;
+        }
+
+        .action-buttons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px 30px;
+            background: #2c3e50;
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            background: #34495e;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3);
+        }
+
+        .action-btn.secondary {
+            background: white;
+            color: #2c3e50;
+            border: 2px solid #2c3e50;
+        }
+
+        .action-btn.secondary:hover {
+            background: #2c3e50;
+            color: white;
+        }
+
+        .btn-icon {
+            margin-right: 12px;
+            font-size: 1.2rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #2c3e50;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px 15px;
+            }
+
+            .logo h1 {
+                font-size: 2rem;
+            }
+
+            .stat-number {
+                font-size: 3rem;
+            }
+
+            .officials-title,
+            .get-involved h2 {
+                font-size: 1.5rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+
+        /* Hidden sections for functionality */
+        .main-content {
+            display: none;
+        }
+
+        .show-content .main-content {
+            display: block;
+        }
+
+        .show-content .landing-page {
+            display: none;
+        }
+
+        /* Original styles for main content (preserved) */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: #3498db;
+            transform: translateY(-5px);
+        }
+
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .stat-card .label {
+            font-size: 1rem;
+            color: #666;
+            font-weight: 500;
+        }
+
+        .quick-actions {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .quick-action {
+            background: #3498db;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .quick-action:hover {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+
+        .quick-action:nth-child(2) {
+            background: #3498db;
+        }
+
+        .quick-action:nth-child(2):hover {
+            background: #2980b9;
+        }
+
+        .quick-action:nth-child(3) {
+            background: #3498db;
+        }
+
+        .quick-action:nth-child(3):hover {
+            background: #2980b9;
+        }
+
+        .quick-action:nth-child(4) {
+            background: #3498db;
+        }
+
+        .quick-action:nth-child(4):hover {
+            background: #2980b9;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .nav-btn {
+            background: #34495e;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover,
+        .nav-btn.active {
+            background: #2c3e50;
+            transform: translateY(-2px);
+        }
+
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .search-filters {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .search-input,
+        .filter-select {
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .search-input:focus,
+        .filter-select:focus {
+            outline: none;
+            border-color: #3498db;
+        }
+
+        .officials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .official-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .official-card:hover {
+            border-color: #3498db;
+            transform: translateY(-3px);
+        }
+
+        .official-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+
+        .official-party {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .official-party.republican {
+            color: #dc2626;
+        }
+
+        .official-party.democratic {
+            color: #3498db;
+        }
+
+        .official-party.independent {
+            color: #3498db;
+        }
+        
+        .official-position {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .official-level {
+            font-size: 0.8rem;
+            color: #888;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Executive Branch specific styling */
+        .official-card[data-level="President"] {
+            border-left: 4px solid #e74c3c;
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+        }
+        
+        .official-card[data-level="Vice President"] {
+            border-left: 4px solid #3498db;
+            background: linear-gradient(135deg, #fff 0%, #f0f8ff 100%);
+        }
+        
+        .official-card[data-level="Senior Staff"] {
+            border-left: 4px solid #27ae60;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .contact-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .contact-link:hover {
+            color: #2980b9;
+        }
+
+        /* Executive Branch email links - Red for Republican affiliation */
+        #executive .contact-link[href^="mailto:"] {
+            color: #dc2626;
+        }
+
+        #executive .contact-link[href^="mailto:"]:hover {
+            color: #b91c1c;
+        }
+
+        .social-links, .social-media-links {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .social-link {
+            display: inline-block;
+            padding: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+
+        .social-link:hover {
+            transform: scale(1.2);
+        }
+
+        @media (max-width: 768px) {
+            .navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .nav-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .search-filters {
+                grid-template-columns: 1fr;
+            }
+
+            .officials-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+    <script src="js/social-media-component.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Landing Page -->
+        <div class="landing-page">
+            <div class="header">
+                <a href="#" onclick="location.reload(); return false;" style="text-decoration: none; color: inherit; cursor: pointer;">
+                    <div class="logo">
+                        <div class="logo-icon"></div>
+                        <h1>Voters Speak</h1>
+                    </div>
+                    <p class="tagline">Your Voice. Your Representatives. One Place.</p>
+                    <div class="mission-statement">
+                        <p>We believe every citizen deserves direct access to their elected officials. Our platform connects you with your representatives across all branches of government, making it easier than ever to make your voice heard in democracy.</p>
+                    </div>
+                </a>
+            </div>
+
+            <div class="main-navigation-section">
+                <h2>Your Government</h2>
+                <div class="large-navigation">
+                    <button class="large-nav-btn active" onclick="showMainContent(); showSection('executive')">
+                        <span class="nav-icon">🏛️</span>
+                        Executive
+                    </button>
+                    <button class="large-nav-btn" onclick="showMainContent(); showSection('senate')">
+                        <span class="nav-icon">🏛️</span>
+                        Senate
+                    </button>
+                    <button class="large-nav-btn" onclick="showMainContent(); showSection('house')">
+                        <span class="nav-icon">🏛️</span>
+                        House
+                    </button>
+                    <button class="large-nav-btn" onclick="showMainContent(); showSection('judicial')">
+                        <span class="nav-icon">⚖️</span>
+                        Judiciary
+                    </button>
+                </div>
+            </div>
+
+            <div class="app-download-section">
+                <h2>Get the Voters Speak App</h2>
+                <p>Download directly from our website - coming soon to app stores!</p>
+                <div class="download-buttons">
+                    <a href="#" class="download-btn web">
+                        <span class="download-icon">🌐</span>
+                        <div class="download-text">
+                            <small>Download for</small>
+                            <strong>Web App</strong>
+                        </div>
+                    </a>
+                    <a href="#" class="download-btn desktop">
+                        <span class="download-icon">💻</span>
+                        <div class="download-text">
+                            <small>Download for</small>
+                            <strong>Desktop</strong>
+                        </div>
+                    </a>
+                    <a href="#" class="download-btn mobile">
+                        <span class="download-icon">📱</span>
+                        <div class="download-text">
+                            <small>Download for</small>
+                            <strong>Mobile</strong>
+                        </div>
+                    </a>
+                </div>
+                <p style="font-size: 0.9rem; color: #888; margin-top: 20px;">
+                    App Store and Google Play versions coming soon after validation process
+                </p>
+            </div>
+                <div class="footer-links">
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms</a>
+                    <a href="about.html">About</a>
+                </div>
+                <p>© 2025 Voters Speak</p>
+            </div>
+        </div>
+
+        <!-- Main Content (Clean Design) -->
+        <div class="main-content">
+            <div class="clean-header">
+                <a href="#" onclick="location.reload(); return false;" style="text-decoration: none; color: inherit; cursor: pointer;">
+                    <div class="logo">
+                        <div class="logo-icon"></div>
+                        <h1>Voters Speak</h1>
+                    </div>
+                    <p class="tagline">Your Voice. Your Representatives. One Place.</p>
+                </a>
+            </div>
+
+            <div class="clean-navigation">
+                <button class="clean-nav-btn active" onclick="showSection('executive')">Executive Branch</button>
+                <button class="clean-nav-btn" onclick="showSection('senate')">U.S. Senate</button>
+                <button class="clean-nav-btn" onclick="showSection('house')">House</button>
+                <button class="clean-nav-btn" onclick="showSection('judicial')">Supreme Court</button>
+                <button class="clean-nav-btn" onclick="window.location.href='media.html'">Today's Issues</button>
+            </div>
+
+            <div id="senate-section" class="content-section" style="display: none;">
+                <h2 class="section-title">U.S. Senate</h2>
+                <div class="search-filters">
+                    <input type="text" id="senate-search" class="search-input" placeholder="Enter name..." onkeyup="filterSenators()">
+                    <select id="senate-state" class="filter-select" onchange="filterSenators()">
+                        <option value="">All States</option>
+                    </select>
+                    <select id="senate-party" class="filter-select" onchange="filterSenators()">
+                        <option value="">All Parties</option>
+                        <option value="Republican">Republican</option>
+                        <option value="Democratic">Democratic</option>
+                        <option value="Independent">Independent</option>
+                    </select>
+                </div>
+                <div id="senators-grid" class="officials-grid"></div>
+            </div>
+
+            <div id="house-section" class="content-section" style="display: none;">
+                <h2 class="section-title">U.S. House of Representatives</h2>
+                <div class="search-filters">
+                    <input type="text" id="house-search" class="search-input" placeholder="Enter name..." onkeyup="filterHouse()">
+                    <select id="house-state" class="filter-select" onchange="filterHouse()">
+                        <option value="">All States</option>
+                    </select>
+                    <select id="house-party" class="filter-select" onchange="filterHouse()">
+                        <option value="">All Parties</option>
+                        <option value="Republican">Republican</option>
+                        <option value="Democratic">Democratic</option>
+                        <option value="Independent">Independent</option>
+                    </select>
+                </div>
+                <div id="house-grid" class="officials-grid"></div>
+            </div>
+
+            <div id="executive-section" class="content-section" style="display: block;">
+                <h2 class="section-title">Executive Branch</h2>
+                <div id="executive-grid" class="officials-grid"></div>
+            </div>
+
+            <div id="judicial-section" class="content-section" style="display: none;">
+                <h2 class="section-title">Supreme Court</h2>
+                <div id="judicial-grid" class="officials-grid"></div>
+            </div>
+
+            <div id="issues-section" class="content-section" style="display: none;">
+                <h2 class="section-title">Today's Issues</h2>
+                <div class="issues-content">
+                    <p>Stay informed about the latest political developments and issues affecting our nation.</p>
+                    <div class="issues-grid">
+                        <div class="issue-card" onclick="window.location.href='media.html'" style="cursor: pointer;">
+                            <h3>Legislative Updates</h3>
+                            <p>Track current bills and legislation moving through Congress.</p>
+                        </div>
+                        <div class="issue-card" onclick="window.location.href='media.html'" style="cursor: pointer;">
+                            <h3>Policy Changes</h3>
+                            <p>Stay updated on new policies and regulatory changes.</p>
+                        </div>
+                        <div class="issue-card" onclick="window.location.href='media.html'" style="cursor: pointer;">
+                            <h3>Public Hearings</h3>
+                            <p>Information about upcoming congressional hearings and testimonies.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showMainContent() {
+            document.body.classList.add('show-content');
+        }
+
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(s => s.style.display = 'none');
+            
+            // Remove active class from all buttons
+            document.querySelectorAll('.clean-nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected section
+            const sectionElement = document.getElementById(section + '-section');
+            if (sectionElement) {
+                sectionElement.style.display = 'block';
+            }
+            
+            // Add active class to clicked button
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            // Load data for the section
+            if (section === 'senate') {
+                loadSenators();
+            } else if (section === 'house') loadHouse();
+            else if (section === 'executive') loadExecutive();
+            else if (section === 'judicial') loadJudicial();
+            else if (section === 'issues') {
+                // Issues section is static, no data loading needed
+            }
+        }
+
+        // Load and display senators
+        function loadSenators() {
+            fetch('senate_data.js')
+                .then(response => response.text())
+                .then(data => {
+                    eval(data);
+                    displaySenators(senateData);
+                    populateStateFilter('senate-state', senateData);
+                })
+                .catch(error => {
+                    console.error('Error loading senate data:', error);
+                });
+        }
+
+        function displaySenators(senators) {
+            const grid = document.getElementById('senators-grid');
+            grid.innerHTML = senators.map(senator => `
+                <div class="official-card">
+                    <div class="official-name">${senator.name}</div>
+                    <div class="official-party ${senator.party.toLowerCase()}">${senator.party} - ${senator.state}</div>
+                    <div class="contact-info">
+                        <a href="mailto:${senator.email}" class="contact-link">${senator.email}</a>
+                        <a href="tel:${senator.phone}" class="contact-link" title="Click to call ${senator.phone}">${senator.phone}</a>
+                        <a href="${senator.website}" class="contact-link" target="_blank">Official Website</a>
+                    </div>
+                    ${senator.socialMedia ? `
+                        <div class="social-media-links">
+                            ${senator.socialMedia.x ? `<a href="https://x.com/${senator.socialMedia.x}" class="social-link x" target="_blank" title="Follow on X">𝕏</a>` : ''}
+                            ${senator.socialMedia.facebook ? `<a href="https://facebook.com/${senator.socialMedia.facebook}" class="social-link facebook" target="_blank" title="Follow on Facebook">📘</a>` : ''}
+                            ${senator.socialMedia.instagram ? `<a href="https://instagram.com/${senator.socialMedia.instagram}" class="social-link instagram" target="_blank" title="Follow on Instagram">📷</a>` : ''}
+                            ${senator.socialMedia.truth ? `<a href="https://truthsocial.com/@${senator.socialMedia.truth}" class="social-link truth" target="_blank" title="Follow on Truth Social">🇺🇸</a>` : ''}
+                            ${senator.socialMedia.bluesky ? `<a href="https://bsky.app/profile/${senator.socialMedia.bluesky}" class="social-link bluesky" target="_blank" title="Follow on Bluesky">🦋</a>` : ''}
+                            ${senator.socialMedia.linkedin ? `<a href="https://linkedin.com/in/${senator.socialMedia.linkedin}" class="social-link linkedin" target="_blank" title="Follow on LinkedIn">💼</a>` : ''}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        function filterSenators() {
+            const searchTerm = document.getElementById('senate-search').value.toLowerCase();
+            const stateFilter = document.getElementById('senate-state').value;
+            const partyFilter = document.getElementById('senate-party').value;
+            
+            fetch('senate_data.js')
+                .then(response => response.text())
+                .then(data => {
+                    eval(data);
+                    const filtered = senateData.filter(senator => {
+                        const matchesSearch = senator.name.toLowerCase().includes(searchTerm);
+                        const matchesState = !stateFilter || senator.state === stateFilter;
+                        const matchesParty = !partyFilter || senator.party === partyFilter;
+                        return matchesSearch && matchesState && matchesParty;
+                    });
+                    displaySenators(filtered);
+                });
+        }
+
+        function populateStateFilter(selectId, data) {
+            const select = document.getElementById(selectId);
+            const states = [...new Set(data.map(item => item.state))].sort();
+            select.innerHTML = '<option value="">All States</option>' + 
+                states.map(state => `<option value="${state}">${state}</option>`).join('');
+        }
+
+        // Similar functions for House, Executive, and Judicial
+        function loadHouse() {
+            console.log('loadHouse called');
+            fetch('house_data.js')
+                .then(response => {
+                    console.log('House data fetch response:', response);
+                    return response.text();
+                })
+                .then(data => {
+                    console.log('House data received, length:', data.length);
+                    eval(data);
+                    console.log('houseData defined:', typeof houseData !== 'undefined');
+                    console.log('houseData length:', houseData ? houseData.length : 'undefined');
+                    displayHouse(houseData);
+                    populateStateFilter('house-state', houseData);
+                })
+                .catch(error => {
+                    console.error('Error loading house data:', error);
+                    document.getElementById('house-grid').innerHTML = '<p style="color:red;">Error loading House data: ' + error.message + '</p>';
+                });
+        }
+
+        function displayHouse(representatives) {
+               const grid = document.getElementById('house-grid');
+               grid.innerHTML = representatives.map(rep => `
+                   <div class="official-card">
+                       <div class="official-name">${rep.name}</div>
+                       <div class="official-party ${rep.party.toLowerCase()}">${rep.party} - ${rep.state} ${rep.district}</div>
+                       <div class="contact-info">
+                           <a href="mailto:${rep.email}" class="contact-link">${rep.email}</a>
+                           <a href="tel:${rep.phone}" class="contact-link" title="Click to call ${rep.phone}">${rep.phone}</a>
+                           <a href="${rep.website}" class="contact-link" target="_blank">Official Website</a>
+                       </div>
+                       ${rep.socialMedia ? `
+                           <div class="social-media">
+                               ${rep.socialMedia.x ? `<a href="${rep.socialMedia.x}" class="social-link x" target="_blank" title="Follow on X">𝕏</a>` : ""}
+                               ${rep.socialMedia.facebook ? `<a href="${rep.socialMedia.facebook}" class="social-link facebook" target="_blank" title="Follow on Facebook">📘</a>` : ""}
+                               ${rep.socialMedia.instagram ? `<a href="${rep.socialMedia.instagram}" class="social-link instagram" target="_blank" title="Follow on Instagram">📷</a>` : ""}
+                               ${rep.socialMedia.truth ? `<a href="https://truthsocial.com/@${rep.socialMedia.truth}" class="social-link truth" target="_blank" title="Follow on Truth Social">🐦</a>` : ""}
+                               ${rep.socialMedia.bluesky ? `<a href="https://bsky.app/profile/${rep.socialMedia.bluesky}" class="social-link bluesky" target="_blank" title="Follow on Bluesky">🦋</a>` : ""}
+                               ${rep.socialMedia.linkedin ? `<a href="https://linkedin.com/in/${rep.socialMedia.linkedin}" class="social-link linkedin" target="_blank" title="Follow on LinkedIn">💼</a>` : ""}
+                           </div>
+                       ` : ""}
+                   </div>
+               `).join('');
+           }
+
+           function filterHouse() {
+            const searchTerm = document.getElementById('house-search').value.toLowerCase();
+            const stateFilter = document.getElementById('house-state').value;
+            const partyFilter = document.getElementById('house-party').value;
+            
+            fetch('house_data.js')
+                .then(response => response.text())
+                .then(data => {
+                    eval(data);
+                    const filtered = houseData.filter(rep => {
+                        const matchesSearch = rep.name.toLowerCase().includes(searchTerm);
+                        const matchesState = !stateFilter || rep.state === stateFilter;
+                        const matchesParty = !partyFilter || rep.party === partyFilter;
+                        return matchesSearch && matchesState && matchesParty;
+                    });
+                    displayHouse(filtered);
+                });
+        }
+
+        function loadExecutive() {
+            fetch('executive_data_cabinet.js')
+                .then(response => response.text())
+                .then(data => {
+                    eval(data);
+                    displayExecutive(executiveData);
+                });
+        }
+
+        function displayExecutive(officials) {
+            const grid = document.getElementById('executive-grid');
+            
+            // Sort by level - President first, then VP, then Cabinet, then senior staff
+            const sortedOfficials = officials.sort((a, b) => {
+                const levelOrder = ['President', 'Vice President', 'Cabinet Secretary', 'Senior Staff'];
+                return levelOrder.indexOf(a.level) - levelOrder.indexOf(b.level);
+            });
+            
+            grid.innerHTML = sortedOfficials.map(official => `
+                <div class="official-card" data-level="${official.level}">
+                    <div class="official-name">${official.name}</div>
+                    <div class="official-position">${official.title}</div>
+                    <div class="official-level">${official.level}</div>
+                    <div class="contact-info">
+                        <a href="mailto:${official.email}" class="contact-link">${official.email}</a>
+                        <a href="tel:${official.phone}" class="contact-link" title="Click to call ${official.phone}">${official.phone}</a>
+                        <a href="${official.website}" class="contact-link" target="_blank">Official Website</a>
+                    </div>
+                    ${official.socialMedia ? `
+                        <div class="social-media-links">
+                            ${official.socialMedia.x ? `<a href="https://x.com/${official.socialMedia.x}" class="social-link x" target="_blank" title="Follow on X">𝕏</a>` : ''}
+                            ${official.socialMedia.facebook ? `<a href="https://facebook.com/${official.socialMedia.facebook}" class="social-link facebook" target="_blank" title="Follow on Facebook">📘</a>` : ''}
+                            ${official.socialMedia.instagram ? `<a href="https://instagram.com/${official.socialMedia.instagram}" class="social-link instagram" target="_blank" title="Follow on Instagram">📷</a>` : ''}
+                            ${official.socialMedia.truth ? `<a href="https://truthsocial.com/@${official.socialMedia.truth}" class="social-link truth" target="_blank" title="Follow on Truth Social">🇺🇸</a>` : ''}
+                            ${official.socialMedia.bluesky ? `<a href="https://bsky.app/profile/${official.socialMedia.bluesky}" class="social-link bluesky" target="_blank" title="Follow on Bluesky">🦋</a>` : ''}
+                            ${official.socialMedia.linkedin ? `<a href="https://linkedin.com/in/${official.socialMedia.linkedin}" class="social-link linkedin" target="_blank" title="Follow on LinkedIn">💼</a>` : ''}
+                        </div>
+                    ` : ''}
+                </div>
+            `).join('');
+        }
+
+        function loadJudicial() {
+            // Check if data is already loaded
+            if (typeof judicialData !== 'undefined') {
+                displayJudicial(judicialData);
+                return;
+            }
+            
+            // Load the script dynamically
+            const script = document.createElement('script');
+            script.src = 'judicial_data.js';
+            script.onload = function() {
+                if (typeof judicialData !== 'undefined') {
+                    displayJudicial(judicialData);
+                } else {
+                    console.error('judicialData not loaded');
+                }
+            };
+            script.onerror = function() {
+                console.error('Failed to load judicial_data.js');
+            };
+            document.head.appendChild(script);
+        }
+
+        function displayJudicial(justices) {
+            const grid = document.getElementById('judicial-grid');
+            grid.innerHTML = justices.map(justice => `
+                <div class="official-card">
+                    <div class="official-name">${justice.name}</div>
+                    <div class="official-party">${justice.title}</div>
+                    <div class="contact-info">
+                        <a href="${justice.website}" class="contact-link" target="_blank">Official Website</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', function() {
+            showSection('executive');
+        });
+    </script>
+</body>
+</html>

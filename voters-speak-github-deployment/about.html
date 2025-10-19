@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Voters Speak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 12px;
+            padding: 3rem;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.08);
+            margin-bottom: 2rem;
+        }
+
+        .content-card h2 {
+            color: #667eea;
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .content-card h3 {
+            color: #555;
+            font-size: 1.5rem;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-card p {
+            margin-bottom: 1.5rem;
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .content-card ul {
+            margin-left: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .content-card li {
+            margin-bottom: 0.8rem;
+            color: #666;
+            font-size: 1.05rem;
+        }
+
+        .mission-box {
+            background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);
+            border-left: 4px solid #667eea;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 8px;
+        }
+
+        .mission-box h3 {
+            margin-top: 0;
+            color: #667eea;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .stat-card .number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-card .label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 2rem 0;
+            padding: 0.8rem 1.5rem;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 3px solid #667eea;
+        }
+
+        .feature-item h4 {
+            color: #667eea;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .feature-item p {
+            margin-bottom: 0;
+            font-size: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+
+            .content-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>About Voters Speak</h1>
+        <p>Empowering Citizens Through Direct Access to Government</p>
+    </div>
+
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to Home</a>
+
+        <div class="content-card">
+            <h2>Our Mission</h2>
+            <div class="mission-box">
+                <h3>Connecting Citizens with Their Representatives</h3>
+                <p>Voters Speak exists to bridge the gap between American citizens and their elected officials. We believe that democracy thrives when citizens can easily access and communicate with the people who represent them in government.</p>
+            </div>
+
+            <h3>What We Do</h3>
+            <p>Voters Speak is a comprehensive, non-partisan platform that provides:</p>
+            <ul>
+                <li><strong>Centralized Directory:</strong> All your elected officials in one convenient location</li>
+                <li><strong>Complete Contact Information:</strong> Phone numbers, email addresses, and official websites</li>
+                <li><strong>Social Media Links:</strong> Direct access to official social media accounts</li>
+                <li><strong>All Branches of Government:</strong> Executive, Legislative (Senate & House), and Judicial</li>
+                <li><strong>Always Up-to-Date:</strong> Regular updates to ensure accuracy of information</li>
+                <li><strong>Free Access:</strong> No registration, no fees, no barriers to civic engagement</li>
+            </ul>
+
+            <h3>Coverage</h3>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="number">535+</div>
+                    <div class="label">Members of Congress</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">9</div>
+                    <div class="label">Supreme Court Justices</div>
+                </div>
+                <div class="stat-card">
+                    <div class="number">15+</div>
+                    <div class="label">Cabinet Members</div>
+                </div>
+            </div>
+
+            <h3>Why Voters Speak?</h3>
+            <p>In today's complex political landscape, finding accurate contact information for elected officials can be surprisingly difficult. Information is scattered across hundreds of websites, social media platforms, and government databases. Voters Speak solves this problem by:</p>
+            
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h4>🎯 Simplifying Access</h4>
+                    <p>One platform for all your representatives, from local to federal level</p>
+                </div>
+                <div class="feature-item">
+                    <h4>✅ Ensuring Accuracy</h4>
+                    <p>Information sourced directly from official government records</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🔄 Staying Current</h4>
+                    <p>Regular updates to reflect changes in government</p>
+                </div>
+                <div class="feature-item">
+                    <h4>🤝 Promoting Engagement</h4>
+                    <p>Making it easier for citizens to participate in democracy</p>
+                </div>
+                <div class="feature-item">
+                    <h4>⚖️ Remaining Non-Partisan</h4>
+                    <p>No political bias, just facts and contact information</p>
+                </div>
+                <div class="feature-item">
+                    <h4>📱 Mobile-Friendly</h4>
+                    <p>Access from any device, anywhere, anytime</p>
+                </div>
+            </div>
+
+            <h3>Our Values</h3>
+            <ul>
+                <li><strong>Transparency:</strong> All information is publicly sourced and clearly presented</li>
+                <li><strong>Non-Partisanship:</strong> We serve all citizens regardless of political affiliation</li>
+                <li><strong>Accessibility:</strong> Free, open access for everyone</li>
+                <li><strong>Accuracy:</strong> Commitment to providing correct, up-to-date information</li>
+                <li><strong>Privacy:</strong> No tracking, no data collection, no user accounts required</li>
+                <li><strong>Civic Responsibility:</strong> Encouraging respectful, constructive engagement</li>
+            </ul>
+
+            <h3>How to Use Voters Speak</h3>
+            <p>Using our platform is simple:</p>
+            <ol style="margin-left: 2rem; margin-bottom: 1.5rem;">
+                <li style="margin-bottom: 0.8rem;"><strong>Choose a Branch:</strong> Select Executive, Senate, House, or Supreme Court</li>
+                <li style="margin-bottom: 0.8rem;"><strong>Find Your Representative:</strong> Use search and filter tools to locate specific officials</li>
+                <li style="margin-bottom: 0.8rem;"><strong>Get Contact Information:</strong> Access phone numbers, emails, and websites</li>
+                <li style="margin-bottom: 0.8rem;"><strong>Reach Out:</strong> Contact your representatives to share your views</li>
+                <li style="margin-bottom: 0.8rem;"><strong>Stay Informed:</strong> Follow official social media accounts for updates</li>
+            </ol>
+
+            <h3>Data Sources</h3>
+            <p>All information on Voters Speak is obtained from official, publicly available sources:</p>
+            <ul>
+                <li>Official U.S. Senate and House of Representatives websites</li>
+                <li>The White House official website</li>
+                <li>Supreme Court official website</li>
+                <li>Congressional directories and public records</li>
+                <li>Verified official social media accounts</li>
+                <li>Government public information databases</li>
+            </ul>
+
+            <h3>Commitment to Civic Engagement</h3>
+            <p>We believe that an informed, engaged citizenry is essential to a healthy democracy. By making it easier to contact elected officials, we hope to:</p>
+            <ul>
+                <li>Increase citizen participation in government</li>
+                <li>Strengthen the connection between representatives and constituents</li>
+                <li>Promote transparency and accountability</li>
+                <li>Encourage respectful political discourse</li>
+                <li>Support the democratic process</li>
+            </ul>
+
+            <h3>Future Development</h3>
+            <p>We are continuously working to improve Voters Speak. Planned features include:</p>
+            <ul>
+                <li>State and local government officials</li>
+                <li>Legislative tracking and bill information</li>
+                <li>Voting records and committee assignments</li>
+                <li>Town hall and public event notifications</li>
+                <li>Mobile applications for iOS and Android</li>
+                <li>Multi-language support</li>
+            </ul>
+
+            <h3>Get Involved</h3>
+            <p>Voters Speak is built for citizens, by citizens. We welcome your feedback, suggestions, and contributions. Help us improve by:</p>
+            <ul>
+                <li>Reporting inaccurate or outdated information</li>
+                <li>Suggesting new features or improvements</li>
+                <li>Sharing Voters Speak with friends and family</li>
+                <li>Using the platform to engage with your representatives</li>
+            </ul>
+
+            <h3>Contact Us</h3>
+            <p>Have questions, suggestions, or feedback? We'd love to hear from you:</p>
+            <p><strong>Email:</strong> info@votersspeak.org<br>
+            <strong>Website:</strong> www.votersspeak.org<br>
+            <strong>Social Media:</strong> Follow us for updates and civic engagement tips</p>
+
+            <h3>Acknowledgments</h3>
+            <p>Voters Speak is made possible by the dedication of volunteers, civic-minded developers, and citizens who believe in the power of democracy. We are grateful for the support of the open-source community and all those who contribute to making government more accessible.</p>
+
+            <div class="mission-box" style="margin-top: 3rem;">
+                <h3>Your Voice Matters</h3>
+                <p>Every call, email, and message to your elected officials makes a difference. Voters Speak is here to make that process as simple as possible. Together, we can build a more engaged, informed, and participatory democracy.</p>
+            </div>
+        </div>
+
+        <a href="index.html" class="back-link">← Back to Home</a>
+    </div>
+</body>
+</html>

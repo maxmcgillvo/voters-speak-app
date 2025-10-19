@@ -1,67 +1,167 @@
-# Your Concerns Feature - Voters Speak
+# Voters Speak
 
-This package contains the implementation of the "Your Concerns" feature for the Voters Speak application. The feature connects current events to relevant officials, helping users understand who to contact about issues that matter to them.
+**Your Voice. Your Representatives. One Place.**
 
-## Contents
+A comprehensive civic engagement platform that provides direct access to contact information for U.S. elected officials across all branches of government.
 
-- `src/` - Source code for the React components
-- `public/` - Public assets (images, etc.)
-- `integration-example.html` - Example HTML file showing how to integrate the components
-- `demo.html` - Interactive demo of the components
-- `INTEGRATION_GUIDE.md` - Detailed guide for integrating the components with the existing site
-- `package.json` - Node.js package configuration
-- `vite.config.js` - Vite build configuration
+## 🌟 Features
 
-## Quick Start
+### Complete Government Coverage
+- **Executive Branch**: President, Vice President, and Cabinet members
+- **U.S. Senate**: All 100 Senators with state and party filtering
+- **House of Representatives**: All 435 Representatives + 6 Non-voting Delegates (all 50 states)
+- **Supreme Court**: All 9 Justices
+- **Today's Issues**: Current political developments and key issues
 
-1. Install dependencies:
+### Contact Information
+- Direct phone numbers (click-to-call)
+- Email addresses
+- Official websites
+- Office addresses
+- Social media links (Twitter/X, Facebook, Instagram, LinkedIn, Truth Social)
 
+### User-Friendly Features
+- Search and filter by state, party, or name
+- Mobile-responsive design
+- Clean, non-partisan presentation
+- Fast loading and easy navigation
+- Accessible to all citizens
+
+## 🚀 Live Demo
+
+Visit the live site: [Add your deployment URL here]
+
+## 📦 Installation
+
+### Option 1: GitHub Pages (Recommended)
+1. Fork this repository
+2. Go to Settings → Pages
+3. Select "main" branch as source
+4. Your site will be live at `https://yourusername.github.io/voters-speak/`
+
+### Option 2: Local Development
 ```bash
-npm install
+# Clone the repository
+git clone https://github.com/yourusername/voters-speak.git
+
+# Navigate to directory
+cd voters-speak
+
+# Start a local server (Python 3)
+python -m http.server 8080
+
+# Or use Node.js
+npx http-server -p 8080
+
+# Visit http://localhost:8080
 ```
 
-2. Start the development server:
+## 📁 Project Structure
 
-```bash
-npm start
+```
+voters-speak/
+├── index.html              # Main application page
+├── media.html              # Today's Issues page
+├── about.html              # About page
+├── privacy-policy.html     # Privacy policy
+├── terms.html              # Terms of service
+├── executive_data.js       # Executive branch data
+├── senate_data.js          # Senate data
+├── house_data.js           # House of Representatives data
+├── judicial_data.js        # Supreme Court data
+├── media_data.json         # Current issues data
+├── assets/                 # Images and icons
+├── js/                     # JavaScript components
+├── manifest.json           # PWA manifest
+├── robots.txt              # SEO configuration
+└── sitemap.xml             # Site map
 ```
 
-3. Build for production:
+## 🔧 Technology Stack
 
-```bash
-npm run build
-```
+- **Frontend**: Pure HTML5, CSS3, JavaScript (ES6+)
+- **Design**: Responsive, mobile-first approach
+- **Data**: JSON-based data files
+- **Hosting**: Static site (GitHub Pages, Netlify, Vercel compatible)
 
-## Integration
+## 📊 Data Coverage
 
-See `INTEGRATION_GUIDE.md` for detailed instructions on integrating the components with the existing Voters Speak site.
+- **535+ Congress Members**: Complete House and Senate
+- **9 Supreme Court Justices**: Full court coverage
+- **15+ Cabinet Members**: Executive branch officials
+- **6 Current Issues**: Updated political topics
 
-## Components
+## 🎨 Design Principles
 
-### NewsSources
+- **Non-partisan**: Neutral presentation of all officials
+- **Accessible**: WCAG compliant, keyboard navigation
+- **Fast**: Optimized loading, minimal dependencies
+- **Clean**: Modern, professional interface
+- **Mobile-first**: Responsive design for all devices
 
-A responsive component that displays news source logos in a grid (desktop) or carousel (mobile). Each logo links to the politics section of the respective news source.
+## 📝 Data Sources
 
-### ConcernCard
+All elected official data is sourced from:
+- Official U.S. Government websites
+- House.gov and Senate.gov directories
+- WhiteHouse.gov
+- SupremeCourt.gov
+- Public government records
 
-A card component that displays information about a political concern and provides a button to contact relevant officials.
+## 🔄 Updates
 
-### ConcernsPage
+Data is regularly updated to reflect:
+- New elected officials
+- Contact information changes
+- Current political issues
+- Committee assignments
 
-The main page component that displays the "Your Concerns" feature. It loads concern data and renders the NewsSources and ConcernCard components.
+## 🤝 Contributing
 
-## Data Structure
+We welcome contributions! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
 
-The components use the following data files:
+### Areas for Contribution
+- Data updates and corrections
+- New features and improvements
+- Bug fixes
+- Documentation enhancements
+- Accessibility improvements
 
-- `src/data/concernsData.json` - Data for the concerns and news sources
-- `src/data/officialMapping.json` - Mapping between concerns and officials
-- `src/data/concernCategories.schema.json` - JSON schema for the concerns data
+## 📄 License
 
-## Demo
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-Open `demo.html` in your browser to see an interactive demo of the components.
+## 🔒 Privacy
 
-## License
+- No user accounts required
+- No personal data collection
+- No tracking or analytics
+- Free access for all citizens
 
-MIT
+See our [Privacy Policy](privacy-policy.html) for details.
+
+## 📧 Contact
+
+- Website: [Add your website]
+- Email: info@votersspeak.org
+- Issues: [GitHub Issues](https://github.com/yourusername/voters-speak/issues)
+
+## 🙏 Acknowledgments
+
+- Data sourced from official U.S. Government websites
+- Built for civic engagement and democratic participation
+- Dedicated to making government more accessible to all citizens
+
+## 📱 Progressive Web App
+
+Voters Speak can be installed as a Progressive Web App (PWA) on mobile devices for quick access to your representatives.
+
+---
+
+**Made with ❤️ for American Democracy**
+
+*Empowering citizens to connect with their elected officials*

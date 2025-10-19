@@ -1,133 +1,209 @@
 # Contributing to Voters Speak
 
-Thank you for your interest in contributing to Voters Speak! This guide will help you get started.
+Thank you for your interest in contributing to Voters Speak! This document provides guidelines for contributing to the project.
 
-## 🎯 How to Contribute
+## 🎯 Ways to Contribute
 
-### Quick Contributions
-- **Report outdated information** using GitHub Issues
-- **Suggest new features** via GitHub Discussions
-- **Share feedback** on user experience
+### 1. Data Updates
+- Update contact information for elected officials
+- Add missing social media links
+- Correct any inaccurate information
+- Update current issues in media_data.json
 
-### Data Contributions
-Contact information changes frequently. Help us keep data current:
+### 2. Bug Fixes
+- Report bugs via GitHub Issues
+- Submit pull requests with fixes
+- Improve error handling
 
-1. **Verify current information** from official sources
-2. **Check existing issues** to avoid duplicates
-3. **Submit changes** via GitHub Issues or Pull Requests
-4. **Include sources** for all data updates
+### 3. Feature Enhancements
+- Propose new features via GitHub Issues
+- Implement approved features
+- Improve existing functionality
 
-### Code Contributions
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/your-feature`
-3. **Make your changes**
-4. **Test thoroughly** across devices
-5. **Submit a pull request**
+### 4. Documentation
+- Improve README and documentation
+- Add code comments
+- Create tutorials or guides
 
-## 📋 Contribution Types
+### 5. Design Improvements
+- Enhance UI/UX
+- Improve accessibility
+- Optimize mobile experience
 
-### 🏛️ Data Updates
-- **Contact Information**: Phone numbers, addresses, email
-- **Official Titles**: Position changes, new appointments
-- **Website URLs**: Updated official websites
-- **Social Media**: Verified official accounts
+## 🚀 Getting Started
 
-### 🎨 Design Improvements
-- **Accessibility**: WCAG compliance improvements
-- **Responsive Design**: Better mobile/tablet experience
-- **User Interface**: Visual improvements
-- **Performance**: Loading speed optimizations
+### Prerequisites
+- Basic knowledge of HTML, CSS, and JavaScript
+- Git and GitHub account
+- Text editor or IDE
 
-### 🔧 Technical Features
-- **Search Functionality**: Enhanced filtering
-- **Data Export**: CSV/JSON export options
-- **Integration**: APIs or external services
-- **Analytics**: Usage tracking (privacy-focused)
+### Setup
+1. Fork the repository
+2. Clone your fork:
+   ```bash
+   git clone https://github.com/yourusername/voters-speak.git
+   cd voters-speak
+   ```
+3. Create a branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+4. Start a local server:
+   ```bash
+   python -m http.server 8080
+   ```
 
-## 🧪 Testing
+## 📝 Contribution Guidelines
 
-Before submitting changes:
-- **Test on multiple devices** (desktop, tablet, mobile)
-- **Check all dialogue boxes** work correctly
-- **Verify data accuracy** across all branches
-- **Test search/filter functionality**
+### Code Style
+- Use consistent indentation (2 or 4 spaces)
+- Write clear, descriptive variable names
+- Add comments for complex logic
+- Follow existing code patterns
 
-## 📊 Data Sources
+### Data Format
+When updating data files, maintain the existing JSON structure:
 
-When updating data, use these official sources:
-- **White House**: whitehouse.gov
-- **Senate**: senate.gov
-- **House**: house.gov
-- **Supreme Court**: supremecourt.gov
-- **Federal Agencies**: Official .gov websites
-
-## 📝 Pull Request Guidelines
-
-### Title Format
+```javascript
+// Example for officials
+{
+  name: "Official Name",
+  state: "ST",
+  party: "Party Name",
+  email: "email@example.gov",
+  phone: "202-XXX-XXXX",
+  office: "Office Address",
+  website: "https://official.house.gov",
+  socialMedia: {
+    x: "https://x.com/username",
+    facebook: "https://facebook.com/username",
+    instagram: "https://instagram.com/username"
+  }
+}
 ```
-[TYPE]: Brief description
-```
 
-Types:
-- `DATA`: Contact information updates
-- `FEATURE`: New functionality
-- `FIX`: Bug fixes
-- `DOCS`: Documentation updates
-- `STYLE`: Visual improvements
+### Commit Messages
+- Use clear, descriptive commit messages
+- Start with a verb (Add, Update, Fix, Remove)
+- Examples:
+  - "Add social media links for California representatives"
+  - "Fix phone number formatting in Senate data"
+  - "Update Supreme Court contact information"
 
-### Description Template
+### Pull Request Process
+1. Update your branch with latest main:
+   ```bash
+   git fetch upstream
+   git rebase upstream/main
+   ```
+2. Test your changes thoroughly
+3. Commit your changes with clear messages
+4. Push to your fork:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Create a Pull Request on GitHub
+6. Describe your changes clearly
+7. Link any related issues
+
+## 🔍 Data Verification
+
+When updating official data:
+1. **Verify from official sources only**
+   - House.gov for Representatives
+   - Senate.gov for Senators
+   - WhiteHouse.gov for Executive Branch
+   - SupremeCourt.gov for Justices
+
+2. **Check multiple sources** when possible
+
+3. **Include source links** in PR description
+
+4. **Test all links** before submitting
+
+## 🐛 Reporting Bugs
+
+When reporting bugs, include:
+- Clear description of the issue
+- Steps to reproduce
+- Expected behavior
+- Actual behavior
+- Screenshots (if applicable)
+- Browser and device information
+
+Use this template:
 ```markdown
-## Changes Made
-- What was changed
-- Why it was changed
-- Sources/references used
+**Description:**
+Brief description of the bug
 
-## Testing
-- [ ] Tested on desktop
-- [ ] Tested on mobile
-- [ ] Verified data accuracy
-- [ ] No JavaScript errors
-
-## Related Issues
-Closes #[issue number]
-```
-
-## 🐛 Bug Reports
-
-Use this template for bug reports:
-
-```markdown
-**Describe the bug**
-A clear description of what the bug is.
-
-**Steps to reproduce**
+**Steps to Reproduce:**
 1. Go to '...'
 2. Click on '...'
 3. See error
 
-**Expected behavior**
+**Expected Behavior:**
 What should happen
 
-**Device information**
-- Device: [e.g., iPhone 12, Windows laptop]
-- Browser: [e.g., Chrome, Safari]
-- Version: [e.g., 22]
+**Actual Behavior:**
+What actually happens
 
-**Screenshots**
-If applicable, add screenshots
+**Environment:**
+- Browser: [e.g., Chrome 120]
+- Device: [e.g., iPhone 12]
+- OS: [e.g., iOS 17]
 ```
 
-## 📞 Getting Help
+## 💡 Feature Requests
 
-- **Questions**: Open a GitHub Discussion
-- **Issues**: Use GitHub Issues
-- **Real-time chat**: Check if we have a Discord/Slack
+When proposing features:
+- Check existing issues first
+- Describe the feature clearly
+- Explain the use case
+- Consider implementation complexity
+- Discuss potential alternatives
 
-## 🏆 Recognition
+## ✅ Testing
 
-Contributors will be recognized in:
-- README.md contributors section
-- Release notes
-- Project documentation
+Before submitting:
+- [ ] Test on multiple browsers (Chrome, Firefox, Safari, Edge)
+- [ ] Test on mobile devices
+- [ ] Verify all links work
+- [ ] Check for console errors
+- [ ] Validate HTML/CSS
+- [ ] Test accessibility features
 
-Thank you for helping make government more accessible to everyone!
+## 📋 Code Review
+
+All contributions go through code review:
+- Be open to feedback
+- Respond to review comments
+- Make requested changes promptly
+- Ask questions if unclear
+
+## 🤝 Community Guidelines
+
+- Be respectful and professional
+- Welcome newcomers
+- Provide constructive feedback
+- Focus on the code, not the person
+- Maintain non-partisan approach
+- Keep discussions on-topic
+
+## 📄 License
+
+By contributing, you agree that your contributions will be licensed under the MIT License.
+
+## 🙋 Questions?
+
+- Open a GitHub Issue for questions
+- Tag with "question" label
+- Check existing issues first
+
+## 🎉 Recognition
+
+Contributors will be:
+- Listed in CONTRIBUTORS.md
+- Mentioned in release notes
+- Credited in the project
+
+Thank you for helping make government more accessible to all citizens! 🇺🇸

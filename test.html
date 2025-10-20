@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test House Data</title>
+</head>
+<body>
+    <h1>Testing House Data Load</h1>
+    <div id="output"></div>
+    <div id="house-grid"></div>
+    
+    <script>
+        console.log('Starting test...');
+        
+        fetch('house_data.js')
+            .then(response => {
+                console.log('Fetch response:', response);
+                return response.text();
+            })
+            .then(data => {
+                console.log('Data received, length:', data.length);
+                console.log('First 200 chars:', data.substring(0, 200));
+                
+                eval(data);
+                
+                console.log('houseData exists:', typeof houseData !== 'undefined');
+                console.log('houseData length:', houseData ? houseData.length : 'undefined');
+                
+                if (houseData && houseData.length > 0) {
+                    document.getElementById('output').innerHTML = 
+                        '<p>SUCCESS! Loaded ' + houseData.length + ' representatives</p>' +
+                        '<p>First rep: ' + houseData[0].name + '</p>' +
+                        '<p>Has socialMedia: ' + (houseData[0].socialMedia ? 'YES' : 'NO') + '</p>';
+                    
+                    // Display first 5
+                    const grid = document.getElementById('house-grid');
+                    grid.innerHTML = houseData.slice(0, 5).map(rep => 
+                        '<div style="border:1px solid #ccc; padding:10px; margin:10px;">' +
+                        '<h3>' + rep.name + '</h3>' +
+                        '<p>' + rep.party + ' - ' + rep.state + ' District ' + rep.district + '</p>' +
+                        '<p>Has social media: ' + (rep.socialMedia ? 'YES' : 'NO') + '</p>' +
+                        '</div>'
+                    ).join('');
+                } else {
+                    document.getElementById('output').innerHTML = '<p>ERROR: houseData is empty or undefined</p>';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('output').innerHTML = '<p>ERROR: ' + error.message + '</p>';
+            });
+    </script>
+</body>
+</html>

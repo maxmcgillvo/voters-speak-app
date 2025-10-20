@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Judicial Data</title>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <h1>Testing Judicial Data Load</h1>
+    <div id="output"></div>
+    <div id="judicial-grid"></div>
+
+    <script>
+        console.log('Starting test...');
+        
+        fetch('judicial_data.js')
+            .then(response => {
+                console.log('Fetch response:', response);
+                return response.text();
+            })
+            .then(data => {
+                console.log('Data received:', data.substring(0, 100));
+                eval(data);
+                console.log('judicialData:', judicialData);
+                
+                document.getElementById('output').innerHTML = '<pre>' + JSON.stringify(judicialData, null, 2) + '</pre>';
+                
+                // Display justices
+                const grid = document.getElementById('judicial-grid');
+                grid.innerHTML = judicialData.map(justice => `
+                    <div style="border: 1px solid #ccc; padding: 10px; margin: 10px;">
+                        <h3>${justice.name}</h3>
+                        <p>${justice.title}</p>
+                        <p>Party: ${justice.party}</p>
+                        <p>Phone: ${justice.phone}</p>
+                        <a href="${justice.website}" target="_blank">Website</a>
+                    </div>
+                `).join('');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                document.getElementById('output').innerHTML = '<p style="color: red;">Error: ' + error.message + '</p>';
+            });
+    </script>
+</body>
+</html>

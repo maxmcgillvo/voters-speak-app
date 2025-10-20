@@ -97,12 +97,6 @@
             padding: 20px 0;
         }
 
-        .clean-header a:hover .logo h1,
-        .header a:hover .logo h1 {
-            color: #7c3aed;
-            transition: color 0.3s ease;
-        }
-
         .clean-header .logo {
             display: flex;
             align-items: center;
@@ -197,85 +191,50 @@
             line-height: 1.6;
         }
 
-        /* Complete News Coverage Button */
-        .news-coverage-button {
-            display: block;
-            margin: 40px auto 20px auto;
-            padding: 20px 40px;
-            background: linear-gradient(135deg, #4a5f8f 0%, #3d4f7a 100%);
-            color: white;
-            text-align: center;
-            border-radius: 12px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: 600;
-            max-width: 400px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 4px 12px rgba(74, 95, 143, 0.3);
-            cursor: pointer;
-            border: none;
-        }
-
-        .news-coverage-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(74, 95, 143, 0.4);
-        }
-
-        .news-coverage-button .button-title {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 5px;
-        }
-
-        .news-coverage-button .button-subtitle {
-            font-size: 0.95rem;
-            opacity: 0.9;
-        }
-
         /* App Download Section Styles */
         .app-download-section {
             text-align: center;
-            margin-bottom: 40px;
-            padding: 25px 15px;
+            margin-bottom: 60px;
+            padding: 40px 20px;
             background: #f8f9fa;
-            border-radius: 12px;
-            max-width: 700px;
+            border-radius: 15px;
+            max-width: 800px;
             margin-left: auto;
             margin-right: auto;
+            margin-bottom: 60px;
         }
 
         .app-download-section h2 {
-            font-size: 1.5rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
         .app-download-section p {
-            font-size: 0.95rem;
+            font-size: 1.1rem;
             color: #666;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
         .download-buttons {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 12px;
-            max-width: 550px;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            max-width: 600px;
             margin: 0 auto;
         }
 
         .download-btn {
             display: flex;
             align-items: center;
-            padding: 12px 15px;
+            padding: 15px 20px;
             background: #2c3e50;
             color: white;
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: 10px;
             transition: all 0.3s ease;
-            gap: 10px;
-            font-size: 0.9rem;
+            gap: 15px;
         }
 
         .download-btn:hover {
@@ -285,7 +244,7 @@
         }
 
         .download-icon {
-            font-size: 1.5rem;
+            font-size: 2rem;
         }
 
         .download-text {
@@ -311,17 +270,17 @@
         }
 
         .main-navigation-section h2 {
-            font-size: 1.6rem;
+            font-size: 2rem;
             font-weight: 700;
             color: #2c3e50;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .large-navigation {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 16px;
-            max-width: 750px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
@@ -329,42 +288,31 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 18px 24px;
+            padding: 25px 30px;
             background: #2c3e50;
             color: white;
             border: none;
-            border-radius: 10px;
-            font-size: 1rem;
+            border-radius: 12px;
+            font-size: 1.2rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            gap: 12px;
+            gap: 15px;
         }
 
         .large-nav-btn:hover {
             background: #34495e;
             transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.3);
+            box-shadow: 0 8px 25px rgba(44, 62, 80, 0.3);
         }
 
         .large-nav-btn.active {
             background: #34495e;
-            box-shadow: 0 6px 20px rgba(52, 73, 94, 0.3);
-        }
-
-        .news-resources-btn {
-            background: #2c3e50 !important;
-            color: #ff6b35 !important;
-        }
-
-        .news-resources-btn:hover {
-            background: #34495e !important;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(44, 62, 80, 0.3);
+            box-shadow: 0 8px 25px rgba(52, 73, 94, 0.3);
         }
 
         .nav-icon {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
         }
 
         /* Elected Officials Section */
@@ -715,7 +663,7 @@
         }
 
         .official-party.republican {
-            color: #dc2626;
+            color: #3498db;
         }
 
         .official-party.democratic {
@@ -773,15 +721,6 @@
             color: #2980b9;
         }
 
-        /* Executive Branch email links - Red for Republican affiliation */
-        #executive .contact-link[href^="mailto:"] {
-            color: #dc2626;
-        }
-
-        #executive .contact-link[href^="mailto:"]:hover {
-            color: #b91c1c;
-        }
-
         .social-links, .social-media-links {
             display: flex;
             gap: 10px;
@@ -829,16 +768,14 @@
         <!-- Landing Page -->
         <div class="landing-page">
             <div class="header">
-                <a href="#" onclick="location.reload(); return false;" style="text-decoration: none; color: inherit; cursor: pointer;">
-                    <div class="logo">
-                        <div class="logo-icon"></div>
-                        <h1>Voters Speak</h1>
-                    </div>
-                    <p class="tagline">Your Voice. Your Representatives. One Place.</p>
-                    <div class="mission-statement">
-                        <p>We believe every citizen deserves direct access to their elected officials. Our platform connects you with your representatives across all branches of government, making it easier than ever to make your voice heard in democracy.</p>
-                    </div>
-                </a>
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <h1>Voters Speak</h1>
+                </div>
+                <p class="tagline">Your Voice. Your Representatives. One Place.</p>
+                <div class="mission-statement">
+                    <p>We believe every citizen deserves direct access to their elected officials. Our platform connects you with your representatives across all branches of government, making it easier than ever to make your voice heard in democracy.</p>
+                </div>
             </div>
 
             <div class="main-navigation-section">
@@ -856,17 +793,9 @@
                         <span class="nav-icon">🏛️</span>
                         House
                     </button>
-                    <button class="large-nav-btn" onclick="window.location.href='state-government.html'">
-                        <span class="nav-icon">🏛️</span>
-                        State Government
-                    </button>
                     <button class="large-nav-btn" onclick="showMainContent(); showSection('judicial')">
                         <span class="nav-icon">⚖️</span>
                         Judiciary
-                    </button>
-                    <button class="large-nav-btn news-resources-btn" onclick="window.location.href='news-resources.html'">
-                        <span class="nav-icon">📰</span>
-                        Information &amp; Resources
                     </button>
                 </div>
             </div>
@@ -902,9 +831,9 @@
                 </p>
             </div>
                 <div class="footer-links">
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms</a>
-                    <a href="about.html">About</a>
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms</a>
+                    <a href="#">About</a>
                 </div>
                 <p>© 2025 Voters Speak</p>
             </div>
@@ -913,13 +842,11 @@
         <!-- Main Content (Clean Design) -->
         <div class="main-content">
             <div class="clean-header">
-                <a href="#" onclick="location.reload(); return false;" style="text-decoration: none; color: inherit; cursor: pointer;">
-                    <div class="logo">
-                        <div class="logo-icon"></div>
-                        <h1>Voters Speak</h1>
-                    </div>
-                    <p class="tagline">Your Voice. Your Representatives. One Place.</p>
-                </a>
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <h1>Voters Speak</h1>
+                </div>
+                <p class="tagline">Your Voice. Your Representatives. One Place.</p>
             </div>
 
             <div class="clean-navigation">
@@ -927,7 +854,7 @@
                 <button class="clean-nav-btn" onclick="showSection('senate')">U.S. Senate</button>
                 <button class="clean-nav-btn" onclick="showSection('house')">House</button>
                 <button class="clean-nav-btn" onclick="showSection('judicial')">Supreme Court</button>
-                <button class="clean-nav-btn" onclick="window.location.href='media.html'">Today's Issues</button>
+                <button class="clean-nav-btn" onclick="showSection('issues')">Today's Issues</button>
             </div>
 
             <div id="senate-section" class="content-section" style="display: none;">
@@ -945,10 +872,6 @@
                     </select>
                 </div>
                 <div id="senators-grid" class="officials-grid"></div>
-                <a href="media.html" class="news-coverage-button">
-                    <div class="button-title">Complete News Coverage</div>
-                    <div class="button-subtitle">Stay informed with today's political developments</div>
-                </a>
             </div>
 
             <div id="house-section" class="content-section" style="display: none;">
@@ -966,28 +889,16 @@
                     </select>
                 </div>
                 <div id="house-grid" class="officials-grid"></div>
-                <a href="media.html" class="news-coverage-button">
-                    <div class="button-title">Complete News Coverage</div>
-                    <div class="button-subtitle">Stay informed with today's political developments</div>
-                </a>
             </div>
 
             <div id="executive-section" class="content-section" style="display: block;">
                 <h2 class="section-title">Executive Branch</h2>
                 <div id="executive-grid" class="officials-grid"></div>
-                <a href="media.html" class="news-coverage-button">
-                    <div class="button-title">Complete News Coverage</div>
-                    <div class="button-subtitle">Stay informed with today's political issues</div>
-                </a>
             </div>
 
             <div id="judicial-section" class="content-section" style="display: none;">
                 <h2 class="section-title">Supreme Court</h2>
                 <div id="judicial-grid" class="officials-grid"></div>
-                <a href="media.html" class="news-coverage-button">
-                    <div class="button-title">Complete News Coverage</div>
-                    <div class="button-subtitle">Stay informed with today's political developments</div>
-                </a>
             </div>
 
             <div id="issues-section" class="content-section" style="display: none;">
@@ -995,15 +906,15 @@
                 <div class="issues-content">
                     <p>Stay informed about the latest political developments and issues affecting our nation.</p>
                     <div class="issues-grid">
-                        <div class="issue-card" onclick="window.location.href='media.html'" style="cursor: pointer;">
+                        <div class="issue-card">
                             <h3>Legislative Updates</h3>
                             <p>Track current bills and legislation moving through Congress.</p>
                         </div>
-                        <div class="issue-card" onclick="window.location.href='media.html'" style="cursor: pointer;">
+                        <div class="issue-card">
                             <h3>Policy Changes</h3>
                             <p>Stay updated on new policies and regulatory changes.</p>
                         </div>
-                        <div class="issue-card" onclick="window.location.href='media.html'" style="cursor: pointer;">
+                        <div class="issue-card">
                             <h3>Public Hearings</h3>
                             <p>Information about upcoming congressional hearings and testimonies.</p>
                         </div>
@@ -1114,52 +1025,41 @@
 
         // Similar functions for House, Executive, and Judicial
         function loadHouse() {
-            console.log('loadHouse called');
             fetch('house_data.js')
-                .then(response => {
-                    console.log('House data fetch response:', response);
-                    return response.text();
-                })
+                .then(response => response.text())
                 .then(data => {
-                    console.log('House data received, length:', data.length);
                     eval(data);
-                    console.log('houseData defined:', typeof houseData !== 'undefined');
-                    console.log('houseData length:', houseData ? houseData.length : 'undefined');
                     displayHouse(houseData);
                     populateStateFilter('house-state', houseData);
-                })
-                .catch(error => {
-                    console.error('Error loading house data:', error);
-                    document.getElementById('house-grid').innerHTML = '<p style="color:red;">Error loading House data: ' + error.message + '</p>';
                 });
         }
 
         function displayHouse(representatives) {
-               const grid = document.getElementById('house-grid');
-               grid.innerHTML = representatives.map(rep => `
-                   <div class="official-card">
-                       <div class="official-name">${rep.name}</div>
-                       <div class="official-party ${rep.party.toLowerCase()}">${rep.party} - ${rep.state} ${rep.district}</div>
-                       <div class="contact-info">
-                           <a href="mailto:${rep.email}" class="contact-link">${rep.email}</a>
-                           <a href="tel:${rep.phone}" class="contact-link" title="Click to call ${rep.phone}">${rep.phone}</a>
-                           <a href="${rep.website}" class="contact-link" target="_blank">Official Website</a>
-                       </div>
-                       ${rep.socialMedia ? `
-                           <div class="social-media">
-                               ${rep.socialMedia.x ? `<a href="${rep.socialMedia.x}" class="social-link x" target="_blank" title="Follow on X">𝕏</a>` : ""}
-                               ${rep.socialMedia.facebook ? `<a href="${rep.socialMedia.facebook}" class="social-link facebook" target="_blank" title="Follow on Facebook">📘</a>` : ""}
-                               ${rep.socialMedia.instagram ? `<a href="${rep.socialMedia.instagram}" class="social-link instagram" target="_blank" title="Follow on Instagram">📷</a>` : ""}
-                               ${rep.socialMedia.truth ? `<a href="https://truthsocial.com/@${rep.socialMedia.truth}" class="social-link truth" target="_blank" title="Follow on Truth Social">🐦</a>` : ""}
-                               ${rep.socialMedia.bluesky ? `<a href="https://bsky.app/profile/${rep.socialMedia.bluesky}" class="social-link bluesky" target="_blank" title="Follow on Bluesky">🦋</a>` : ""}
-                               ${rep.socialMedia.linkedin ? `<a href="https://linkedin.com/in/${rep.socialMedia.linkedin}" class="social-link linkedin" target="_blank" title="Follow on LinkedIn">💼</a>` : ""}
-                           </div>
-                       ` : ""}
-                   </div>
-               `).join('');
-           }
+            const grid = document.getElementById('house-grid');
+            grid.innerHTML = representatives.map(rep => `
+                <div class="official-card">
+                    <div class="official-name">${rep.name}</div>
+                    <div class="official-party ${rep.party.toLowerCase()}">${rep.party} - ${rep.state} ${rep.district}</div>
+                    <div class="contact-info">
+                        <a href="mailto:${rep.email}" class="contact-link">${rep.email}</a>
+                        <a href="tel:${rep.phone}" class="contact-link" title="Click to call ${rep.phone}">${rep.phone}</a>
+                        <a href="${rep.website}" class="contact-link" target="_blank">Official Website</a>
+                    </div>
+                </div>
+                        <div class="social-media">
+                            ${rep.socialMedia ? `
+                                ${rep.socialMedia.x ? `<a href="${rep.socialMedia.x}" class="social-link x" target="_blank" title="Follow on X">𝕏</a>` : ""}
+                                ${rep.socialMedia.facebook ? `<a href="${rep.socialMedia.facebook}" class="social-link facebook" target="_blank" title="Follow on Facebook">📘</a>` : ""}
+                                ${rep.socialMedia.instagram ? `<a href="${rep.socialMedia.instagram}" class="social-link instagram" target="_blank" title="Follow on Instagram">📷</a>` : ""}
+                                ${rep.socialMedia.truth ? `<a href="https://truthsocial.com/@${rep.socialMedia.truth}" class="social-link truth" target="_blank" title="Follow on Truth Social">🐦</a>` : ""}
+                                ${rep.socialMedia.bluesky ? `<a href="https://bsky.app/profile/${rep.socialMedia.bluesky}" class="social-link bluesky" target="_blank" title="Follow on Bluesky">🦋</a>` : ""}
+                                ${rep.socialMedia.linkedin ? `<a href="https://linkedin.com/in/${rep.socialMedia.linkedin}" class="social-link linkedin" target="_blank" title="Follow on LinkedIn">💼</a>` : ""}
+                            ` : ""}
+                        </div>
+            `).join('');
+        }
 
-           function filterHouse() {
+        function filterHouse() {
             const searchTerm = document.getElementById('house-search').value.toLowerCase();
             const stateFilter = document.getElementById('house-state').value;
             const partyFilter = document.getElementById('house-party').value;
@@ -1221,26 +1121,12 @@
         }
 
         function loadJudicial() {
-            // Check if data is already loaded
-            if (typeof judicialData !== 'undefined') {
-                displayJudicial(judicialData);
-                return;
-            }
-            
-            // Load the script dynamically
-            const script = document.createElement('script');
-            script.src = 'judicial_data.js';
-            script.onload = function() {
-                if (typeof judicialData !== 'undefined') {
+            fetch('judicial_data.js')
+                .then(response => response.text())
+                .then(data => {
+                    eval(data);
                     displayJudicial(judicialData);
-                } else {
-                    console.error('judicialData not loaded');
-                }
-            };
-            script.onerror = function() {
-                console.error('Failed to load judicial_data.js');
-            };
-            document.head.appendChild(script);
+                });
         }
 
         function displayJudicial(justices) {

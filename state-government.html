@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>State Government - Voters Speak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: #e74c3c;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .logo-icon::after {
+            content: "✓";
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .header a:hover .logo h1 {
+            color: #7c3aed;
+            transition: color 0.3s ease;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* States Grid */
+        .states-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 60px;
+        }
+
+        .state-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .state-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .state-name {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .state-link {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #4a5f8f 0%, #3d4f7a 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+        }
+
+        .state-link:hover {
+            transform: scale(1.05);
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #7c3aed;
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            margin-top: 40px;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            border-top: 1px solid #ddd;
+            margin-top: 60px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .states-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <a href="index.html">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <h1>Voters Speak</h1>
+                </div>
+                <p class="tagline">Your Voice. Your Representatives. One Place.</p>
+            </a>
+        </div>
+
+        <!-- Page Title -->
+        <h2 class="page-title">State Government</h2>
+        <p class="page-subtitle">Access official state government websites for all 50 states and U.S. territories</p>
+
+        <!-- States Section -->
+        <h3 class="section-header">States</h3>
+        <div class="states-grid" id="states-grid">
+            <!-- States will be loaded here -->
+        </div>
+
+        <!-- Territories Section -->
+        <h3 class="section-header">U.S. Territories</h3>
+        <div class="states-grid" id="territories-grid">
+            <!-- Territories will be loaded here -->
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: center;">
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 Voters Speak</p>
+        </div>
+    </div>
+
+    <script>
+        // 50 States with official government websites
+        const states = [
+            { name: "Alabama", url: "https://www.alabama.gov" },
+            { name: "Alaska", url: "https://alaska.gov" },
+            { name: "Arizona", url: "https://az.gov" },
+            { name: "Arkansas", url: "https://portal.arkansas.gov" },
+            { name: "California", url: "https://www.ca.gov" },
+            { name: "Colorado", url: "https://www.colorado.gov" },
+            { name: "Connecticut", url: "https://portal.ct.gov" },
+            { name: "Delaware", url: "https://delaware.gov" },
+            { name: "Florida", url: "https://www.myflorida.com" },
+            { name: "Georgia", url: "https://georgia.gov" },
+            { name: "Hawaii", url: "https://portal.ehawaii.gov" },
+            { name: "Idaho", url: "https://www.idaho.gov" },
+            { name: "Illinois", url: "https://www.illinois.gov" },
+            { name: "Indiana", url: "https://www.in.gov" },
+            { name: "Iowa", url: "https://www.iowa.gov" },
+            { name: "Kansas", url: "https://www.kansas.gov" },
+            { name: "Kentucky", url: "https://kentucky.gov" },
+            { name: "Louisiana", url: "https://www.louisiana.gov" },
+            { name: "Maine", url: "https://www.maine.gov" },
+            { name: "Maryland", url: "https://www.maryland.gov" },
+            { name: "Massachusetts", url: "https://www.mass.gov" },
+            { name: "Michigan", url: "https://www.michigan.gov" },
+            { name: "Minnesota", url: "https://mn.gov" },
+            { name: "Mississippi", url: "https://www.ms.gov" },
+            { name: "Missouri", url: "https://www.mo.gov" },
+            { name: "Montana", url: "https://mt.gov" },
+            { name: "Nebraska", url: "https://nebraska.gov" },
+            { name: "Nevada", url: "https://nv.gov" },
+            { name: "New Hampshire", url: "https://www.nh.gov" },
+            { name: "New Jersey", url: "https://www.nj.gov" },
+            { name: "New Mexico", url: "https://www.newmexico.gov" },
+            { name: "New York", url: "https://www.ny.gov" },
+            { name: "North Carolina", url: "https://www.nc.gov" },
+            { name: "North Dakota", url: "https://www.nd.gov" },
+            { name: "Ohio", url: "https://ohio.gov" },
+            { name: "Oklahoma", url: "https://www.ok.gov" },
+            { name: "Oregon", url: "https://www.oregon.gov" },
+            { name: "Pennsylvania", url: "https://www.pa.gov" },
+            { name: "Rhode Island", url: "https://www.ri.gov" },
+            { name: "South Carolina", url: "https://www.sc.gov" },
+            { name: "South Dakota", url: "https://sd.gov" },
+            { name: "Tennessee", url: "https://www.tn.gov" },
+            { name: "Texas", url: "https://www.texas.gov" },
+            { name: "Utah", url: "https://www.utah.gov" },
+            { name: "Vermont", url: "https://www.vermont.gov" },
+            { name: "Virginia", url: "https://www.virginia.gov" },
+            { name: "Washington", url: "https://www.wa.gov" },
+            { name: "West Virginia", url: "https://www.wv.gov" },
+            { name: "Wisconsin", url: "https://www.wisconsin.gov" },
+            { name: "Wyoming", url: "https://www.wyo.gov" }
+        ];
+
+        // U.S. Territories
+        const territories = [
+            { name: "American Samoa", url: "https://www.americansamoa.gov" },
+            { name: "District of Columbia", url: "https://dc.gov" },
+            { name: "Guam", url: "https://www.guam.gov" },
+            { name: "Northern Mariana Islands", url: "https://www.gov.mp" },
+            { name: "Puerto Rico", url: "https://www.pr.gov" },
+            { name: "U.S. Virgin Islands", url: "https://www.vi.gov" }
+        ];
+
+        // Load states
+        const statesGrid = document.getElementById('states-grid');
+        states.forEach(state => {
+            const card = document.createElement('div');
+            card.className = 'state-card';
+            card.innerHTML = `
+                <h3 class="state-name">${state.name}</h3>
+                <a href="${state.url}" target="_blank" class="state-link">Visit Official Site</a>
+            `;
+            statesGrid.appendChild(card);
+        });
+
+        // Load territories
+        const territoriesGrid = document.getElementById('territories-grid');
+        territories.forEach(territory => {
+            const card = document.createElement('div');
+            card.className = 'state-card';
+            card.innerHTML = `
+                <h3 class="state-name">${territory.name}</h3>
+                <a href="${territory.url}" target="_blank" class="state-link">Visit Official Site</a>
+            `;
+            territoriesGrid.appendChild(card);
+        });
+    </script>
+</body>
+</html>

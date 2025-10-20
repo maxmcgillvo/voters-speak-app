@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voters Speak - Executive Branch</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; margin-bottom: 40px; }
+        .header h1 { font-size: 2.5rem; color: #2c3e50; margin-bottom: 20px; }
+        .tagline { font-size: 1.2rem; color: #666; margin-bottom: 40px; }
+        
+        .navigation {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .nav-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-btn:hover, .nav-btn.active {
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .content-section {
+            background: white;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            color: #2c3e50;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        
+        .officials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .official-card {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            transition: all 0.3s ease;
+        }
+        
+        .official-card[data-level="President"] { border-left-color: #2c3e50; }
+        .official-card[data-level="Vice President"] { border-left-color: #3498db; }
+        .official-card[data-level="Cabinet Secretary"] { border-left-color: #5dade2; }
+        .official-card[data-level="Senior Staff"] { border-left-color: #85c1e9; }
+        
+        .official-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        .official-name {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 5px;
+        }
+        
+        .official-position {
+            font-size: 1rem;
+            color: #2c3e50;
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+        
+        .official-level {
+            font-size: 0.8rem;
+            color: #666;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .contact-link {
+            color: #3498db;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #2980b9;
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Voters Speak - Executive Branch</h1>
+            <p class="tagline">Your Voice. Your Representatives. One Place.</p>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-btn active" onclick="showSection('executive')">Executive Branch</button>
+            <button class="nav-btn" onclick="showSection('senate')">U.S. Senate</button>
+            <button class="nav-btn" onclick="showSection('house')">U.S. House</button>
+            <button class="nav-btn" onclick="showSection('judicial')">Judicial Branch</button>
+        </div>
+        
+        <div id="executive-section" class="content-section">
+            <h2 class="section-title">Executive Branch Leadership</h2>
+            <div class="officials-grid">
+                <!-- President at Top -->
+                <div class="official-card" data-level="President">
+                    <div class="official-name">Donald J. Trump</div>
+                    <div class="official-position">President of the United States</div>
+                    <div class="official-level">President</div>
+                    <div class="contact-info">
+                        <a href="mailto:president@whitehouse.gov" class="contact-link">president@whitehouse.gov</a>
+                        <a href="tel:(202) 456-1414" class="contact-link">(202) 456-1414</a>
+                        <a href="https://www.whitehouse.gov/administration/president-trump/" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <!-- Vice President Second -->
+                <div class="official-card" data-level="Vice President">
+                    <div class="official-name">JD Vance</div>
+                    <div class="official-position">Vice President of the United States</div>
+                    <div class="official-level">Vice President</div>
+                    <div class="contact-info">
+                        <a href="mailto:vice.president@whitehouse.gov" class="contact-link">vice.president@whitehouse.gov</a>
+                        <a href="tel:(202) 456-2326" class="contact-link">(202) 456-2326</a>
+                        <a href="https://www.whitehouse.gov/administration/vice-president-vance/" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <!-- Cabinet Secretaries -->
+                <div class="official-card" data-level="Cabinet Secretary">
+                    <div class="official-name">Marco Rubio</div>
+                    <div class="official-position">Secretary of State</div>
+                    <div class="official-level">Cabinet Secretary</div>
+                    <div class="contact-info">
+                        <a href="mailto:public@state.gov" class="contact-link">public@state.gov</a>
+                        <a href="tel:(202) 647-4000" class="contact-link">(202) 647-4000</a>
+                        <a href="https://www.state.gov" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <div class="official-card" data-level="Cabinet Secretary">
+                    <div class="official-name">Scott Bessent</div>
+                    <div class="official-position">Secretary of the Treasury</div>
+                    <div class="official-level">Cabinet Secretary</div>
+                    <div class="contact-info">
+                        <a href="mailto:public@treasury.gov" class="contact-link">public@treasury.gov</a>
+                        <a href="tel:(202) 622-2000" class="contact-link">(202) 622-2000</a>
+                        <a href="https://home.treasury.gov" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <div class="official-card" data-level="Cabinet Secretary">
+                    <div class="official-name">Pete Hegseth</div>
+                    <div class="official-position">Secretary of Defense</div>
+                    <div class="official-level">Cabinet Secretary</div>
+                    <div class="contact-info">
+                        <a href="mailto:public@defense.gov" class="contact-link">public@defense.gov</a>
+                        <a href="tel:(703) 571-3343" class="contact-link">(703) 571-3343</a>
+                        <a href="https://www.defense.gov" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <div class="official-card" data-level="Cabinet Secretary">
+                    <div class="official-name">Pam Bondi</div>
+                    <div class="official-position">Attorney General</div>
+                    <div class="official-level">Cabinet Secretary</div>
+                    <div class="contact-info">
+                        <a href="mailto:public@usdoj.gov" class="contact-link">public@usdoj.gov</a>
+                        <a href="tel:(202) 514-2000" class="contact-link">(202) 514-2000</a>
+                        <a href="https://www.justice.gov" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <div class="official-card" data-level="Cabinet Secretary">
+                    <div class="official-name">Kristi Noem</div>
+                    <div class="official-position">Secretary of Education</div>
+                    <div class="official-level">Cabinet Secretary</div>
+                    <div class="contact-info">
+                        <a href="mailto:public@ed.gov" class="contact-link">public@ed.gov</a>
+                        <a href="tel:(800) 872-5327" class="contact-link">(800) 872-5327</a>
+                        <a href="https://www.ed.gov" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <div class="official-card" data-level="Cabinet Secretary">
+                    <div class="official-name">Doug Collins</div>
+                    <div class="official-position">Secretary of Veterans Affairs</div>
+                    <div class="official-level">Cabinet Secretary</div>
+                    <div class="contact-info">
+                        <a href="mailto:public@va.gov" class="contact-link">public@va.gov</a>
+                        <a href="tel:(800) 827-1000" class="contact-link">(800) 827-1000</a>
+                        <a href="https://www.va.gov" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <div class="official-card" data-level="Cabinet Secretary">
+                    <div class="official-name">Russell Vought</div>
+                    <div class="official-position">Director of the Office of Management and Budget</div>
+                    <div class="official-level">Cabinet Secretary</div>
+                    <div class="contact-info">
+                        <a href="mailto:public@omb.eop.gov" class="contact-link">public@omb.eop.gov</a>
+                        <a href="tel:(202) 395-3080" class="contact-link">(202) 395-3080</a>
+                        <a href="https://www.whitehouse.gov/omb/" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <!-- Senior Staff -->
+                <div class="official-card" data-level="Senior Staff">
+                    <div class="official-name">Susie Wiles</div>
+                    <div class="official-position">White House Chief of Staff</div>
+                    <div class="official-level">Senior Staff</div>
+                    <div class="contact-info">
+                        <a href="mailto:chief.staff@who.eop.gov" class="contact-link">chief.staff@who.eop.gov</a>
+                        <a href="tel:(202) 456-1414" class="contact-link">(202) 456-1414</a>
+                        <a href="https://www.whitehouse.gov/administration/" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <div class="official-card" data-level="Senior Staff">
+                    <div class="official-name">Karoline Leavitt</div>
+                    <div class="official-position">White House Press Secretary</div>
+                    <div class="official-level">Senior Staff</div>
+                    <div class="contact-info">
+                        <a href="mailto:press@who.eop.gov" class="contact-link">press@who.eop.gov</a>
+                        <a href="tel:(202) 456-1414" class="contact-link">(202) 456-1414</a>
+                        <a href="https://www.whitehouse.gov/briefing-room/" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+                
+                <div class="official-card" data-level="Senior Staff">
+                    <div class="official-name">Marco Rubio</div>
+                    <div class="official-position">National Security Advisor (acting)</div>
+                    <div class="official-level">Senior Staff</div>
+                    <div class="contact-info">
+                        <a href="mailto:nsc@who.eop.gov" class="contact-link">nsc@who.eop.gov</a>
+                        <a href="tel:(202) 456-1414" class="contact-link">(202) 456-1414</a>
+                        <a href="https://www.whitehouse.gov/nsc/" class="contact-link">Official Website</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(section) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(s => s.classList.add('hidden'));
+            document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(section + '-section').classList.remove('hidden');
+            
+            // Add active class to clicked button
+            event.target.classList.add('active');
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information & Resources - Voters Speak</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            background: #f8f9fa;
+            min-height: 100vh;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .logo-icon {
+            width: 50px;
+            height: 50px;
+            background: #e74c3c;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+        }
+
+        .logo-icon::after {
+            content: "✓";
+            color: white;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .logo h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 0;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .header a:hover .logo h1 {
+            color: #7c3aed;
+            transition: color 0.3s ease;
+        }
+
+        .tagline {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .page-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            margin-bottom: 40px;
+        }
+
+        /* Section Headers */
+        .section-header {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin: 40px 0 20px 0;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #7c3aed;
+        }
+
+        /* Two Column Layout */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            height: 70vh;
+            margin-bottom: 40px;
+        }
+
+        .news-section, .resources-section {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            overflow-y: auto;
+            padding: 20px;
+        }
+
+        .news-section::-webkit-scrollbar, .resources-section::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .news-section::-webkit-scrollbar-track, .resources-section::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .news-section::-webkit-scrollbar-thumb, .resources-section::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+
+        .news-section::-webkit-scrollbar-thumb:hover, .resources-section::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #7c3aed;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+
+        /* Smaller Resource Cards */
+        .resources-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .resource-card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+        }
+
+        .news-logo {
+            width: 40px;
+            height: 20px;
+            object-fit: contain;
+            border-radius: 3px;
+            background: white;
+            padding: 3px;
+            flex-shrink: 0;
+        }
+
+        .resource-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .resource-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 4px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .resource-description {
+            color: #666;
+            font-size: 0.85rem;
+            line-height: 1.4;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .resource-link {
+            display: inline-block;
+            padding: 6px 12px;
+            background: linear-gradient(135deg, #4a5f8f 0%, #3d4f7a 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+
+        .resource-link:hover {
+            transform: scale(1.05);
+        }
+
+        /* Back Button */
+        .back-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: transform 0.2s ease;
+            margin-top: 40px;
+        }
+
+        .back-button:hover {
+            transform: scale(1.05);
+        }
+
+        /* Two Column Layout */
+        .main-content {
+            display: flex;
+            gap: 30px;
+            height: calc(100vh - 200px);
+            margin-bottom: 40px;
+        }
+
+        .news-section, .resources-section {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #7c3aed;
+        }
+
+        /* News Logos */
+        .news-logo {
+            width: 60px;
+            height: 30px;
+            object-fit: contain;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            background: #f8f9fa;
+            padding: 3px;
+        }
+
+        .text-logo {
+            width: 100%;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 700;
+            font-size: 0.7rem;
+            border-radius: 4px;
+            margin-bottom: 8px;
+            padding: 5px;
+            text-align: center;
+        }
+
+        .resource-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #666;
+            border-top: 1px solid #ddd;
+            margin-top: 60px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <a href="index.html">
+                <div class="logo">
+                    <div class="logo-icon"></div>
+                    <h1>Voters Speak</h1>
+                </div>
+                <p class="tagline">Your Voice. Your Representatives. One Place.</p>
+            </a>
+        </div>
+
+        <!-- Page Title -->
+        <h2 class="page-title">Information & Resources</h2>
+        <p class="page-subtitle">Stay informed with trusted news sources and civic organizations</p>
+
+        <!-- Two Column Layout -->
+        <div class="main-content">
+            <!-- News Section (Left) -->
+            <div class="news-section">
+                <h2 class="section-title">News & Media</h2>
+                <div class="resources-grid" id="news-grid">
+                    <!-- News sources loaded dynamically -->
+                </div>
+            </div>
+
+            <!-- Resources Section (Right) -->
+            <div class="resources-section">
+                <h2 class="section-title">Resources</h2>
+                <div class="resources-grid" id="resources-grid">
+                    <!-- Resources loaded dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Back Button -->
+        <div style="text-align: center;">
+            <a href="index.html" class="back-button">← Back to Home</a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p>© 2025 Voters Speak</p>
+        </div>
+    </div>
+
+    <script>
+        // Comprehensive News Sources
+        const newsSources = [
+            { name: "CNN", url: "https://www.cnn.com/politics", description: "Cable news network with 24/7 political coverage", logo: "assets/images/news-logos/cnn.png" },
+            { name: "FOX News", url: "https://www.foxnews.com/politics", description: "Conservative-leaning cable news and political analysis", logo: "assets/images/news-logos/fox.png" },
+            { name: "MSNBC", url: "https://www.msnbc.com/politics", description: "Progressive cable news network with political commentary", logo: null },
+            { name: "NBC News", url: "https://www.nbcnews.com/politics", description: "National broadcast network news and politics", logo: "assets/images/news-logos/nbc.png" },
+            { name: "CBS News", url: "https://www.cbsnews.com/politics/", description: "Major broadcast network political coverage", logo: null },
+            { name: "ABC News", url: "https://abcnews.go.com/Politics", description: "National broadcast news and political reporting", logo: "assets/images/news-logos/abc.png" },
+            { name: "Reuters", url: "https://www.reuters.com/world/us/", description: "International news agency with unbiased reporting", logo: "assets/images/news-logos/reuters.png" },
+            { name: "Associated Press", url: "https://apnews.com/hub/politics", description: "Independent global news organization", logo: null },
+            { name: "NPR", url: "https://www.npr.org/sections/politics/", description: "Public radio with in-depth political coverage", logo: null },
+            { name: "BBC News", url: "https://www.bbc.com/news/world/us_and_canada", description: "British public broadcaster's US coverage", logo: "assets/images/news-logos/bbc.png" },
+            { name: "The Guardian", url: "https://www.theguardian.com/us-news/us-politics", description: "British newspaper with US political coverage", logo: null },
+            { name: "Washington Post", url: "https://www.washingtonpost.com/politics/", description: "Major newspaper covering national politics", logo: null },
+            { name: "New York Times", url: "https://www.nytimes.com/section/politics", description: "Leading newspaper with comprehensive political coverage", logo: "assets/images/news-logos/nytimes.png" },
+            { name: "Wall Street Journal", url: "https://www.wsj.com/news/politics", description: "Business-focused newspaper with political news", logo: null },
+            { name: "USA Today", url: "https://www.usatoday.com/news/politics/", description: "National newspaper with broad political coverage", logo: "assets/images/news-logos/usatoday.png" },
+            { name: "Politico", url: "https://www.politico.com", description: "Political journalism and policy coverage", logo: null },
+            { name: "The Hill", url: "https://thehill.com", description: "Congressional and political news coverage", logo: null },
+            { name: "Axios", url: "https://www.axios.com/politics", description: "Smart brevity news on politics and policy", logo: null },
+            { name: "Bloomberg", url: "https://www.bloomberg.com/politics", description: "Business and political news coverage", logo: null },
+            { name: "Yahoo News", url: "https://news.yahoo.com/politics/", description: "Aggregated news from multiple sources", logo: null },
+            { name: "HuffPost", url: "https://www.huffpost.com/news/politics", description: "Progressive news and opinion", logo: null },
+            { name: "Newsweek", url: "https://www.newsweek.com/politics", description: "Weekly news magazine and analysis", logo: null },
+            { name: "The Atlantic", url: "https://www.theatlantic.com/politics/", description: "Long-form journalism and political analysis", logo: null },
+            { name: "The New Yorker", url: "https://www.newyorker.com/news/news-desk", description: "In-depth reporting and cultural commentary", logo: null },
+            { name: "Mother Jones", url: "https://www.motherjones.com/politics/", description: "Progressive investigative journalism", logo: null },
+            { name: "National Review", url: "https://www.nationalreview.com", description: "Conservative political commentary and analysis", logo: null },
+            { name: "The American Conservative", url: "https://www.theamericanconservative.com", description: "Conservative political and cultural commentary", logo: null },
+            { name: "Newsmax", url: "https://www.newsmax.com/politics/", description: "Conservative news and opinion", logo: null },
+            { name: "The Epoch Times", url: "https://www.theepochtimes.com/us/us-politics", description: "International news with US political coverage", logo: null },
+            { name: "OAN", url: "https://www.oann.com", description: "One America News Network", logo: null },
+            { name: "BuzzFeed News", url: "https://www.buzzfeednews.com/section/politics", description: "Digital news with investigative reporting", logo: null },
+            { name: "The Daily Beast", url: "https://www.thedailybeast.com/category/politics", description: "News and opinion with sharp commentary", logo: null },
+            { name: "Google News", url: "https://news.google.com/topics/CAAqJggKIiBDQkFTRWdvSUwyMHZNRGx6TVdZU0FtVnVHZ0pWVXlnQVAB", description: "Aggregated news from thousands of sources", logo: "assets/images/news-logos/googlenews.png" }
+        ];
+
+        // Resources (Civic Organizations)
+        const resources = [
+            { name: "GovTrack.us", url: "https://govtrack.us", description: "How Your Rep Voted", logo: null },
+            { name: "OpenSecrets.org", url: "https://www.opensecrets.org", description: "Follow the Money", logo: "assets/images/news-logos/opensecrets.png" },
+            { name: "Vote Smart", url: "https://votesmart.org", description: "Fact and more facts", logo: "assets/images/news-logos/votesmart.png" },
+            { name: "Vote.org", url: "https://www.vote.org", description: "How to vote and more", logo: null },
+            { name: "Vote411.org", url: "https://www.vote411.org", description: "League of Women Voters - Are you registered to vote?", logo: null },
+            { name: "Ballotpedia", url: "https://ballotpedia.org", description: "The Encyclopedia of American Politics", logo: "assets/images/news-logos/ballotpedia.png" },
+            { name: "When We All Vote", url: "https://www.whenweallvote.org", description: "Voting Advocates", logo: null },
+            { name: "Center for Voter Information", url: "https://centerforvoterinformation.org", description: "The Name Says It All", logo: null }
+        ];
+
+        // Load news sources
+        const newsGrid = document.getElementById('news-grid');
+        newsSources.forEach(source => {
+            const card = document.createElement('div');
+            card.className = 'resource-card';
+            
+            let logoHtml = '';
+            if (source.logo) {
+                logoHtml = `<img src="${source.logo}" alt="${source.name} logo" class="news-logo" onerror="this.parentElement.querySelector('.text-logo').style.display='flex'; this.style.display='none';">`;
+            } else {
+                // Create text-based logo for outlets without images
+                const logoText = source.name.length > 15 ? source.name.substring(0, 15) + '...' : source.name;
+                logoHtml = `<div class="text-logo">${logoText}</div>`;
+            }
+            
+            card.innerHTML = `
+                ${logoHtml}
+                <h3 class="resource-name">${source.name}</h3>
+                <p class="resource-description">${source.description}</p>
+                <a href="${source.url}" target="_blank" class="resource-link">Visit Site</a>
+            `;
+            newsGrid.appendChild(card);
+        });
+
+        // Load resources (civic organizations)
+        const resourcesGrid = document.getElementById('resources-grid');
+        resources.forEach(resource => {
+            const card = document.createElement('div');
+            card.className = 'resource-card';
+            
+            let logoHtml = '';
+            if (resource.logo) {
+                logoHtml = `<img src="${resource.logo}" alt="${resource.name} logo" class="news-logo" onerror="this.parentElement.querySelector('.text-logo').style.display='flex'; this.style.display='none';">`;
+            } else {
+                // Create text-based logo for resources without images
+                const logoText = resource.name.length > 15 ? resource.name.substring(0, 15) + '...' : resource.name;
+                logoHtml = `<div class="text-logo">${logoText}</div>`;
+            }
+            
+            card.innerHTML = `
+                ${logoHtml}
+                <h3 class="resource-name">${resource.name}</h3>
+                <p class="resource-description">${resource.description}</p>
+                <a href="${resource.url}" target="_blank" class="resource-link">Visit Site</a>
+            `;
+            resourcesGrid.appendChild(card);
+        });
+    </script>
+</body>
+</html>

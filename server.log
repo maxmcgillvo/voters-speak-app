@@ -1,0 +1,9 @@
+Serving HTTP on 0.0.0.0 port 8082 (http://0.0.0.0:8082/) ...
+127.0.0.1 - - [16/Oct/2025 19:20:00] "GET /?_gl=1*dkz52g*_gcl_au*MTQzNTcxMzI0LjE3NTcwODM4MjQuMzU0MzY5MjgxLjE3NjA2Mjg3OTEuMTc2MDYyODkyNQ..*_ga*MTE4MDYxMjEwNy4xNzQ3Njc5NjI5*_ga_8NW18Q4WF2*czE3NjA2Mjg1NjIkbzQkZzEkdDE3NjA2NDE3MTYkajYwJGwwJGgzNzc5NzA3MzI.&password=e0a884ed-c8e5-47a7-ac6b-1e3ca048f189 HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2025 19:20:00] "GET /manifest.json?password=e0a884ed-c8e5-47a7-ac6b-1e3ca048f189 HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2025 19:20:00] "GET /js/social-media-component.js?password=e0a884ed-c8e5-47a7-ac6b-1e3ca048f189 HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2025 19:20:03] "GET /senate_data.js?password=e0a884ed-c8e5-47a7-ac6b-1e3ca048f189 HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2025 19:20:36] "GET / HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2025 19:20:36] "GET /js/social-media-component.js HTTP/1.1" 200 -
+127.0.0.1 - - [16/Oct/2025 19:20:37] code 404, message File not found
+127.0.0.1 - - [16/Oct/2025 19:20:37] "GET /favicon.ico HTTP/1.1" 404 -

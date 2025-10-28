@@ -1,19 +1,16 @@
-// Service Worker for Voters Speak PWA
-
 const CACHE_NAME = 'voters-speak-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/app_download_features.html',
-  '/comprehensive_test_suite.html',
-  '/user_feedback_system.html',
-  '/enhanced_phone_solution.js',
   '/manifest.json',
-  '/assets/icons/government-192.png',
-  '/assets/icons/government-512.png'
+  '/executive_data.js',
+  '/senate_data.js',
+  '/house_data.js',
+  '/judicial_data.js',
+  '/concernsdata.json'
 ];
 
-// Install event - cache assets
+// Install event - cache resources
 self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME)
@@ -22,9 +19,10 @@ self.addEventListener('install', event => {
         return cache.addAll(urlsToCache);
       })
   );
+  self.skipWaiting();
 });
 
-// Fetch event - serve from cache if available
+// Fetch event - serve from cache, fallback to network
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request)
@@ -33,26 +31,28 @@ self.addEventListener('fetch', event => {
         if (response) {
           return response;
         }
-        return fetch(event.request).then(
-          response => {
-            // Check if we received a valid response
-            if(!response || response.status !== 200 || response.type !== 'basic') {
-              return response;
-            }
-
-            // Clone the response
-            const responseToCache = response.clone();
-
-            caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, responseToCache);
-              });
-
+        
+        // Clone the request
+        const fetchRequest = event.request.clone();
+        
+        return fetch(fetchRequest).then(response => {
+          // Check if valid response
+          if (!response || response.status !== 200 || response.type !== 'basic') {
             return response;
           }
-        );
+          
+          // Clone the response
+          const responseToCache = response.clone();
+          
+          caches.open(CACHE_NAME)
+            .then(cache => {
+              cache.put(event.request, responseToCache);
+            });
+          
+          return response;
+        });
       })
-    );
+  );
 });
 
 // Activate event - clean up old caches
@@ -69,4 +69,5 @@ self.addEventListener('activate', event => {
       );
     })
   );
+  self.clients.claim();
 });

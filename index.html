@@ -902,9 +902,9 @@
                 </p>
             </div>
                 <div class="footer-links">
-                    <a href="privacy-policy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms</a>
-                    <a href="about.html">About</a>
+                    <a href='/privacy-policy'>Privacy Policy</a>
+                    <a href='/terms'>Terms</a>
+                    <a href='/about'>About</a>
                 </div>
                 <p>© 2025 Voters Speak</p>
             </div>
@@ -945,7 +945,7 @@
                     </select>
                 </div>
                 <div id="senators-grid" class="officials-grid"></div>
-                <a href="media.html" class="news-coverage-button">
+                <a class='news-coverage-button' href='/media'>
                     <div class="button-title">Complete News Coverage</div>
                     <div class="button-subtitle">Stay informed with today's political developments</div>
                 </a>
@@ -966,7 +966,7 @@
                     </select>
                 </div>
                 <div id="house-grid" class="officials-grid"></div>
-                <a href="media.html" class="news-coverage-button">
+                <a class='news-coverage-button' href='/media'>
                     <div class="button-title">Complete News Coverage</div>
                     <div class="button-subtitle">Stay informed with today's political developments</div>
                 </a>
@@ -975,7 +975,7 @@
             <div id="executive-section" class="content-section" style="display: block;">
                 <h2 class="section-title">Executive Branch</h2>
                 <div id="executive-grid" class="officials-grid"></div>
-                <a href="media.html" class="news-coverage-button">
+                <a class='news-coverage-button' href='/media'>
                     <div class="button-title">Complete News Coverage</div>
                     <div class="button-subtitle">Stay informed with today's political issues</div>
                 </a>
@@ -984,7 +984,7 @@
             <div id="judicial-section" class="content-section" style="display: none;">
                 <h2 class="section-title">Supreme Court</h2>
                 <div id="judicial-grid" class="officials-grid"></div>
-                <a href="media.html" class="news-coverage-button">
+                <a class='news-coverage-button' href='/media'>
                     <div class="button-title">Complete News Coverage</div>
                     <div class="button-subtitle">Stay informed with today's political developments</div>
                 </a>
@@ -1258,8 +1258,179 @@
 
         // Initialize the page
         document.addEventListener('DOMContentLoaded', function() {
+
+        // PWA Installation Logic
+        let deferredPrompt;
+        
+        function initializePWA() {
+            // Register service worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(registration => {
+                        console.log('Service Worker registered:', registration);
+                    })
+                    .catch(error => {
+                        console.log('Service Worker registration failed:', error);
+                    });
+            }
+
+            // Listen for beforeinstallprompt event
+            window.addEventListener('beforeinstallprompt', (e) => {
+                e.preventDefault();
+                deferredPrompt = e;
+                console.log('Install prompt available');
+            });
+
+            // Listen for app installed event
+            window.addEventListener('appinstalled', () => {
+                console.log('PWA installed successfully');
+                alert('✅ Voters Speak app installed successfully!\n\nYou can now access it from your home screen or app menu.');
+                deferredPrompt = null;
+            });
+
+            // Setup download button click handlers
+            setupDownloadButtons();
+        }
+
+        function setupDownloadButtons() {
+            // Web App button
+            const webBtn = document.querySelector('.download-btn.web');
+            if (webBtn) {
+                webBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    await handleInstall();
+                });
+            }
+
+            // Desktop button
+            const desktopBtn = document.querySelector('.download-btn.desktop');
+            if (desktopBtn) {
+                desktopBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    await handleInstall();
+                });
+            }
+
+            // Mobile button
+            const mobileBtn = document.querySelector('.download-btn.mobile');
+            if (mobileBtn) {
+                mobileBtn.addEventListener('click', async (e) => {
+                    e.preventDefault();
+                    await handleInstall();
+                });
+            }
+        }
+
+        async function handleInstall() {
+            if (deferredPrompt) {
+                // Show the install prompt
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`User response: ${outcome}`);
+                
+                if (outcome === 'accepted') {
+                    console.log('User accepted the install prompt');
+                } else {
+                    console.log('User dismissed the install prompt');
+                }
+                
+                deferredPrompt = null;
+            } else {
+                // Show platform-specific instructions
+                showInstallInstructions();
+            }
+        }
+
+        function showInstallInstructions() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            
+            if (/iphone|ipad|ipod/.test(userAgent)) {
+                showIOSInstructions();
+            } else if (/android/.test(userAgent)) {
+                showAndroidInstructions();
+            } else {
+                showDesktopInstructions();
+            }
+        }
+
+        function showIOSInstructions() {
+            alert(`📱 Install Voters Speak on iOS:
+
+1. Tap the Share button (□↑) at the bottom of Safari
+2. Scroll down and tap "Add to Home Screen"
+3. Tap "Add" in the top right corner
+4. The app icon will appear on your home screen!
+
+✓ Works offline
+✓ Quick access to all government contacts
+✓ Native app experience
+
+Note: This feature only works in Safari browser on iOS.`);
+        }
+
+        function showAndroidInstructions() {
+            alert(`📱 Install Voters Speak on Android:
+
+Chrome Browser:
+1. Tap the menu (⋮) in the top right
+2. Tap "Add to Home screen" or "Install app"
+3. Tap "Install" or "Add"
+4. The app icon will appear on your home screen!
+
+Firefox Browser:
+1. Tap the menu (⋮)
+2. Tap "Install"
+3. Confirm installation
+
+✓ Works offline
+✓ Quick access to all government contacts
+✓ Native app experience`);
+        }
+
+        function showDesktopInstructions() {
+            const browser = getBrowserName();
+            
+            let instructions = `💻 Install Voters Speak on Desktop:\n\n`;
+            
+            if (browser === 'Chrome') {
+                instructions += `Chrome:\n1. Click the install icon (⊕) in the address bar\n2. Click "Install"\n3. The app will open in its own window!\n\n`;
+            } else if (browser === 'Edge') {
+                instructions += `Edge:\n1. Click the install icon (⊕) in the address bar\n2. Click "Install"\n3. The app will open in its own window!\n\n`;
+            } else if (browser === 'Firefox') {
+                instructions += `Firefox:\n1. Look for the install icon in the address bar\n2. Or check Settings > Install this site as an app\n3. Follow the prompts\n\n`;
+            } else {
+                instructions += `Your browser may support installation:\n1. Look for an install icon in the address bar\n2. Or check the browser menu for "Install" option\n3. Follow the prompts to install\n\n`;
+            }
+            
+            instructions += `The installed app provides:\n✓ Quick access from your desktop/taskbar\n✓ Offline functionality\n✓ Native app experience\n✓ Direct contact with all government officials`;
+            
+            alert(instructions);
+        }
+
+        function getBrowserName() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            if (userAgent.indexOf('chrome') > -1 && userAgent.indexOf('edge') === -1) return 'Chrome';
+            if (userAgent.indexOf('edge') > -1 || userAgent.indexOf('edg/') > -1) return 'Edge';
+            if (userAgent.indexOf('firefox') > -1) return 'Firefox';
+            if (userAgent.indexOf('safari') > -1 && userAgent.indexOf('chrome') === -1) return 'Safari';
+            return 'Unknown';
+        }
+
+        // Check if app is already installed
+        if (window.matchMedia('(display-mode: standalone)').matches || window.navigator.standalone === true) {
+            console.log('App is running in standalone mode');
+        }
+
+        // Initialize PWA when DOM is ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initializePWA);
+        } else {
+            initializePWA();
+        }
+
             showSection('executive');
         });
     </script>
-</body>
+
+<script async id="netlify-rum-container" src="/.netlify/scripts/rum" data-netlify-rum-site-id="2ea458f9-bc68-499b-b4cb-2b593b41f81e" data-netlify-deploy-branch="main" data-netlify-deploy-context="production" data-netlify-cwv-token="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzaXRlX2lkIjoiMmVhNDU4ZjktYmM2OC00OTliLWI0Y2ItMmI1OTNiNDFmODFlIiwiYWNjb3VudF9pZCI6IjY4YmY2NmM4NWIxMjZiMjJmM2IzMTExOSIsImRlcGxveV9pZCI6IjY4ZmZkZjMzOWU4YTQwMDAwOGEyMTI3ZSIsImlzc3VlciI6Im5mc2VydmVyIn0.0P-h5ADjKNq3RjPScbhNscnawkQSt-OO-QPKPVUZ8ls"></script></body>
 </html>

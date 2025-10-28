@@ -1,21 +1,62 @@
 {
   "name": "Voters Speak",
   "short_name": "Voters Speak",
-  "description": "Contact your Elected Officials",
-  "start_url": "/index.html",
+  "description": "Your Voice. Your Representatives. One Place. Contact your government officials across all branches.",
+  "start_url": "/",
   "display": "standalone",
-  "background_color": "#667eea",
-  "theme_color": "#2c3e50",
+  "background_color": "#ffffff",
+  "theme_color": "#4a90e2",
+  "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/assets/icons/government-192.png",
+      "src": "/icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
-      "src": "/assets/icons/government-512.png",
+      "src": "/icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["government", "politics", "news"],
+  "screenshots": [
+    {
+      "src": "/screenshot-wide.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    },
+    {
+      "src": "/screenshot-narrow.png",
+      "sizes": "750x1334",
+      "type": "image/png",
+      "form_factor": "narrow"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Executive Branch",
+      "short_name": "Executive",
+      "description": "View Executive Branch officials",
+      "url": "/?section=executive",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "U.S. Senate",
+      "short_name": "Senate",
+      "description": "View U.S. Senators",
+      "url": "/?section=senate",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "House of Representatives",
+      "short_name": "House",
+      "description": "View House Representatives",
+      "url": "/?section=house",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
     }
   ]
 }
